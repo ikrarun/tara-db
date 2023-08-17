@@ -1,6 +1,6 @@
-# TARA: Truth and Reclamation for Ambedkarism
+# TARFA: Truth and Reclamation for Ambedkarism
 
-TARA is a platform dedicated to dispelling confusion, debunking myths, and promoting accurate understanding about topics related to Dalit, Bahujan, Ambedkar, and Buddha. It aims to provide a space for learning, discussion, and advocacy in line with the principles and teachings of Dr. B. R. Ambedkar and the wisdom of Buddha.
+TARFA is a platform dedicated to dispelling confusion, debunking myths, and promoting accurate understanding about topics related to Dalit, Bahujan, Ambedkar, and Buddha. It aims to provide a space for learning, discussion, and advocacy in line with the principles and teachings of Dr. B. R. Ambedkar and the wisdom of Buddha.
 
 ## Features
 
