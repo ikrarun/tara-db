@@ -1,12 +1,17 @@
-import Footer from "@/app/UI/footer";
-import NAV from "@/app/UI/nav";
+import Footer from "@/UI/footer";
+import NAV from "@/UI/nav";
 export default function Home() {
   return (
     <div className="flex flex-col">
       <NAV />
       <div className="w-full my-5 h-screen p-2 flex">
         <div className="max-w-[900px] mx-auto w-full flex flex-col gap-2  items-center justify-center">
-          <h1 className="text-2xl">About Us</h1>
+         {/* title */}
+          <div className="relative p-4 py-10 overflow-clip flex flex-col items-center justify-center">
+            <div className="bg-blue-700 z-10 absolute mix-blend-overlay bottom-5 -left-50 -rotate-6 h-4/6 w-80" />
+            <h1 className="text-2xl text-white z-50">About Us</h1>
+          </div>
+          {/* content */}
           <ul className="my-10 list-disc flex flex-col gap-5">
             <li>
               Myth Debunking: TARA DB is your source for debunking myths and

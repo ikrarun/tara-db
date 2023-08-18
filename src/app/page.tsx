@@ -1,8 +1,8 @@
-import Sugg_Reading from "./UI/Sections/sugg_reading";
-import Myths_Busting from "./UI/Sections/myth_busting";
-import QuoteofDay from "./UI/Sections/quoteofday";
-import Footer from "./UI/footer";
-import NAV from "./UI/nav";
+import Sugg_Reading from "@/UI/Sections/sugg_reading";
+import Myths_Busting from "@/UI/Sections/myth_busting";
+import QuoteofDay from "@/UI/Sections/quoteofday";
+import Footer from "@/UI/footer";
+import NAV from "@/UI/nav";
 export default function Home() {
   return (
     <div className="flex flex-col">
