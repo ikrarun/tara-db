@@ -1,15 +1,20 @@
 import React from "react";
 import BookCard from "../Card/BookCard";
-import prisma from "@/database/prismclient";
+
+interface SuggRead {
+  title: string;
+  desc: string;
+  link: string;
+  imageUrl: string;
+}
 
 const getSuggested = async () => {
-  const suggestions = await prisma.suggestedreadings.findMany({
-    take:3,
-    where:{
-      featured:true
-    }
-  })
-  return suggestions;
+  const suggest = await fetch(`https://taradb.vercel.app/api/getSuggested`, {
+    next: { revalidate: 60 },
+  });
+  const sugg = await suggest.json();
+  const res = sugg.res as SuggRead[];
+  return res;
 };
 
 const sugg_reading = async () => {
@@ -21,14 +26,13 @@ const sugg_reading = async () => {
       </h1>
       <div className="flex flex-row max-w-fit overflow-x-auto p-1 items-center justify-start">
         {suggestions.map((data, index) => (
-         
-         <div key={index} className=" w-full sm:w-1/2 md:w-1/3">
-           <BookCard
-             title={data.title}
-             description={data.desc}
-             link={data.link}
-             imgUrl={data.imageUrl}
-           />
+          <div key={index} className=" w-full sm:w-1/2 md:w-1/3">
+            <BookCard
+              title={data.title}
+              description={data.desc}
+              link={data.link}
+              imgUrl={data.imageUrl}
+            />
           </div>
         ))}
       </div>
