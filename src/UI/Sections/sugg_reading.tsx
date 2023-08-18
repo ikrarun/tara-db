@@ -9,7 +9,6 @@ const getSuggested = async () => {
       featured:true
     }
   })
-
   return suggestions;
 };
 

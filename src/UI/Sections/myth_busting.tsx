@@ -1,6 +1,5 @@
 import React from "react";
 import FactCard from "../Card/FactCard";
-import prisma from "@/database/prismclient";
 
 interface Myths {
   title: string;
@@ -10,23 +9,11 @@ interface Myths {
 }
 
 const getlimitedmyths = async () => {
-  // const myths = await fetch(`http://127.0.0.1/:3000/api/getlimitedmyths`, {
-  //   next: { revalidate: 60 },
-  // });
-  // const res = (await myths.json()) as Myths[];
-
-  const res = await prisma.myths.findMany({
-    take: 5,
-    orderBy: {
-      created_at: "desc",
-    },
-    select:{
-        title:true,
-        shrotsec:true,
-        date:true,
-        postcode:true,
-    }
+  const myths = await fetch(`https://taradb.vercel.app/api/getlimitedmyths`, {
+    next: { revalidate: 60 },
   });
+  const pres = await myths.json();
+  const res = pres.res as Myths[];
   return res;
 };
 
@@ -39,16 +26,17 @@ const myth_busting = async () => {
       </h1>
 
       <div className="flex flex-col p-4 items-center justify-center">
-        {myths.map((data, index) => (
-          <div key={index} className="w-full h-fit">
-            <FactCard
-              title={data.title}
-              shortdesc={data.shrotsec}
-              date={data.date?.getDate.toString()}
-            />
-            <hr className="w-full border-dashed border-t border-gray-600" />
-          </div>
-        ))}
+        {myths.map((data, index) => {
+          return (
+            <div key={index} className="w-full h-fit">
+              <FactCard
+                title={data.title}
+                shortdesc={data.shrotsec}
+                date={data.date} link={data.postcode}              />
+              <hr className="w-full border-dashed border-t border-gray-600" />
+            </div>
+          );
+        })}
       </div>
       <h1 className="text-base cursor-pointer select-none mb-2 w-fit self-end px-5 text-end text-blue-700">
         More...
