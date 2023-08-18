@@ -15,7 +15,7 @@ const BookCard = ({
     <div className="h-fit snap-start w-44 sm:w-52  p-1 shrink-0  flex flex-col">
       <div className=" p-2 rounded-lg w-full border-gray-400 border">
         <div className="relative w-full aspect-video rounded-lg overflow-clip">
-          <Image src={imgUrl} objectFit="cover" fill={true} alt={""} />
+          <Image src={imgUrl} style={{objectFit:"cover"}} fill={true} alt={""} />
         </div>
 
         <div className="w-full flex flex-col gap-1">
