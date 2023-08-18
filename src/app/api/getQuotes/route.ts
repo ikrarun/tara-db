@@ -10,6 +10,10 @@ export async function GET() {
     const quote = await prisma.quotes.findUnique({
       where:{
         id:randomnumber
+      },
+      select:{
+        quote:true,
+        author:true
       }
     })
 
