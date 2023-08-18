@@ -8,8 +8,8 @@ export default function Home() {
         <div className="max-w-[900px] mx-auto w-full flex flex-col gap-2  items-center justify-center">
          {/* title */}
           <div className="relative p-4 py-10 overflow-clip flex flex-col items-center justify-center">
-            <div className="bg-blue-700 z-10 absolute mix-blend-overlay bottom-5 -left-50 -rotate-6 h-4/6 w-80" />
-            <h1 className="text-2xl text-white z-50">About Us</h1>
+            <div className="bg-blue-700 absolute mix-blend-overlay bottom-9 -left-50 -rotate-3 h-2/6 w-80" />
+            <h1 className="text-2xl text-white">About Us</h1>
           </div>
           {/* content */}
           <ul className="my-10 list-disc flex flex-col gap-5">
@@ -22,8 +22,8 @@ export default function Home() {
             </li>
             <li>
               Comprehensive Database: Our database contains a curated collection
-              of articles, videos, podcasts, and scholarly works. Whether you`&apos;`re
-              a student, researcher, or simply curious, you`&apos;`ll find a wealth of
+              of articles, videos, podcasts, and scholarly works. Whether you&apos;re
+              a student, researcher, or simply curious, you&apos;ll find a wealth of
               reliable information here. 📚🔍
             </li>
             <li>

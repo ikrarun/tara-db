@@ -1,7 +1,7 @@
 import React from "react";
 import {AiOutlineRead} from 'react-icons/ai'
-const FactCard = ({title,shortdesc,date}:{title:string,shortdesc:string,date:Date|null}) => {
-  const ndate = date?.getDate().toString();
+const FactCard = ({title,shortdesc,date}:{title:string,shortdesc:string,date:string|undefined}) => {
+  const ndate = date?.toString();
   return (
     <div className="w-full flex-row flex p-4">
       <div className="flex flex-col gap-2 w-11/12">
