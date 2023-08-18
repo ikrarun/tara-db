@@ -8,6 +8,9 @@ dependencies:
   '@editorjs/editorjs':
     specifier: ^2.27.2
     version: 2.27.2
+  '@editorjs/header':
+    specifier: ^2.7.0
+    version: 2.7.0
   '@prisma/client':
     specifier: 5.1.1
     version: 5.1.1(prisma@5.1.1)
@@ -55,6 +58,15 @@ dependencies:
     version: 5.1.6
 
 devDependencies:
+  '@editorjs/code':
+    specifier: ^2.8.0
+    version: 2.8.0
+  '@editorjs/inline-code':
+    specifier: ^1.4.0
+    version: 1.4.0
+  '@types/editorjs__header':
+    specifier: ^2.6.0
+    version: 2.6.0
   '@types/react-draft-wysiwyg':
     specifier: ^1.13.4
     version: 1.13.4
@@ -81,9 +93,30 @@ packages:
       regenerator-runtime: 0.14.0
     dev: false
 
+  /@codexteam/icons@0.0.5:
+    resolution: {integrity: sha512-s6H2KXhLz2rgbMZSkRm8dsMJvyUNZsEjxobBEg9ztdrb1B2H3pEzY6iTwI4XUPJWJ3c3qRKwV4TrO3J5jUdoQA==}
+
+  /@editorjs/code@2.8.0:
+    resolution: {integrity: sha512-qlv1OqSEPKnLv/ZQgNFmVgqsMbGDkh/qgTEnbVWsS+yujo1nlwgVkqCB8tOkQGVsrpmAYLiWRlA413nKxxCN5w==}
+    dependencies:
+      '@codexteam/icons': 0.0.5
+    dev: true
+
   /@editorjs/editorjs@2.27.2:
     resolution: {integrity: sha512-k4LavGJijAP0F1wATQ0fTo10xtBSny9z6yWaP3ANqqtyKr+pBMind5NQzckqYI0yPp31GObpcS/HsFGsFOGcug==}
     dev: false
+
+  /@editorjs/header@2.7.0:
+    resolution: {integrity: sha512-4fGKGe2ZYblVqR/P/iw5ieG00uXInFgNMftBMqJRYcB2hUPD30kuu7Sn6eJDcLXoKUMOeqi8Z2AlUxYAmvw7zQ==}
+    dependencies:
+      '@codexteam/icons': 0.0.5
+    dev: false
+
+  /@editorjs/inline-code@1.4.0:
+    resolution: {integrity: sha512-nJJx2eBgQyml7U8MdMdJNFY2RgZCOuvvXHEW73xsdu36ZXCd44eAo7vq1S5Jz9l8bC676SvNbRfeH/nojXK37A==}
+    dependencies:
+      '@codexteam/icons': 0.0.5
+    dev: true
 
   /@eslint-community/eslint-utils@4.4.0(eslint@8.47.0):
     resolution: {integrity: sha512-1/sA4dwrzBAyeUoQ6oxahHKmrZvsnLCg4RfxW3ZFGGmQkSNQPFNLV9CUEFQP1x9EYXHTo5p6xdhZM1Ne9p/AfA==}
@@ -321,6 +354,10 @@ packages:
     dependencies:
       '@types/react': 18.2.20
       immutable: 3.7.6
+    dev: true
+
+  /@types/editorjs__header@2.6.0:
+    resolution: {integrity: sha512-J9TyO/BjNVddi+syyXpvMRMtVz5Z62pwmFKynWsgP+wnJYdWF8ABqgomokIsAvuEwH5NHa/YxsTltYcPPGCRRQ==}
     dev: true
 
   /@types/json5@0.0.29:
