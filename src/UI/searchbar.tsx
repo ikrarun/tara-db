@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 
-const searchbar = () => {
+const Searchbar = () => {
     const [searchtext, setSearchText] = useState('');
     return (
         <div className='flex flex-col h-full w-full items-center justify-center'>
@@ -14,4 +14,4 @@ const searchbar = () => {
         </div>)
 }
 
-export default searchbar
+export default Searchbar

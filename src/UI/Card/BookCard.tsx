@@ -1,5 +1,5 @@
 import React from "react";
-
+import Image from 'next/image'
 const BookCard = ({
   title,
   description,
@@ -12,10 +12,10 @@ const BookCard = ({
   imgUrl: string;
 }) => {
   return (
-    <div className="h-fit snap-start w-full sm:w-1/2 md:w-1/3 p-1 shrink-0  flex flex-col">
-      <div className=" p-2 rounded-lg  border-gray-400 border">
-        <div className="w-full h-44 sm:h-52 rounded-lg overflow-clip">
-          <img src={imgUrl} alt={""} className="h-full w-full" style={{objectFit:'cover'}}  />
+    <div className="h-fit snap-start w-full p-1 shrink-0  flex flex-col">
+      <div className=" p-2 rounded-lg w-full border-gray-400 border">
+        <div className="w-44 sm:w-52 h-44 sm:h-52 rounded-lg overflow-clip">
+          <Image src={imgUrl} alt={""} width='44' height='44' style={{objectFit:'cover'}}  />
         </div>
         <h1 className="text-gray-600 text-base">{title}</h1>
         <h1 className="text-gray-600 text-xs">{description}</h1>
@@ -23,7 +23,7 @@ const BookCard = ({
           href={link}
           className="text-white w-fit rounded-md self-end p-1 select-none cursor-pointer bg-blue-700 text-xs text-end"
         >
-          Read Now
+          Get Now
         </a>
       </div>
     </div>

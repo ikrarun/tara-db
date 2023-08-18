@@ -22,8 +22,8 @@ export default function Home() {
             </li>
             <li>
               Comprehensive Database: Our database contains a curated collection
-              of articles, videos, podcasts, and scholarly works. Whether you're
-              a student, researcher, or simply curious, you'll find a wealth of
+              of articles, videos, podcasts, and scholarly works. Whether you`&apos;`re
+              a student, researcher, or simply curious, you`&apos;`ll find a wealth of
               reliable information here. 📚🔍
             </li>
             <li>

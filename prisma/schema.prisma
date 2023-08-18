@@ -11,6 +11,27 @@ datasource db {
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model quotes {
   id     BigInt  @id @unique @default(autoincrement())
-  quote  String? @unique @default("")
+  quote  String  @unique @default("")
   author String? @default("")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model myths {
+  id         BigInt    @id @unique @default(autoincrement())
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  title      String
+  shrotsec   String
+  date       DateTime? @db.Date
+  postcode   String    @unique
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model suggestedreadings {
+  id         BigInt   @id @unique @default(autoincrement())
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  title      String   @default("")
+  desc       String
+  link       String
+  featured   Boolean
+  imageUrl   String
 }
