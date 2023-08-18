@@ -18,7 +18,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <div className='min-h-screen w-full'>
-
           {children}
         </div>
       </body>
