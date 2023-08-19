@@ -13,7 +13,7 @@ const getlimitedmyths = async () => {
     next: { revalidate: 60 },
   });
   const pres = await myths.json();
-  const res = pres.res as Myths[];
+  const res = pres.formattedRes as Myths[];
   return res;
 };
 
