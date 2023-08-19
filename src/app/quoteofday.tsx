@@ -1,4 +1,3 @@
-import prisma from "@/database/prismclient";
 import React from "react";
 
 interface Quotes {
@@ -8,7 +7,7 @@ interface Quotes {
 
 async function getquote() {
   const quotes = await fetch(`https://taradb.vercel.app/api/getQuotes`, {
-    next: { revalidate: 86400 },cache:'no-cache'
+    next: { revalidate: 86400 }
   });
   const pres = await quotes.json();
   const res = pres.quote as Quotes;

@@ -1,5 +1,5 @@
 import React from "react";
-import BookCard from "../Card/BookCard";
+import BookCard from "@/UI/Card/BookCard";
 
 interface SuggRead {
   title: string;
@@ -10,7 +10,7 @@ interface SuggRead {
 
 const getSuggested = async () => {
   const suggest = await fetch(`https://taradb.vercel.app/api/getSuggested`, {
-    next: { revalidate: 60 },cache:'no-cache'
+    next: { revalidate: 60 }
   });
   const sugg = await suggest.json();
   const res = sugg.res as SuggRead[];

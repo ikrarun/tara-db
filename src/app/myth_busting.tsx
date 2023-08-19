@@ -1,5 +1,5 @@
 import React from "react";
-import FactCard from "../Card/FactCard";
+import FactCard from "@/UI/Card/FactCard";
 
 interface Myths {
   title: string;
@@ -10,15 +10,17 @@ interface Myths {
 
 const getlimitedmyths = async () => {
   const myths = await fetch(`https://taradb.vercel.app/api/getlimitedmyths`, {
-    next: { revalidate: 60},cache:'no-cache'
+    next: { revalidate: 60 },
   });
   const pres = await myths.json();
   const res = pres.formattedRes as Myths[];
+  console.log(res);
   return res;
 };
 
 const myth_busting = async () => {
   const myths = await getlimitedmyths();
+  //const myths: any[] = []
   return (
     <div className="w-full flex flex-col">
       <h1 className="text-xl mb-2  w-fit px-5 text-start text-gray-800">
@@ -32,7 +34,9 @@ const myth_busting = async () => {
               <FactCard
                 title={data.title}
                 shortdesc={data.shrotsec}
-                date={data.date} link={data.id}              />
+                date={data.date}
+                link={data.id}
+              />
               <hr className="w-full border-dashed border-t border-gray-600" />
             </div>
           );
