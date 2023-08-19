@@ -10,7 +10,7 @@ interface SuggRead {
 
 const getSuggested = async () => {
   const suggest = await fetch(`https://taradb.vercel.app/api/getSuggested`, {
-    next: { revalidate: 60 },
+    next: { revalidate: 60 },cache:'no-cache'
   });
   const sugg = await suggest.json();
   const res = sugg.res as SuggRead[];

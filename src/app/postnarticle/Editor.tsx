@@ -20,7 +20,7 @@ const Editor = () => {
         title: title,
         desc: desc,
         post: post,
-      },
+      },cache:'no-cache'
     });
     const rres = await res.json();
     console.log(rres.res);

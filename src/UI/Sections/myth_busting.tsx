@@ -10,7 +10,7 @@ interface Myths {
 
 const getlimitedmyths = async () => {
   const myths = await fetch(`https://taradb.vercel.app/api/getlimitedmyths`, {
-    next: { revalidate: 60 },
+    next: { revalidate: 60},cache:'no-cache'
   });
   const pres = await myths.json();
   const res = pres.formattedRes as Myths[];

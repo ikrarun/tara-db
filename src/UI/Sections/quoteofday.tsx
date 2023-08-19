@@ -8,7 +8,7 @@ interface Quotes {
 
 async function getquote() {
   const quotes = await fetch(`https://taradb.vercel.app/api/getQuotes`, {
-    next: { revalidate: 86400 },
+    next: { revalidate: 86400 },cache:'no-cache'
   });
   const pres = await quotes.json();
   const res = pres.quote as Quotes;
