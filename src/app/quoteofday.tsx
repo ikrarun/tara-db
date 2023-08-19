@@ -1,3 +1,4 @@
+import host from "@/server/host";
 import React from "react";
 
 interface Quotes {
@@ -6,7 +7,7 @@ interface Quotes {
 }
 
 async function getquote() {
-  const quotes = await fetch(`https://taradb.vercel.app/api/getQuotes`, {
+  const quotes = await fetch(`${host}/api/getQuotes`, {
     next: { revalidate: 86400 }
   });
   const pres = await quotes.json();
@@ -16,21 +17,27 @@ async function getquote() {
 
 const quoteofday = async () => {
   const data = await getquote();
-  return (
-    <div className="flex flex-col items-center justify-center w-full p-4 my-4">
-      <div className="flex flex-col gap-3 border border-gray-600/40 rounded-lg w-full p-4 items-center justify-center">
-        <h1 className="text-sm text-gray-900 text-start w-full">
-          Quote of the Day
-        </h1>
-        <h1 className="text-3xl text-gray-900 text-center w-full">
-          {data.quote}
-        </h1>
-        <h1 className="text-sm text-gray-700 text-center capitalize">
-          {data.author}
-        </h1>
+  if(data){
+
+    return (
+      <div className="flex flex-col items-center justify-center w-full p-4 my-4">
+        <div className="flex flex-col gap-3 border border-gray-600/40 rounded-lg w-full p-4 items-center justify-center">
+          <h1 className="text-sm text-gray-900 text-start w-full">
+            Quote of the Day
+          </h1>
+          <h1 className="text-3xl text-gray-900 text-center w-full">
+            {data.quote}
+          </h1>
+          <h1 className="text-sm text-gray-700 text-center capitalize">
+            {data.author}
+          </h1>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+  else{
+    <div>NO Result Found</div>
+  }
 };
 
 export default quoteofday;

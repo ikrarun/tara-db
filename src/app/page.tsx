@@ -3,12 +3,20 @@ import Myths_Busting from "@/app/myth_busting";
 import QuoteofDay from "@/app/quoteofday";
 import Footer from "@/UI/footer";
 import NAV from "@/UI/nav";
-export default function Home() {
+import { getServerAuthSession } from "@/server/auth";
+import UserData from "./userData";
+
+export default async function Home() {
+  const session = await getServerAuthSession();
   return (
     <div className="flex flex-col">
       <NAV />
       <div className="w-full my-5  p-2 flex">
         <div className="max-w-[900px] mx-auto w-full mt-14 min-h-screen flex flex-col gap-2  items-center justify-center">
+          <h1>
+            {session ? `Signed in as ${session.user.role}` : `No User Present`}
+          </h1>
+          <UserData/>
           {/* Quote of the Day */}
           <QuoteofDay />
           {/* Myth Busting */}

@@ -1,26 +1,27 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Inter as Font } from 'next/font/google'
+import AuthProvider from "@/server/AuthProvider";
+import "./globals.css";
+import type { Metadata } from "next";
+import { Inter as Font } from "next/font/google";
 
-const font = Font({ subsets: ['latin'] })
+const font = Font({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'TARA',
-  description: 'Truth and Reclamation for Ambedkarism',
-}
+  title: "TARA",
+  description: "Truth and Reclamation for Ambedkarism",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={font.className}>
-        <div className='min-h-screen w-full'>
-          {children}
-        </div>
-      </body>
-    </html>
-  )
+    <AuthProvider>
+      <html lang="en">
+        <body className={font.className}>
+          <div className="min-h-screen w-full">{children}</div>
+        </body>
+      </html>
+    </AuthProvider>
+  );
 }

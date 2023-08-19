@@ -1,5 +1,6 @@
 import React from "react";
 import FactCard from "@/UI/Card/FactCard";
+import host from "@/server/host";
 
 interface Myths {
   title: string;
@@ -9,7 +10,7 @@ interface Myths {
 }
 
 const getlimitedmyths = async () => {
-  const myths = await fetch(`https://taradb.vercel.app/api/getlimitedmyths`, {
+  const myths = await fetch(`${host}/api/getlimitedmyths`, {
     next: { revalidate: 60 },
   });
   const pres = await myths.json();

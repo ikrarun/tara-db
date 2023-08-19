@@ -1,7 +1,13 @@
 "use client";
-import { useState } from "react";
+import host from "@/server/host";
+import { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+
+interface response {
+  message: any;
+  success: boolean;
+}
 
 const Editor = () => {
   const [title, setTitle] = useState("");
@@ -14,19 +20,31 @@ const Editor = () => {
     setPost("");
   };
   const submit = async () => {
-    const res = await fetch("https://taradb.vercel.app/api/createnarticle", {
+    const body = JSON.stringify(post);
+    const result = await fetch(`${host}/api/createnarticle`, {
       method: "POST",
       headers: {
         title: title,
         desc: desc,
-        post: post,
-      },cache:'no-cache'
+      },
+      body: body,
+      cache: "no-cache",
     });
-    const rres = await res.json();
-    console.log(rres.res);
-    // clearData();
+    console.log(result);
+    const res: response = await result.json();
+    console.log("data from server");
+    console.log(res.message);
+    if (res.success) {
+      clearData();
+    }
+    return res;
   };
 
+  useEffect(() => {
+    setResult("");
+  }, [title, desc, post]);
+
+  const [result, setResult] = useState("");
   return (
     <div className="flex w-full gap-2 flex-col">
       <div className="p-1 border-b border-dashed border-gray-700">
@@ -69,10 +87,24 @@ const Editor = () => {
       <button
         className="bg-blue-700 w-fit rounded-md text-white px-4 py-2"
         type="button"
-        onClick={submit}
+        onClick={() => {
+          submit().then((res) => {
+            if (res.success) {
+              setResult("Your Submission is Successful");
+            }
+            if (!res.success) {
+              if (res.message.code) {
+                setResult("Can't Submit Duplicate Article");
+              } else {
+                setResult("Some Error Occured During Submission");
+              }
+            }
+          });
+        }}
       >
         Submit Post
       </button>
+      <h1>{result}</h1>
     </div>
   );
 };

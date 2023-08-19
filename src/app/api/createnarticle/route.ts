@@ -1,14 +1,13 @@
-import prisma from "@/database/prismclient";
+import { prisma } from "@/server/db";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   const head = req.headers;
   const title = head.get("title");
   const desc = head.get("desc");
-  const post = head.get("post");
+  const post = await req.json();
 
   if (title && desc && post) {
-    console.log(title + " \n " + desc + " \n " + post);
     var mres;
     try {
       mres = await prisma.myths.create({
@@ -28,7 +27,10 @@ export async function POST(req: NextRequest) {
           postid: mres.id,
         },
       });
-      return NextResponse.json({ message: "Successfully Posted", success: true });
+      return NextResponse.json({
+        message: "Successfully Posted",
+        success: true,
+      });
     } catch (error) {
       return NextResponse.json({ message: error, success: false });
     }
