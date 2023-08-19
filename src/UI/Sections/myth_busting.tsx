@@ -5,7 +5,7 @@ interface Myths {
   title: string;
   shrotsec: string;
   date: string;
-  postcode: string;
+  id: string;
 }
 
 const getlimitedmyths = async () => {
@@ -32,7 +32,7 @@ const myth_busting = async () => {
               <FactCard
                 title={data.title}
                 shortdesc={data.shrotsec}
-                date={data.date} link={data.postcode}              />
+                date={data.date} link={data.id}              />
               <hr className="w-full border-dashed border-t border-gray-600" />
             </div>
           );
