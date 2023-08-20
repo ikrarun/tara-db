@@ -20,6 +20,22 @@ const getSuggested = async () => {
 
 const sugg_reading = async () => {
   const suggestions = await getSuggested();
+
+  if (!(suggestions.length > 0)) {
+    return (
+      <div className="w-full flex flex-col">
+        <h1 className="text-xl mb-2  w-fit px-5 text-start text-gray-800">
+          Suggested Readings
+        </h1>
+        <div className="flex flex-col animate-bounce w-full overflow-x-auto p-1 items-center justify-cener">
+          <h1 className="text-red-500">
+            No Suggestions Availble Right Now!
+          </h1>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full flex flex-col">
       <h1 className="text-xl mb-2  w-fit px-5 text-start text-gray-800">

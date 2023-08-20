@@ -30,10 +30,7 @@ const Editor = () => {
       body: body,
       cache: "no-cache",
     });
-    console.log(result);
     const res: response = await result.json();
-    console.log("data from server");
-    console.log(res.message);
     if (res.success) {
       clearData();
     }

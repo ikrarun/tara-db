@@ -15,13 +15,26 @@ const getlimitedmyths = async () => {
   });
   const pres = await myths.json();
   const res = pres.formattedRes as Myths[];
-  console.log(res);
   return res;
 };
 
 const myth_busting = async () => {
   const myths = await getlimitedmyths();
   //const myths: any[] = []
+  if(!(myths.length>0)){
+    return (
+      <div className="w-full flex flex-col">
+        <h1 className="text-xl mb-2  w-fit px-5 text-start text-gray-800">
+          Myths Busted
+        </h1>
+  
+        <div className="flex flex-col animate-bounce duration-1000 p-4 items-center justify-center">
+          <h1 className="text-red-500">No Myths Busted till Now!</h1>
+        </div>
+        
+      </div>
+    );
+  }
   return (
     <div className="w-full flex flex-col">
       <h1 className="text-xl mb-2  w-fit px-5 text-start text-gray-800">

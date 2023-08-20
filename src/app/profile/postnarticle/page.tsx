@@ -2,7 +2,7 @@ import NAV from "@/UI/nav";
 import Footer from "@/UI/footer";
 import dynamic from "next/dynamic";
 const Editor = dynamic(
-  () => import("@/app/postnarticle/Editor").then((module) => module.default),
+  () => import("@/app/profile/postnarticle/Editor").then((module) => module.default),
   { ssr: false }
 );
 const Post = () => {

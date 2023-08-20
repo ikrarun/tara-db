@@ -66,7 +66,7 @@ const page = async ({ params }: { params: { pid: string } }) => {
               <h3 className="self-start p-1 border-b border-gray-700 border-dashed text-gray-600 text-xs font-normal">
                 {date}
               </h3>
-              <div className="self-start mt-12">
+              <div className="self-start w-full overflow-x-auto mt-12">
                 <WYSIWUG data={values.wysiwyg} />
               </div>
             </div>
@@ -83,7 +83,7 @@ const page = async ({ params }: { params: { pid: string } }) => {
               <h1>Invalid Request</h1>
               <Link
                 href={"/"}
-                className="bg-blue-700 text-white rounded-md py-1 px-2"
+                className="bg-blue-700 decoration-transparent text-white rounded-md py-1 px-2"
               >
                 Home
               </Link>
@@ -100,11 +100,11 @@ const page = async ({ params }: { params: { pid: string } }) => {
           <div className="max-w-[900px] mx-auto w-full flex flex-col items-center justify-center">
             <h1>Invalid Request</h1>
             <Link
-                href={"/"}
-                className="bg-blue-700 text-white rounded-md py-1 px-2"
-              >
-                Home
-              </Link>
+              href={"/"}
+              className="bg-blue-700 text-white decoration-transparent rounded-md py-1 px-2"
+            >
+              Home
+            </Link>
           </div>
         </div>
         <Footer />

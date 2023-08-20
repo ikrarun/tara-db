@@ -1,7 +1,8 @@
-import AuthProvider from "@/server/AuthProvider";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter as Font } from "next/font/google";
+import { Raleway as Font } from "next/font/google";
+import Reload from "@/app/profile/Reload";
+import AuthProvider from "@/server/AuthProvider";
 
 const font = Font({ subsets: ["latin"] });
 
@@ -16,12 +17,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <AuthProvider>
-      <html lang="en">
-        <body className={font.className}>
-          <div className="min-h-screen w-full">{children}</div>
-        </body>
-      </html>
-    </AuthProvider>
+    <html lang="en">
+      <body className={font.className}>
+        <div className="min-h-screen w-full tracking-wide">
+          <AuthProvider>{children}</AuthProvider>
+        </div>
+      </body>
+    </html>
   );
 }
