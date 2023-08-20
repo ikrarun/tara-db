@@ -5,15 +5,11 @@ import Link from "next/link";
 import { getServerAuthSession } from "@/server/auth";
 
 const Profile = async () => {
-  //
   const session = await getServerAuthSession();
-  //
-  //
+
   const role = session?.user.role;
-  //
-  //
+
   if (!session || role === "USER") {
-    //
     return (
       <div className="w-full flex flex-col gap-8">
         <div className="flex flex-col gap-4">
@@ -57,7 +53,7 @@ const Profile = async () => {
             <Link
               className="bg-blue-700 text-xl w-fit rounded-md
           text-white py-1 px-2"
-              href="/joiningform"
+              href="/joinform"
             >
               Join Us
             </Link>
@@ -75,9 +71,7 @@ const Profile = async () => {
         <USERDATA />
       </div>
     );
-  }
-  //
-  else if (role === "ADMIN") {
+  } else if (role === "EDITOR" || role === "ADMIN") {
     return (
       <div className="w-full flex flex-col gap-8">
         <div className="flex flex-col gap-4">
@@ -150,6 +144,64 @@ const Profile = async () => {
             </h1>
           </div>
           {/* s5 */}
+          <div className="border-b border-gray-900 my-5" />
+        </div>
+        {/* <USERDATA allsession={allsession} /> */}
+        <USERDATA />
+      </div>
+    );
+  } else if (session.user.role === "APPLIED") {
+    return (
+      <div className="w-full flex flex-col gap-8">
+        <div className="flex flex-col gap-4">
+          {/* s1 */}
+          <div className="flex flex-col gap-3">
+            <h1 className="text-2xl">
+              Would you like to contribute to this project?
+            </h1>
+            <h1 className="text-base text-gray-900/90">
+              We are reaching out to you with a sincere request for support. Our
+              project holds great potential to create positive change, but we
+              need assistance to bring our vision to life. Your contribution,
+              whether it's your time, expertise, or resources, can play a
+              pivotal role in making this project a success. We believe that by
+              working together, we can achieve something remarkable. Your
+              support would not only help us achieve our goals but also be a
+              testament to the strength of our community. We are excited about
+              the possibilities and would be truly grateful if you could join us
+              on this journey. Thank you for considering our request.
+            </h1>
+          </div>
+          {/* s2 */}
+          <div className="border-b border-gray-900 my-5" />
+          <div className="flex flex-col  gap-3">
+            <Link
+              className="bg-blue-700 text-xl w-fit rounded-md
+          text-white py-1 px-2"
+              href="/donatelink"
+            >
+              Donate Us
+            </Link>
+
+            <h1 className="text-base text-gray-900/90">
+              Join hands with us in making a difference. Your contribution will
+              help us achieve our goals and leave a lasting legacy.
+            </h1>
+          </div>
+          {/* s3 */}
+          <div className="border-b border-gray-900 my-5" />
+          <div className="flex flex-col  gap-3">
+            <h1 className="text-xl text-gray-900/90">
+              Thanks for showing your intrest to work with us, please wait while
+              are processing your request.
+            </h1>
+            <h1 className="text-base text-gray-900/90">
+              Join us as a contributor and be a vital part of our mission to
+              create positive change.
+            </h1>
+          </div>
+
+          {/* s4 */}
           <div className="border-b border-gray-900 my-5" />
         </div>
         {/* <USERDATA allsession={allsession} /> */}

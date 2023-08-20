@@ -8,23 +8,22 @@ datasource db {
 }
 
 model Quotes {
-  id     BigInt  @id @default(autoincrement())
+  id     String  @id @default(cuid())
   quote  String  @unique
   author String? @default("")
 }
 
 model Suggestedreadings {
-  id         BigInt   @id @unique @default(autoincrement())
+  id         String   @id @default(cuid())
   created_at DateTime @default(now()) @db.Timestamptz(6)
-  title      String   @default("")
+  title      String   @default("") @unique
   desc       String
   link       String
-  featured   Boolean
   imageUrl   String
 }
 
 model Myths {
-  id         BigInt    @id @unique @default(autoincrement())
+  id         String    @id @default(cuid())
   created_at DateTime  @default(now()) @db.Timestamptz(6)
   title      String    @unique
   shrotsec   String
@@ -33,9 +32,9 @@ model Myths {
 }
 
 model Posts {
-  id         BigInt   @id @default(autoincrement())
+  id         String   @id @default(cuid())
   created_at DateTime @default(dbgenerated("(now() AT TIME ZONE 'utc-5:30'::text)")) @db.Timestamptz(6)
-  postid     BigInt?  @unique
+  postid     String?  @unique
   wysiwyg    String
   Myths      Myths?   @relation(fields: [postid], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
@@ -63,7 +62,7 @@ model Account {
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
-  userId       String   @unique
+  userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
@@ -76,7 +75,7 @@ model User {
   image         String?
   role          Role      @default(USER)
   accounts      Account[]
-  sessions      Session?
+  sessions      Session[]
 }
 
 model VerificationToken {
@@ -90,4 +89,13 @@ model VerificationToken {
 enum Role {
   USER
   ADMIN
+  APPLIED
+  EDITOR
+}
+
+model JoiningRequest {
+  id    String @id @default(cuid())
+  name  String @default("")
+  phone String @unique @default("")
+  email String @default("")
 }

@@ -3,13 +3,14 @@ import host from "@/server/host";
 import { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-
+import { useRouter } from "next/navigation";
 interface response {
   message: any;
   success: boolean;
 }
 
 const Editor = () => {
+  const router = useRouter();
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [post, setPost] = useState("");
@@ -46,7 +47,7 @@ const Editor = () => {
   const [result, setResult] = useState("");
   const redirectx = () => {
     setTimeout(function () {
-      window.location.replace(`${host}/profile`);
+      router.replace(`${host}/profile`);
     }, 1000);
   };
   return (

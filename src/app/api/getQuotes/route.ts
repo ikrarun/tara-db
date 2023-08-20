@@ -1,21 +1,21 @@
-import {prisma} from "@/server/db";
+import { prisma } from "@/server/db";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-    const totalquotes = await prisma.quotes.count();
-    const min = 1;
-    const max = totalquotes;
-    const randomnumber = Math.floor(Math.random() * (max - min + 1)) + min;
-  
-    const quote = await prisma.quotes.findUnique({
-      where:{
-        id:randomnumber
-      },
-      select:{
-        quote:true,
-        author:true
-      }
-    })
+  const qid = await prisma.quotes.findMany({
+    select: {
+      id: true,
+    },
+  });
+
+  const allQutoe = await prisma.quotes.findMany();
+  const randomIndex = Math.floor(Math.random() * allQutoe.length);
+  const randomQuote = allQutoe[randomIndex];
+
+  var quote = {
+    quote: randomQuote.quote,
+    author: randomQuote.author,
+  };
 
   return NextResponse.json({ quote });
 }

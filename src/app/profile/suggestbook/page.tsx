@@ -2,7 +2,8 @@ import { getServerAuthSession } from "@/server/auth";
 import host from "@/server/host";
 import { redirect } from "next/navigation";
 import React from "react";
-
+import SuggestionForm from "./SuggestionForm";
+import Link from "next/link";
 const submitData = async (data: FormData) => {
   "use server";
   console.log(data);
@@ -13,64 +14,55 @@ const Suggested = async () => {
   const session = await getServerAuthSession();
   const role = session?.user.role;
 
-  if (role == "ADMIN") {
+  if (role === "EDITOR" || role === "ADMIN") {
     return (
-      <form action={submitData} className="flex flex-col gap-4 w-full items-start justify-center">
-        {/* Title */}
-        <div className="flex w-full flex-col">
-          <label className="mb-3 pl-2 block text-base font-medium text-black">
-            Title
-          </label>
-          <input
-            type="text"
-            placeholder="Enter Title of Book"
-            className="border-form-stroke text-body-color placeholder-body-color focus:border-primary active:border-primary w-full rounded-lg border-[1.5px] py-3 px-5 font-medium outline-none transition disabled:cursor-default disabled:bg-[#F5F7FD]"
-          />
+      <div className="min-h-[70vh] flex flex-col w-full items-center gap-4 justify-center">
+        <div className="flex flex-col w-full gap-3 items-center justify-center">
+          <h1 className="text-3xl font-semibold">Suggest a Book</h1>
+          <h1 className="text-base">
+            Thanks for choosing to suggest a book to our users.
+          </h1>
         </div>
-        {/* Desc */}
-        <div className="flex w-full flex-col">
-          <label className="mb-3 pl-2 block text-base font-medium text-black">
-            Description
-          </label>
-          <input
-            type="text"
-            placeholder="Enter a short description"
-            className="border-form-stroke text-body-color placeholder-body-color focus:border-primary active:border-primary w-full rounded-lg border-[1.5px] py-3 px-5 font-medium outline-none transition disabled:cursor-default disabled:bg-[#F5F7FD]"
-          />
-        </div>
-        {/* link */}
-        <div className="flex w-full flex-col">
-          <label className="mb-3 pl-2 block text-base font-medium text-black">
-            Link
-          </label>
-          <input
-            type="text"
-            placeholder="Enter link for the Book Resource"
-            className="border-form-stroke text-body-color placeholder-body-color focus:border-primary active:border-primary w-full rounded-lg border-[1.5px] py-3 px-5 font-medium outline-none transition disabled:cursor-default disabled:bg-[#F5F7FD]"
-          />
-        </div>
-        {/* image url */}
-        <div className="flex w-full flex-col">
-          <label className="mb-3 pl-2 block text-base font-medium text-black">
-            Image
-          </label>
-          <input
-            type="file"
-            accept=".jpg, .jpeg, .png"
-            placeholder="Enter link for the Book Resource"
-            className="border-form-stroke text-body-color placeholder-body-color focus:border-primary active:border-primary w-full rounded-lg border-[1.5px] py-3 px-5 font-medium outline-none transition disabled:cursor-default disabled:bg-[#F5F7FD]"
-          />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+        <SuggestionForm submitData={submitData} />
+      </div>
     );
   }
 
-  if (role == "USER") {
-    redirect(`${host}/joiningform`);
+  if (role === "USER" || role === "APPLIED") {
+    return (
+      <div className="flex flex-col w-full min-h-[80vh] justify-center items-center">
+        <div className="flex flex-col items-start border p-3 rounded-md border-gray-700/50 justify-center gap-3">
+          <h1 className="text-2xl font-semibold">
+            Currently you are not a Contributer on our Platform.
+          </h1>
+          <h1 className="text-sm">
+            You can become a contributer just by joining us.
+          </h1>
+          <Link
+            className="bg-blue-700 text-white w-fit rounded-md p-2"
+            href={"/joinform"}
+          >
+            Join Us
+          </Link>
+        </div>
+      </div>
+    );
   }
   if (!session) {
-    redirect(`${host}/api/auth/signin`);
+    <div className="flex flex-col w-full min-h-[80vh] justify-center items-center">
+      <div className="flex flex-col items-start border p-3 rounded-md border-gray-700/50 justify-center gap-3">
+        <h1 className="text-2xl font-semibold">
+          You have to login to access this page.
+        </h1>
+        <h1 className="text-sm">Please login using the link below.</h1>
+        <Link
+          className="bg-blue-700 text-white w-fit rounded-md p-2"
+          href={"/api/auth/signin"}
+        >
+          Sign In
+        </Link>
+      </div>
+    </div>;
   }
 };
 
