@@ -7,7 +7,6 @@ interface sessions {
 }
 const USERDATA = ({ allsession }: { allsession?: sessions[] }) => {
   const { data: session } = useSession();
-  console.log(session);
   if (session) {
     return (
       <div className="flex flex-col w-full gap-2">

@@ -18,17 +18,9 @@ const Profile = async () => {
     });
   }
 
-
-
   return (
-    <div className="flex flex-col">
-      <Nav />
-      <div className="w-full my-5 h-screen p-2 flex">
-        <div className="max-w-[900px] mx-auto w-full flex flex-col gap-2  items-center justify-center">
-          <USERDATA allsession={allsession} />
-        </div>
-      </div>
-      <Footer />
+    <div className="w-full flex flex-col">
+      <USERDATA allsession={allsession} />
     </div>
   );
 };

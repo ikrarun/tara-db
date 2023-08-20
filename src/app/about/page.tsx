@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       <NAV />
-      <div className="w-full my-5 h-screen p-2 flex">
+      <div className="w-full my-5 p-2 flex">
         <div className="max-w-[900px] mx-auto w-full flex flex-col gap-2  items-center justify-center">
          {/* title */}
           <div className="relative p-4 py-10 overflow-clip flex flex-col items-center justify-center">
