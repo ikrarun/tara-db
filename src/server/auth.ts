@@ -14,7 +14,7 @@ declare module "next-auth" {
       id: string;
       // ...other properties
       role: Role;
-    },
+    };
   }
 
   interface User {
@@ -25,7 +25,7 @@ declare module "next-auth" {
 
 export const authOptions: NextAuthOptions = {
   callbacks: {
-   session: ({ session, user }) => ({
+    session: ({ session, user }) => ({
       ...session,
       user: {
         ...session.user,
@@ -35,6 +35,8 @@ export const authOptions: NextAuthOptions = {
     }),
   },
   adapter: PrismaAdapter(prisma),
+  secret: process.env.NEXTAUTH_SECRET,
+
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID ?? "",
