@@ -2,7 +2,7 @@ import WYSIWUG from "@/server/WYSIWUG";
 import { prisma } from "@/server/db";
 import InvalidRequest from "@/UI/Card/invalidRequest";
 
-const getData = async (id: number) => {
+const getData = async (id: string) => {
   var header;
   try {
     header = await prisma.myths.findUnique({
@@ -45,9 +45,9 @@ interface Data {
 }
 
 const page = async ({ params }: { params: { pid: string } }) => {
-  const bid = parseInt(params.pid);
+  const bid = params.pid;
 
-  if (!Number.isNaN(bid)) {
+  if (bid) {
     const data = await getData(bid);
     const values = data as Data;
     const date = values.date?.toDateString();

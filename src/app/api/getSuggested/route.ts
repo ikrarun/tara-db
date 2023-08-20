@@ -4,9 +4,9 @@ import { NextResponse } from "next/server";
 export async function GET() {
   const res = await prisma.suggestedreadings.findMany({
     take: 3,
-    where: {
-      featured: true,
-    },
+   orderBy:{
+    created_at:"desc"
+   },
     select: {
       title: true,
       desc: true,

@@ -22,7 +22,7 @@ const Profile = async () => {
               We are reaching out to you with a sincere request for support. Our
               project holds great potential to create positive change, but we
               need assistance to bring our vision to life. Your contribution,
-              whether it's your time, expertise, or resources, can play a
+              whether it&apos;s your time, expertise, or resources, can play a
               pivotal role in making this project a success. We believe that by
               working together, we can achieve something remarkable. Your
               support would not only help us achieve our goals but also be a
@@ -86,7 +86,7 @@ const Profile = async () => {
               and efforts are shaping our shared vision into reality. We extend
               our heartfelt gratitude for your ongoing support and
               participation, as together, we make meaningful strides towards our
-              project's goals.
+              project&apos;s goals.
             </h1>
           </div>
           {/* s2 */}
@@ -120,7 +120,7 @@ const Profile = async () => {
               Unveil the truth and dispel myths surrounding the remarkable lives
               of Ambedkar and Buddha. Join us in unraveling the inspiring
               stories that shaped their legacies, as we delve into the journey
-              of enlightenment and social transformation. Let's contribute to a
+              of enlightenment and social transformation. Let&apos;s contribute to a
               more informed perspective by sharing the untold facts and
               dispelling misconceptions through our upcoming post.
             </h1>
@@ -137,7 +137,7 @@ const Profile = async () => {
             </Link>
 
             <h1 className="text-base text-gray-900/90">
-              Whether you're seeking intellectual stimulation or a momentary
+              Whether you&apos;re seeking intellectual stimulation or a momentary
               escape, our diverse collection has something for every reader.
               Embark on a literary journey and immerse yourself in the
               captivating realms waiting within these pages.
@@ -163,7 +163,7 @@ const Profile = async () => {
               We are reaching out to you with a sincere request for support. Our
               project holds great potential to create positive change, but we
               need assistance to bring our vision to life. Your contribution,
-              whether it's your time, expertise, or resources, can play a
+              whether it&apos;s your time, expertise, or resources, can play a
               pivotal role in making this project a success. We believe that by
               working together, we can achieve something remarkable. Your
               support would not only help us achieve our goals but also be a

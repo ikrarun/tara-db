@@ -1,17 +1,13 @@
 import host from "@/server/host";
 import React from "react";
 
-interface Quotes {
-  quote: string;
-  author: string;
-}
-
 async function getquote() {
   const quotes = await fetch(`${host}/api/getQuotes`, {
-     next: { revalidate: 60  },
+    next: { revalidate: 60 },
   });
   const pres = await quotes.json();
-  const res = pres.quote as Quotes;
+  const res = pres.data;
+  console.log(res);
   return res;
 }
 
@@ -33,7 +29,7 @@ const quoteofday = async () => {
         </div>
       </div>
     );
-  } else {
+  } else if (data === null) {
     return (
       <div className="flex flex-col items-center justify-center w-full p-4 my-4">
         <div className="flex flex-col gap-3 border border-gray-600/40 rounded-lg w-full p-4 items-center justify-center">

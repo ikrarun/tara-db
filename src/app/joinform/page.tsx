@@ -8,7 +8,7 @@ import { Toaster, toast } from "react-hot-toast";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-const form = () => {
+const Form = () => {
   const router = useRouter();
   const [name, setName] = useState("");
   const [mail, setMail] = useState("");
@@ -153,7 +153,7 @@ const form = () => {
       <div className="flex select-none flex-col gap-10 min-h-[80vh] justify-center items-center w-full">
         <div className="flex flex-col items-center gap-10 min-h-fit justify-center w-full">
           <h1 className="text-2xl">
-            You've already filled this form , please wait for approval
+            You&apos;ve already filled this form , please wait for approval
           </h1>
           <h1 className="text-base">Right Now, you can explore our app.</h1>
           <Link
@@ -171,7 +171,7 @@ const form = () => {
       <div className="flex select-none flex-col gap-10 min-h-[80vh] justify-center items-center w-full">
         <div className="flex flex-col items-center gap-10 min-h-fit justify-center w-full">
           <h1 className="text-2xl">
-            You're already a contributor to this platform.
+            You&apos;re already a contributor to this platform.
           </h1>
           <h1 className="text-base">Right Now, you can explore our app.</h1>
           <Link
@@ -186,4 +186,4 @@ const form = () => {
   }
 };
 
-export default form;
+export default Form;
