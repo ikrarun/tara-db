@@ -1,7 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Raleway as Font } from "next/font/google";
-import Reload from "@/app/profile/Reload";
 import AuthProvider from "@/server/AuthProvider";
 
 const font = Font({ subsets: ["latin"] });
