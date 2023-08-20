@@ -41,7 +41,14 @@ const Editor = () => {
     setResult("");
   }, [title, desc, post]);
 
+  const [reload, setReload] = useState(false);
+  const [redirect, setRedirect] = useState(false);
   const [result, setResult] = useState("");
+  const redirectx = () => {
+    setTimeout(function () {
+      window.location.replace(`${host}/profile`);
+    }, 1000);
+  };
   return (
     <div className="flex w-full gap-2 flex-col">
       <div className="p-1 border-b border-dashed border-gray-700">
@@ -81,6 +88,7 @@ const Editor = () => {
           onChange={setPost}
         />
       </div>
+
       <button
         className="bg-blue-700 w-fit rounded-md text-white px-4 py-2"
         type="button"
@@ -88,12 +96,18 @@ const Editor = () => {
           submit().then((res) => {
             if (res.success) {
               setResult("Your Submission is Successful");
+              setRedirect(true);
+              redirectx();
             }
             if (!res.success) {
               if (res.message.code) {
-                setResult("Can't Submit Duplicate Article");
+                setResult(
+                  `Can't submit your article right now, maybe you're submitting duplicate article`
+                );
+                setRedirect(true);
               } else {
                 setResult("Some Error Occured During Submission");
+                setReload(true);
               }
             }
           });
@@ -101,7 +115,15 @@ const Editor = () => {
       >
         Submit Post
       </button>
-      <h1>{result}</h1>
+      <h1 className="animate-pulse text-black my-1">{result}</h1>
+      <h1 className={reload ? `animate-pulse flex text-black my-1` : `hidden`}>
+        Please reload the page to fix the issue.
+      </h1>
+      <h1
+        className={redirect ? `animate-pulse flex text-black my-1` : `hidden`}
+      >
+        You will be redirected to profile page.
+      </h1>
     </div>
   );
 };

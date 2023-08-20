@@ -26,7 +26,7 @@ export default function RootLayout({
               <div className="flex min-h-screen flex-col">
                 <Nav />
                 <div className="w-full my-5 p-2 flex">
-                  <div className="max-w-[900px] mx-auto w-full flex flex-col gap-2  items-center justify-center">
+                  <div className="max-w-[900px] mx-auto w-full min-h-full flex flex-col gap-2  items-center justify-center">
                     {children}
                   </div>
                 </div>

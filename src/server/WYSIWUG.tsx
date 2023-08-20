@@ -5,7 +5,7 @@ import "./quill.css";
 
 const WYSIWUG = ({ data }: { data: string }) => {
   const xata = { __html: `${data}` };
-  return <div dangerouslySetInnerHTML={xata} />;
+  return <div className="mystyle" dangerouslySetInnerHTML={xata} />;
 };
 
 export default WYSIWUG;
