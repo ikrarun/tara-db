@@ -2,13 +2,7 @@ import React from "react";
 import BookCard from "@/UI/Card/BookCard";
 import host from "@/server/host";
 import { prisma } from "@/server/db";
-
-interface SuggestRead {
-  title: string;
-  desc: string;
-  link: string;
-  imageUrl: string;
-}[]
+import Link from "next/link";
 
 const getSuggested = async () => {
   const res = prisma.suggestedreadings
@@ -28,7 +22,7 @@ const getSuggested = async () => {
       return res;
     })
     .catch((e) => {
-      var result:any[] = []
+      var result: any[] = [];
       return result;
     });
   return res;
@@ -39,12 +33,11 @@ const suggest_reading = async () => {
 
   if (!(suggestions.length > 0)) {
     return (
-      <div className="flex flex-col w-full">
-        <h1 className="px-5 mb-2 text-xl text-gray-800 w-fit text-start">
-          Suggested Readings
-        </h1>
-        <div className="flex flex-col items-center justify-center w-full p-1 overflow-x-auto animate-bounce">
-          <h1 className="text-red-500">No Suggestions Available Right Now!</h1>
+      <div className="flex flex-col items-center justify-center w-full p-4 my-4">
+        <div className="flex flex-col items-center justify-center w-full gap-3 p-4 border rounded-lg border-gray-600/40">
+          <h1 className="w-full text-sm text-center text-gray-900">
+            No Books available to recommend!
+          </h1>
         </div>
       </div>
     );
@@ -67,9 +60,12 @@ const suggest_reading = async () => {
           </div>
         ))}
       </div>
-      <h1 className="self-end px-5 mb-2 text-base text-blue-700 cursor-pointer select-none w-fit text-end">
+      <Link
+        href={"/suggestions"}
+        className="self-end px-5 mb-2 text-base text-blue-700 cursor-pointer select-none w-fit text-end"
+      >
         More...
-      </h1>
+      </Link>
     </div>
   );
 };

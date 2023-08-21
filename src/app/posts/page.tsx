@@ -16,7 +16,13 @@ const get_myths = async () => {
       },
     })
     .then((res) => {
-      return res;
+      var result;
+      if (res.length > 0) {
+        result = res;
+      } else {
+        result = "code";
+      }
+      return result;
     })
     .catch((e) => {
       const resCode = e.code as string;
@@ -28,16 +34,15 @@ const get_myths = async () => {
 
 const myth_busting = async () => {
   const myths = await get_myths();
-  if (typeof myths === "string") {
-    return (
-      <div className="flex flex-col items-start justify-center  w-full gap-2 mx-auto">
-        <div className="flex flex-col w-full">
-          <h1 className="px-5 mb-2 text-xl text-gray-800 w-fit text-start">
-            Myths Busted
-          </h1>
 
-          <div className="flex flex-col items-center justify-center p-4 duration-1000 animate-bounce">
-            <h1 className="text-red-500">No Myths Busted till Now!</h1>
+  if (typeof myths !== "object") {
+    return (
+      <div className="flex flex-col items-start justify-center w-full gap-2 mx-auto">
+        <div className="flex flex-col items-center justify-center w-full p-4 my-4">
+          <div className="flex flex-col items-center justify-center w-full gap-3 p-4 border rounded-lg border-gray-600/40">
+            <h1 className="w-full text-sm text-center text-gray-900">
+              No Myths Busted Till Now!
+            </h1>
           </div>
         </div>
       </div>
