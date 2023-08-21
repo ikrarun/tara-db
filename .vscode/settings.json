@@ -2,9 +2,11 @@
     "typescript.tsdk": "node_modules/typescript/lib",
     "cSpell.words": [
         "Ambedkarism",
+        "autodocs",
         "Bahujan",
         "Dalit",
         "mantine",
+        "nextjs",
         "postid",
         "signin",
         "suggestedreadings",
