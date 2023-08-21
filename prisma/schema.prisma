@@ -26,7 +26,9 @@ model Myths {
   id         String    @id @default(cuid())
   created_at DateTime  @default(now()) @db.Timestamptz(6)
   title      String    @unique
-  shrotsec   String
+  short_desc   String
+  approved    Boolean?
+  creator     String?
   date       DateTime? @default(dbgenerated("(now() AT TIME ZONE 'utc-5:30'::text)")) @db.Timestamptz(6)
   Posts      Posts?
 }

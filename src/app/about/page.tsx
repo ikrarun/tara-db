@@ -4,15 +4,15 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       <NAV />
-      <div className="w-full my-5 p-2 flex">
+      <div className="flex w-full p-2 my-5">
         <div className="max-w-[900px] mx-auto w-full flex flex-col gap-2  items-center justify-center">
          {/* title */}
-          <div className="relative p-4 py-10 overflow-clip flex flex-col items-center justify-center">
-            <div className="bg-blue-700 absolute mix-blend-overlay bottom-9 -left-50 -rotate-3 h-2/6 w-80" />
+          <div className="relative flex flex-col items-center justify-center p-4 py-10 overflow-clip">
+            <div className="absolute bg-blue-700 mix-blend-overlay bottom-9 -left-50 -rotate-3 h-2/6 w-80" />
             <h1 className="text-2xl text-white">About Us</h1>
           </div>
           {/* content */}
-          <ul className="my-10 list-disc flex flex-col gap-5">
+          <ul className="flex flex-col gap-5 my-10 list-disc">
             <li>
               Myth Debunking: TARA DB is your source for debunking myths and
               misinformation surrounding Dalit, Bahujan, Ambedkar, Buddha, and

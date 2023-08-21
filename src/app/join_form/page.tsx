@@ -13,7 +13,7 @@ const Form = () => {
   const [name, setName] = useState("");
   const [mail, setMail] = useState("");
   const [phone, setPhone] = useState("+91");
-  const [namelen, setnamelen] = useState(50);
+  const [name_len, set_name_len] = useState(50);
   const [isValidEmail, setIsValidEmail] = useState(true);
   const validateEmail = () => {
     if (mail.length > 3) {
@@ -21,7 +21,7 @@ const Form = () => {
     } else setIsValidEmail(true);
   };
   useEffect(() => {
-    setnamelen(50 - name.length);
+    set_name_len(50 - name.length);
   }, [name]);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const Form = () => {
   if (session?.user.role === "USER") {
     return (
       <div className="flex select-none flex-col gap-10 min-h-[80vh] justify-center items-center w-full">
-        <div className="flex flex-col items-center gap-10 min-h-fit justify-center w-full">
+        <div className="flex flex-col items-center justify-center w-full gap-10 min-h-fit">
           <h1 className="text-3xl">Joining Form</h1>
           <Toaster position="bottom-left" />
           <form
@@ -51,8 +51,8 @@ const Form = () => {
               const res = await postData(data);
 
               console.log(res?.id);
-              if (res?.id === "INVDATA") {
-                toast.error(`Can't submit form, enteries are invalid`);
+              if (res?.id === "INV_DATA") {
+                toast.error(`Can't submit form, entries are invalid`);
               } else if (res?.id === "P2002") {
                 toast.error(`This Phone Number is already in use`);
               } else if (res?.id) {
@@ -62,8 +62,8 @@ const Form = () => {
           >
             <State>
               <div className="flex flex-col w-full gap-4">
-                <div className="flex w-full flex-col">
-                  <div className="flex w-full p-3 rounded-md relative border border-gray-700/80  flex-col">
+                <div className="flex flex-col w-full">
+                  <div className="relative flex flex-col w-full p-3 border rounded-md border-gray-700/80">
                     <input
                       type="text"
                       name="name"
@@ -74,19 +74,19 @@ const Form = () => {
                         e.preventDefault;
                         setName(e.target.value);
                       }}
-                      className="peer outline-none  px-2  placeholder:text-transparent ring-0 "
+                      className="px-2 outline-none peer placeholder:text-transparent ring-0 "
                     />
-                    <label className="absolute -top-3 pointer-events-none px-2  bg-white  peer-focus:text-black peer-focus:bg-white   left-3 peer-focus:-top-3 peer-placeholder-shown:top-3 text-base font-medium text-black">
+                    <label className="absolute px-2 text-base font-medium text-black bg-white pointer-events-none -top-3 peer-focus:text-black peer-focus:bg-white left-3 peer-focus:-top-3 peer-placeholder-shown:top-3">
                       Name
                     </label>
                   </div>
-                  <h1 className="px-3 text-xs text-gray-500 mt-2">
-                    {namelen} Charcters Remaining
+                  <h1 className="px-3 mt-2 text-xs text-gray-500">
+                    {name_len} Characters Remaining
                   </h1>
                 </div>
 
-                <div className="flex w-full flex-col">
-                  <div className="flex w-full p-3 rounded-md relative border border-gray-700/80  flex-col">
+                <div className="flex flex-col w-full">
+                  <div className="relative flex flex-col w-full p-3 border rounded-md border-gray-700/80">
                     <input
                       type="tel"
                       name="phone"
@@ -103,15 +103,15 @@ const Form = () => {
                           setPhone(e.target.value);
                         }
                       }}
-                      className="peer outline-none  px-2  placeholder:text-transparent ring-0 "
+                      className="px-2 outline-none peer placeholder:text-transparent ring-0 "
                     />
-                    <label className="absolute -top-3 pointer-events-none px-2  bg-white  peer-focus:text-black peer-focus:bg-white   left-3 peer-focus:-top-3 peer-placeholder-shown:top-3 text-base font-medium text-black">
+                    <label className="absolute px-2 text-base font-medium text-black bg-white pointer-events-none -top-3 peer-focus:text-black peer-focus:bg-white left-3 peer-focus:-top-3 peer-placeholder-shown:top-3">
                       Phone
                     </label>
                   </div>
                 </div>
-                <div className="flex w-full flex-col">
-                  <div className="flex w-full p-3 rounded-md relative border border-gray-700/80  flex-col">
+                <div className="flex flex-col w-full">
+                  <div className="relative flex flex-col w-full p-3 border rounded-md border-gray-700/80">
                     <input
                       type="email"
                       name="email"
@@ -122,9 +122,9 @@ const Form = () => {
                         setMail(e.target.value);
                         validateEmail();
                       }}
-                      className="peer outline-none  px-2  placeholder:text-transparent ring-0 "
+                      className="px-2 outline-none peer placeholder:text-transparent ring-0 "
                     />
-                    <label className="absolute -top-3 pointer-events-none px-2  bg-white  peer-focus:text-black peer-focus:bg-white   left-3 peer-focus:-top-3 peer-placeholder-shown:top-3 text-base font-medium text-black">
+                    <label className="absolute px-2 text-base font-medium text-black bg-white pointer-events-none -top-3 peer-focus:text-black peer-focus:bg-white left-3 peer-focus:-top-3 peer-placeholder-shown:top-3">
                       Email
                     </label>
                   </div>
@@ -137,7 +137,7 @@ const Form = () => {
 
                 <button
                   type="submit"
-                  className="bg-blue-700 rounded-md text-white p-2 w-fit text-start block text-base font-medium "
+                  className="block p-2 text-base font-medium text-white bg-blue-700 rounded-md w-fit text-start "
                 >
                   Submit
                 </button>
@@ -151,14 +151,14 @@ const Form = () => {
   if (session?.user.role === "APPLIED") {
     return (
       <div className="flex select-none flex-col gap-10 min-h-[80vh] justify-center items-center w-full">
-        <div className="flex flex-col items-center gap-10 min-h-fit justify-center w-full">
+        <div className="flex flex-col items-center justify-center w-full gap-10 min-h-fit">
           <h1 className="text-2xl">
             You&apos;ve already filled this form , please wait for approval
           </h1>
           <h1 className="text-base">Right Now, you can explore our app.</h1>
           <Link
             href={"/"}
-            className="bg-blue-700 w-fit rounded-md text-white px-4 py-2"
+            className="px-4 py-2 text-white bg-blue-700 rounded-md w-fit"
           >
             Home
           </Link>
@@ -169,14 +169,14 @@ const Form = () => {
   if (session?.user.role === "EDITOR"||session?.user.role === "ADMIN") {
     return (
       <div className="flex select-none flex-col gap-10 min-h-[80vh] justify-center items-center w-full">
-        <div className="flex flex-col items-center gap-10 min-h-fit justify-center w-full">
+        <div className="flex flex-col items-center justify-center w-full gap-10 min-h-fit">
           <h1 className="text-2xl">
             You&apos;re already a contributor to this platform.
           </h1>
           <h1 className="text-base">Right Now, you can explore our app.</h1>
           <Link
             href={"/"}
-            className="bg-blue-700 w-fit rounded-md text-white px-4 py-2"
+            className="px-4 py-2 text-white bg-blue-700 rounded-md w-fit"
           >
             Home
           </Link>

@@ -31,7 +31,7 @@ export const postData = async (data: FormData) => {
       });
   } else {
     const res = {
-      id: "INVDATA",
+      id: "INV_DATA",
     };
 
     return res;

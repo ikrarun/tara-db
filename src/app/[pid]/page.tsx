@@ -1,4 +1,4 @@
-import WYSIWUG from "@/server/WYSIWUG";
+import WYSIWYG from "@/server/WYSIWYG";
 import { prisma } from "@/server/db";
 import InvalidRequest from "@/UI/Card/invalidRequest";
 
@@ -12,7 +12,7 @@ const getData = async (id: string) => {
       select: {
         id: true,
         title: true,
-        shrotsec: true,
+        short_desc: true,
         date: true,
       },
     });
@@ -21,7 +21,7 @@ const getData = async (id: string) => {
   }
   try {
     if (header?.id) {
-      const ress = await prisma.posts.findUnique({
+      const result = await prisma.posts.findUnique({
         where: {
           postid: header.id,
         },
@@ -29,7 +29,7 @@ const getData = async (id: string) => {
           wysiwyg: true,
         },
       });
-      const combinedJson: Data = Object.assign({}, header, ress);
+      const combinedJson: Data = Object.assign({}, header, result);
       return combinedJson;
     } else return "Invalid ID";
   } catch (error) {
@@ -39,7 +39,7 @@ const getData = async (id: string) => {
 
 interface Data {
   title: string;
-  shrotsec: string;
+  short_desc: string;
   wysiwyg: string;
   date: Date | null;
 }
@@ -51,18 +51,18 @@ const page = async ({ params }: { params: { pid: string } }) => {
     const data = await getData(bid);
     const values = data as Data;
     const date = values.date?.toDateString();
-    if (values.title && values.shrotsec && values.wysiwyg) {
+    if (values.title && values.short_desc && values.wysiwyg) {
       return (
         <div className="flex flex-col">
           <h1 className="self-start text-3xl font-bold">{values.title}</h1>
-          <h3 className="self-start p-1 border-b border-gray-700 border-dashed text-gray-600 text-base font-normal">
-            {values.shrotsec}
+          <h3 className="self-start p-1 text-base font-normal text-gray-600 border-b border-gray-700 border-dashed">
+            {values.short_desc}
           </h3>
-          <h3 className="self-start p-1 border-b border-gray-700 border-dashed text-gray-600 text-xs font-normal">
+          <h3 className="self-start p-1 text-xs font-normal text-gray-600 border-b border-gray-700 border-dashed">
             {date}
           </h3>
-          <div className="self-start mystyle w-full overflow-x-auto mt-12">
-            <WYSIWUG data={values.wysiwyg} />
+          <div className="self-start w-full mt-12 overflow-x-auto my_style">
+            <WYSIWYG data={values.wysiwyg} />
           </div>
         </div>
       );

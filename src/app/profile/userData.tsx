@@ -4,16 +4,15 @@ import React from "react";
 interface sessions {
   sessionToken: string;
 }
-const USERDATA = ({ allsession }: { allsession?: sessions[] }) => {
+const USER_DATA = ({ all_session }: { all_session?: sessions[] }) => {
   const { data: session } = useSession();
   if (session) {
     return (
       <div className="flex flex-col w-full">
-        <div className="flex w-fit flex-col p-4 gap-3 rounded-md border border-gray-500/70 items-start justify-start">
+        <div className="flex flex-col items-start justify-start gap-3 p-4 border rounded-md w-fit border-gray-500/70">
           <h1>Welcome {session.user.email}</h1>
           <button
-            className="bg-blue-700 rounded-md
-          text-white py-1 px-2"
+            className="px-2 py-1 text-white bg-blue-700 rounded-md"
             onClick={() => signOut()}
           >
             Sign out
@@ -24,11 +23,10 @@ const USERDATA = ({ allsession }: { allsession?: sessions[] }) => {
   }
   return (
     <div className="flex flex-col w-full ">
-      <div className="flex w-fit flex-col p-4 gap-3 rounded-md border border-gray-500/70 items-start justify-start">
+      <div className="flex flex-col items-start justify-start gap-3 p-4 border rounded-md w-fit border-gray-500/70">
         <h1>Welcome User, Please login to access all feature(s)</h1>
         <button
-          className="bg-blue-700 rounded-md
-          text-white py-1 px-2"
+          className="px-2 py-1 text-white bg-blue-700 rounded-md"
           onClick={() => signIn()}
         >
           Sign In
@@ -38,4 +36,4 @@ const USERDATA = ({ allsession }: { allsession?: sessions[] }) => {
   );
 };
 
-export default USERDATA;
+export default USER_DATA;

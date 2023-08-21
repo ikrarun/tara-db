@@ -4,8 +4,8 @@ import { prisma } from "@/server/db";
 export const postData = async (data: FormData) => {
   const name = data.get("title")?.toString().trim();
   const desc = data.get("desc")?.toString().trim();
-  const book = data.get("booklink")?.toString().trim();
-  const cover = data.get("coverlink")?.toString().trim();
+  const book = data.get("book_link")?.toString().trim();
+  const cover = data.get("cover_link")?.toString().trim();
   if (name && desc && book && cover) {
     return prisma.suggestedreadings
       .create({
@@ -33,7 +33,7 @@ export const postData = async (data: FormData) => {
       });
   } else {
     const res = {
-      id: "INVDATA",
+      id: "INV_DATA",
     };
     return res;
   }

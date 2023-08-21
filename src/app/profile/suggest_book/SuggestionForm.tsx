@@ -13,12 +13,12 @@ const SuggestionForm = ({
   const [desc, setDesc] = useState("");
   const [book, setBook] = useState("");
   const [cover, setCover] = useState("");
-  const [desclength, setDeslen] = useState(1000);
-  const [titlelen, setTitlelen] = useState(1000);
+  const [desc_length, setDes_len] = useState(1000);
+  const [title_len, setTitle_len] = useState(1000);
 
   useEffect(() => {
-    setDeslen(200 - desc.length);
-    setTitlelen(100 - title.length);
+    setDes_len(200 - desc.length);
+    setTitle_len(100 - title.length);
   }, [title, desc]);
 
   useEffect(() => {
@@ -32,18 +32,18 @@ const SuggestionForm = ({
   });
 
   return (
-    <div className="flex select-none flex-col gap-4 w-full items-start justify-center">
+    <div className="flex flex-col items-start justify-center w-full gap-4 select-none">
       <div>
         <Toaster position="bottom-left" reverseOrder={true} />
       </div>
       <form
-        className="w-full flex flex-col gap-2"
+        className="flex flex-col w-full gap-2"
         action={async (data) => {
           const res = await postData(data);
 
           console.log(res?.id);
-          if (res?.id === "INVDATA") {
-            toast.error(`Can't submit form, enteries are invalid`);
+          if (res?.id === "INV_DATA") {
+            toast.error(`Can't submit form, entries are invalid`);
           } else if (res?.id === "P2002") {
             toast.error(`This Book is already in the suggestion list`);
           } else if (res?.id) {
@@ -52,8 +52,8 @@ const SuggestionForm = ({
         }}
       >
         {/* Title */}
-        <div className="flex w-full flex-col">
-          <div className="flex w-full p-3 rounded-md relative border border-gray-700/80  flex-col">
+        <div className="flex flex-col w-full">
+          <div className="relative flex flex-col w-full p-3 border rounded-md border-gray-700/80">
             <input
               type="text"
               name="title"
@@ -64,19 +64,19 @@ const SuggestionForm = ({
                 e.preventDefault;
                 setTitle(e.target.value);
               }}
-              className="peer outline-none  px-2  placeholder:text-transparent ring-0 "
+              className="px-2 outline-none peer placeholder:text-transparent ring-0 "
             />
-            <label className="absolute -top-3 pointer-events-none px-2  bg-white  peer-focus:text-black peer-focus:bg-white   left-3 peer-focus:-top-3 peer-placeholder-shown:top-3 text-base font-medium text-black">
+            <label className="absolute px-2 text-base font-medium text-black bg-white pointer-events-none -top-3 peer-focus:text-black peer-focus:bg-white left-3 peer-focus:-top-3 peer-placeholder-shown:top-3">
               Title
             </label>
           </div>
-          <h1 className="px-3 text-xs text-gray-500 mt-2">
-            {titlelen} Charcters Remaining
+          <h1 className="px-3 mt-2 text-xs text-gray-500">
+            {title_len} Characters Remaining
           </h1>
         </div>
         {/* Desc */}
-        <div className="flex w-full flex-col">
-          <div className="flex w-full p-3 rounded-md relative border border-gray-700/80  flex-col">
+        <div className="flex flex-col w-full">
+          <div className="relative flex flex-col w-full p-3 border rounded-md border-gray-700/80">
             <textarea
               id="textArea"
               maxLength={200}
@@ -88,62 +88,62 @@ const SuggestionForm = ({
                 setDesc(e.target.value);
               }}
               placeholder="Enter Description for Users"
-              className="peer outline-none  px-2  placeholder:text-transparent ring-0 "
+              className="px-2 outline-none peer placeholder:text-transparent ring-0 "
             />
-            <label className="absolute -top-3 px-2 pointer-events-none bg-white  peer-focus:text-black peer-focus:bg-white   left-3 peer-focus:-top-3 peer-placeholder-shown:top-3 text-base font-medium text-black">
+            <label className="absolute px-2 text-base font-medium text-black bg-white pointer-events-none -top-3 peer-focus:text-black peer-focus:bg-white left-3 peer-focus:-top-3 peer-placeholder-shown:top-3">
               Short Description
             </label>
           </div>
-          <h1 className="px-3 text-xs text-gray-500 mt-2">
-            {desclength} Charcters Remaining
+          <h1 className="px-3 mt-2 text-xs text-gray-500">
+            {desc_length} Characters Remaining
           </h1>
         </div>
         {/* link */}
-        <div className="flex w-full flex-col">
-          <div className="flex w-full p-3 rounded-md relative border border-gray-700/80  flex-col">
+        <div className="flex flex-col w-full">
+          <div className="relative flex flex-col w-full p-3 border rounded-md border-gray-700/80">
             <input
               type="text"
               placeholder="Enter Link of Book Resource"
               maxLength={100}
               value={book}
-              name="booklink"
+              name="book_link"
               onChange={(e) => {
                 e.preventDefault;
                 setBook(e.target.value);
               }}
-              className="peer outline-none  px-2  placeholder:text-transparent ring-0 "
+              className="px-2 outline-none peer placeholder:text-transparent ring-0 "
             />
-            <label className="absolute -top-3 px-2 pointer-events-none  bg-white  peer-focus:text-black peer-focus:bg-white   left-3 peer-focus:-top-3 peer-placeholder-shown:top-3 text-base font-medium text-black">
+            <label className="absolute px-2 text-base font-medium text-black bg-white pointer-events-none -top-3 peer-focus:text-black peer-focus:bg-white left-3 peer-focus:-top-3 peer-placeholder-shown:top-3">
               Link to Book
             </label>
           </div>
-          <h1 className="px-3 text-xs text-gray-500 mt-2">**Enter Url Only</h1>
+          <h1 className="px-3 mt-2 text-xs text-gray-500">**Enter Url Only</h1>
         </div>
         {/* image url */}
-        <div className="flex w-full flex-col">
-          <div className="flex w-full p-3 rounded-md relative border border-gray-700/80  flex-col">
+        <div className="flex flex-col w-full">
+          <div className="relative flex flex-col w-full p-3 border rounded-md border-gray-700/80">
             <input
               type="text"
               maxLength={100}
               value={cover}
-              name="coverlink"
+              name="cover_link"
               onChange={(e) => {
                 e.preventDefault;
                 setCover(e.target.value);
               }}
               placeholder="Enter Link for Book Cover"
-              className="peer outline-none  px-2  placeholder:text-transparent ring-0 "
+              className="px-2 outline-none peer placeholder:text-transparent ring-0 "
             />
-            <label className="absolute -top-3 px-2 pointer-events-none  bg-white  peer-focus:text-black peer-focus:bg-white   left-3 peer-focus:-top-3 peer-placeholder-shown:top-3 text-base font-medium text-black">
+            <label className="absolute px-2 text-base font-medium text-black bg-white pointer-events-none -top-3 peer-focus:text-black peer-focus:bg-white left-3 peer-focus:-top-3 peer-placeholder-shown:top-3">
               Book Cover
             </label>
           </div>
-          <h1 className="px-3 text-xs text-gray-500 mt-2">**Enter Url Only</h1>
+          <h1 className="px-3 mt-2 text-xs text-gray-500">**Enter Url Only</h1>
         </div>
-        <div className="flex w-full flex-col">
+        <div className="flex flex-col w-full">
           <button
             type="submit"
-            className="bg-blue-700 rounded-md text-white p-2 w-fit text-start block text-base font-medium "
+            className="block p-2 text-base font-medium text-white bg-blue-700 rounded-md w-fit text-start "
           >
             Submit
           </button>

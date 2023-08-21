@@ -1,5 +1,5 @@
 
-.mystyle .ql-container {
+.my_style .ql-container {
   box-sizing: border-box;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 13px;
@@ -7,25 +7,25 @@
   margin: 0px;
   position: relative;
 }
-.mystyle .ql-container.ql-disabled .ql-tooltip {
+.my_style .ql-container.ql-disabled .ql-tooltip {
   visibility: hidden;
 }
-.mystyle .ql-container.ql-disabled ul[data-checked] > li::before {
+.my_style .ql-container.ql-disabled ul[data-checked] > li::before {
   pointer-events: none;
 }
-.mystyle .ql-clipboard {
+.my_style .ql-clipboard {
   left: -100000px;
   height: 1px;
   overflow-y: hidden;
   position: absolute;
   top: 50%;
 }
-.mystyle .ql-clipboard p {
+.my_style .ql-clipboard p {
   margin: 0;
   padding: 0;
 }
 
-.mystyle p,
+.my_style p,
 ol,
 ul,
 pre,
@@ -40,333 +40,333 @@ h6 {
   padding: 0;
   counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
 }
-.mystyle ol,
+.my_style ol,
 ul {
   padding-left: 1.5em;
 }
-.mystyle ol > li,
+.my_style ol > li,
 ul > li {
   list-style-type: none;
 }
-.mystyle ul > li::before {
+.my_style ul > li::before {
   content: "\2022";
 }
-.mystyle ul[data-checked="true"],
+.my_style ul[data-checked="true"],
 ul[data-checked="false"] {
   pointer-events: none;
 }
-.mystyle ul[data-checked="true"] > li *,
+.my_style ul[data-checked="true"] > li *,
 ul[data-checked="false"] > li * {
   pointer-events: all;
 }
-.mystyle ul[data-checked="true"] > li::before,
+.my_style ul[data-checked="true"] > li::before,
 ul[data-checked="false"] > li::before {
   color: #777;
   cursor: pointer;
   pointer-events: all;
 }
-.mystyle ul[data-checked="true"] > li::before {
+.my_style ul[data-checked="true"] > li::before {
   content: "\2611";
 }
-.mystyle ul[data-checked="false"] > li::before {
+.my_style ul[data-checked="false"] > li::before {
   content: "\2610";
 }
-.mystyle li::before {
+.my_style li::before {
   display: inline-block;
   white-space: nowrap;
   width: 1.2em;
 }
-.mystyle li:not(.ql-direction-rtl)::before {
+.my_style li:not(.ql-direction-rtl)::before {
   margin-left: -1.5em;
   margin-right: 0.3em;
   text-align: right;
 }
-.mystyle li.ql-direction-rtl::before {
+.my_style li.ql-direction-rtl::before {
   margin-left: 0.3em;
   margin-right: -1.5em;
 }
-.mystyle ol li:not(.ql-direction-rtl),
+.my_style ol li:not(.ql-direction-rtl),
 ul li:not(.ql-direction-rtl) {
   padding-left: 1.5em;
 }
-.mystyle ol li.ql-direction-rtl,
+.my_style ol li.ql-direction-rtl,
 ul li.ql-direction-rtl {
   padding-right: 1.5em;
 }
-.mystyle ol li {
+.my_style ol li {
   counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
   counter-increment: list-0;
 }
-.mystyle ol li:before {
+.my_style ol li:before {
   content: counter(list-0, decimal) ". ";
 }
-.mystyle ol li.ql-indent-1 {
+.my_style ol li.ql-indent-1 {
   counter-increment: list-1;
 }
-.mystyle ol li.ql-indent-1:before {
+.my_style ol li.ql-indent-1:before {
   content: counter(list-1, lower-alpha) ". ";
 }
-.mystyle ol li.ql-indent-1 {
+.my_style ol li.ql-indent-1 {
   counter-reset: list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
 }
-.mystyle ol li.ql-indent-2 {
+.my_style ol li.ql-indent-2 {
   counter-increment: list-2;
 }
-.mystyle ol li.ql-indent-2:before {
+.my_style ol li.ql-indent-2:before {
   content: counter(list-2, lower-roman) ". ";
 }
-.mystyle ol li.ql-indent-2 {
+.my_style ol li.ql-indent-2 {
   counter-reset: list-3 list-4 list-5 list-6 list-7 list-8 list-9;
 }
-.mystyle ol li.ql-indent-3 {
+.my_style ol li.ql-indent-3 {
   counter-increment: list-3;
 }
-.mystyle ol li.ql-indent-3:before {
+.my_style ol li.ql-indent-3:before {
   content: counter(list-3, decimal) ". ";
 }
-.mystyle ol li.ql-indent-3 {
+.my_style ol li.ql-indent-3 {
   counter-reset: list-4 list-5 list-6 list-7 list-8 list-9;
 }
-.mystyle ol li.ql-indent-4 {
+.my_style ol li.ql-indent-4 {
   counter-increment: list-4;
 }
-.mystyle ol li.ql-indent-4:before {
+.my_style ol li.ql-indent-4:before {
   content: counter(list-4, lower-alpha) ". ";
 }
-.mystyle ol li.ql-indent-4 {
+.my_style ol li.ql-indent-4 {
   counter-reset: list-5 list-6 list-7 list-8 list-9;
 }
-.mystyle ol li.ql-indent-5 {
+.my_style ol li.ql-indent-5 {
   counter-increment: list-5;
 }
-.mystyle ol li.ql-indent-5:before {
+.my_style ol li.ql-indent-5:before {
   content: counter(list-5, lower-roman) ". ";
 }
-.mystyle ol li.ql-indent-5 {
+.my_style ol li.ql-indent-5 {
   counter-reset: list-6 list-7 list-8 list-9;
 }
-.mystyle ol li.ql-indent-6 {
+.my_style ol li.ql-indent-6 {
   counter-increment: list-6;
 }
-.mystyle ol li.ql-indent-6:before {
+.my_style ol li.ql-indent-6:before {
   content: counter(list-6, decimal) ". ";
 }
-.mystyle ol li.ql-indent-6 {
+.my_style ol li.ql-indent-6 {
   counter-reset: list-7 list-8 list-9;
 }
-.mystyle ol li.ql-indent-7 {
+.my_style ol li.ql-indent-7 {
   counter-increment: list-7;
 }
-.mystyle ol li.ql-indent-7:before {
+.my_style ol li.ql-indent-7:before {
   content: counter(list-7, lower-alpha) ". ";
 }
-.mystyle ol li.ql-indent-7 {
+.my_style ol li.ql-indent-7 {
   counter-reset: list-8 list-9;
 }
-.mystyle ol li.ql-indent-8 {
+.my_style ol li.ql-indent-8 {
   counter-increment: list-8;
 }
-.mystyle ol li.ql-indent-8:before {
+.my_style ol li.ql-indent-8:before {
   content: counter(list-8, lower-roman) ". ";
 }
-.mystyle ol li.ql-indent-8 {
+.my_style ol li.ql-indent-8 {
   counter-reset: list-9;
 }
-.mystyle ol li.ql-indent-9 {
+.my_style ol li.ql-indent-9 {
   counter-increment: list-9;
 }
-.mystyle ol li.ql-indent-9:before {
+.my_style ol li.ql-indent-9:before {
   content: counter(list-9, decimal) ". ";
 }
-.mystyle .ql-indent-1:not(.ql-direction-rtl) {
+.my_style .ql-indent-1:not(.ql-direction-rtl) {
   padding-left: 3em;
 }
-.mystyle li.ql-indent-1:not(.ql-direction-rtl) {
+.my_style li.ql-indent-1:not(.ql-direction-rtl) {
   padding-left: 4.5em;
 }
-.mystyle .ql-indent-1.ql-direction-rtl.ql-align-right {
+.my_style .ql-indent-1.ql-direction-rtl.ql-align-right {
   padding-right: 3em;
 }
 li.ql-indent-1.ql-direction-rtl.ql-align-right {
   padding-right: 4.5em;
 }
-.mystyle .ql-indent-2:not(.ql-direction-rtl) {
+.my_style .ql-indent-2:not(.ql-direction-rtl) {
   padding-left: 6em;
 }
-.mystyle li.ql-indent-2:not(.ql-direction-rtl) {
+.my_style li.ql-indent-2:not(.ql-direction-rtl) {
   padding-left: 7.5em;
 }
-.mystyle .ql-indent-2.ql-direction-rtl.ql-align-right {
+.my_style .ql-indent-2.ql-direction-rtl.ql-align-right {
   padding-right: 6em;
 }
-.mystyle li.ql-indent-2.ql-direction-rtl.ql-align-right {
+.my_style li.ql-indent-2.ql-direction-rtl.ql-align-right {
   padding-right: 7.5em;
 }
-.mystyle .ql-indent-3:not(.ql-direction-rtl) {
+.my_style .ql-indent-3:not(.ql-direction-rtl) {
   padding-left: 9em;
 }
-.mystyle li.ql-indent-3:not(.ql-direction-rtl) {
+.my_style li.ql-indent-3:not(.ql-direction-rtl) {
   padding-left: 10.5em;
 }
-.mystyle .ql-indent-3.ql-direction-rtl.ql-align-right {
+.my_style .ql-indent-3.ql-direction-rtl.ql-align-right {
   padding-right: 9em;
 }
-.mystyle li.ql-indent-3.ql-direction-rtl.ql-align-right {
+.my_style li.ql-indent-3.ql-direction-rtl.ql-align-right {
   padding-right: 10.5em;
 }
-.mystyle .ql-indent-4:not(.ql-direction-rtl) {
+.my_style .ql-indent-4:not(.ql-direction-rtl) {
   padding-left: 12em;
 }
-.mystyle li.ql-indent-4:not(.ql-direction-rtl) {
+.my_style li.ql-indent-4:not(.ql-direction-rtl) {
   padding-left: 13.5em;
 }
-.mystyle .ql-indent-4.ql-direction-rtl.ql-align-right {
+.my_style .ql-indent-4.ql-direction-rtl.ql-align-right {
   padding-right: 12em;
 }
-.mystyle li.ql-indent-4.ql-direction-rtl.ql-align-right {
+.my_style li.ql-indent-4.ql-direction-rtl.ql-align-right {
   padding-right: 13.5em;
 }
-.mystyle .ql-indent-5:not(.ql-direction-rtl) {
+.my_style .ql-indent-5:not(.ql-direction-rtl) {
   padding-left: 15em;
 }
-.mystyle li.ql-indent-5:not(.ql-direction-rtl) {
+.my_style li.ql-indent-5:not(.ql-direction-rtl) {
   padding-left: 16.5em;
 }
-.mystyle .ql-indent-5.ql-direction-rtl.ql-align-right {
+.my_style .ql-indent-5.ql-direction-rtl.ql-align-right {
   padding-right: 15em;
 }
-.mystyle li.ql-indent-5.ql-direction-rtl.ql-align-right {
+.my_style li.ql-indent-5.ql-direction-rtl.ql-align-right {
   padding-right: 16.5em;
 }
-.mystyle .ql-indent-6:not(.ql-direction-rtl) {
+.my_style .ql-indent-6:not(.ql-direction-rtl) {
   padding-left: 18em;
 }
-.mystyle li.ql-indent-6:not(.ql-direction-rtl) {
+.my_style li.ql-indent-6:not(.ql-direction-rtl) {
   padding-left: 19.5em;
 }
-.mystyle .ql-indent-6.ql-direction-rtl.ql-align-right {
+.my_style .ql-indent-6.ql-direction-rtl.ql-align-right {
   padding-right: 18em;
 }
-.mystyle li.ql-indent-6.ql-direction-rtl.ql-align-right {
+.my_style li.ql-indent-6.ql-direction-rtl.ql-align-right {
   padding-right: 19.5em;
 }
-.mystyle .ql-indent-7:not(.ql-direction-rtl) {
+.my_style .ql-indent-7:not(.ql-direction-rtl) {
   padding-left: 21em;
 }
-.mystyle li.ql-indent-7:not(.ql-direction-rtl) {
+.my_style li.ql-indent-7:not(.ql-direction-rtl) {
   padding-left: 22.5em;
 }
-.mystyle .ql-indent-7.ql-direction-rtl.ql-align-right {
+.my_style .ql-indent-7.ql-direction-rtl.ql-align-right {
   padding-right: 21em;
 }
-.mystyle li.ql-indent-7.ql-direction-rtl.ql-align-right {
+.my_style li.ql-indent-7.ql-direction-rtl.ql-align-right {
   padding-right: 22.5em;
 }
-.mystyle .ql-indent-8:not(.ql-direction-rtl) {
+.my_style .ql-indent-8:not(.ql-direction-rtl) {
   padding-left: 24em;
 }
-.mystyle li.ql-indent-8:not(.ql-direction-rtl) {
+.my_style li.ql-indent-8:not(.ql-direction-rtl) {
   padding-left: 25.5em;
 }
-.mystyle .ql-indent-8.ql-direction-rtl.ql-align-right {
+.my_style .ql-indent-8.ql-direction-rtl.ql-align-right {
   padding-right: 24em;
 }
-.mystyle li.ql-indent-8.ql-direction-rtl.ql-align-right {
+.my_style li.ql-indent-8.ql-direction-rtl.ql-align-right {
   padding-right: 25.5em;
 }
-.mystyle .ql-indent-9:not(.ql-direction-rtl) {
+.my_style .ql-indent-9:not(.ql-direction-rtl) {
   padding-left: 27em;
 }
-.mystyle li.ql-indent-9:not(.ql-direction-rtl) {
+.my_style li.ql-indent-9:not(.ql-direction-rtl) {
   padding-left: 28.5em;
 }
-.mystyle .ql-indent-9.ql-direction-rtl.ql-align-right {
+.my_style .ql-indent-9.ql-direction-rtl.ql-align-right {
   padding-right: 27em;
 }
-.mystyle li.ql-indent-9.ql-direction-rtl.ql-align-right {
+.my_style li.ql-indent-9.ql-direction-rtl.ql-align-right {
   padding-right: 28.5em;
 }
-.mystyle .ql-video {
+.my_style .ql-video {
   display: block;
   max-width: 100%;
 }
-.mystyle .ql-video.ql-align-center {
+.my_style .ql-video.ql-align-center {
   margin: 0 auto;
 }
-.mystyle .ql-video.ql-align-right {
+.my_style .ql-video.ql-align-right {
   margin: 0 0 0 auto;
 }
-.mystyle .ql-bg-black {
+.my_style .ql-bg-black {
   background-color: #000;
 }
-.mystyle .ql-bg-red {
+.my_style .ql-bg-red {
   background-color: #e60000;
 }
-.mystyle .ql-bg-orange {
+.my_style .ql-bg-orange {
   background-color: #f90;
 }
-.mystyle .ql-bg-yellow {
+.my_style .ql-bg-yellow {
   background-color: #ff0;
 }
-.mystyle .ql-bg-green {
+.my_style .ql-bg-green {
   background-color: #008a00;
 }
-.mystyle .ql-bg-blue {
+.my_style .ql-bg-blue {
   background-color: #06c;
 }
-.mystyle .ql-bg-purple {
+.my_style .ql-bg-purple {
   background-color: #93f;
 }
-.mystyle .ql-color-white {
+.my_style .ql-color-white {
   color: #fff;
 }
-.mystyle .ql-color-red {
+.my_style .ql-color-red {
   color: #e60000;
 }
-.mystyle .ql-color-orange {
+.my_style .ql-color-orange {
   color: #f90;
 }
-.mystyle .ql-color-yellow {
+.my_style .ql-color-yellow {
   color: #ff0;
 }
-.mystyle .ql-color-green {
+.my_style .ql-color-green {
   color: #008a00;
 }
-.mystyle .ql-color-blue {
+.my_style .ql-color-blue {
   color: #06c;
 }
-.mystyle .ql-color-purple {
+.my_style .ql-color-purple {
   color: #93f;
 }
-.mystyle .ql-font-serif {
+.my_style .ql-font-serif {
   font-family: Georgia, Times New Roman, serif;
 }
-.mystyle .ql-font-monospace {
+.my_style .ql-font-monospace {
   font-family: Monaco, Courier New, monospace;
 }
-.mystyle .ql-size-small {
+.my_style .ql-size-small {
   font-size: 0.75em;
 }
-.mystyle .ql-size-large {
+.my_style .ql-size-large {
   font-size: 1.5em;
 }
-.mystyle .ql-size-huge {
+.my_style .ql-size-huge {
   font-size: 2.5em;
 }
-.mystyle .ql-direction-rtl {
+.my_style .ql-direction-rtl {
   direction: rtl;
   text-align: inherit;
 }
-.mystyle .ql-align-center {
+.my_style .ql-align-center {
   text-align: center;
 }
-.mystyle .ql-align-justify {
+.my_style .ql-align-justify {
   text-align: justify;
 }
-.mystyle .ql-align-right {
+.my_style .ql-align-right {
   text-align: right;
 }
-.mystyle .ql-blank::before {
+.my_style .ql-blank::before {
   color: rgba(0, 0, 0, 0.6);
   content: attr(data-placeholder);
   font-style: italic;
@@ -376,17 +376,17 @@ li.ql-indent-1.ql-direction-rtl.ql-align-right {
   right: 15px;
 }
 
-.mystyle h1 {
+.my_style h1 {
   font-size: xx-large;
   font-weight: 600;
 }
 
-.mystyle h2 {
+.my_style h2 {
   font-size: x-large;
   font-weight: 500;
 }
 
-.mystyle a {
+.my_style a {
   text-decoration: underline solid red;
   text-underline-offset: 4px;
 }

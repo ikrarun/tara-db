@@ -20,12 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <div className="min-h-screen w-full tracking-wide">
+        <div className="w-full min-h-screen min-w-[320px]  tracking-wide">
           <AuthProvider>
             <div className="flex flex-col">
-              <div className="flex min-h-screen flex-col">
+              <div className="flex flex-col min-h-screen">
                 <Nav />
-                <div className="w-full my-5 p-2 flex">
+                <div className="flex w-full p-2 my-5">
                   <div className="max-w-[900px] mx-auto w-full min-h-full flex flex-col gap-2  items-center justify-center">
                     {children}
                   </div>

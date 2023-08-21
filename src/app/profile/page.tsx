@@ -1,5 +1,5 @@
 import React from "react";
-import USERDATA from "./userData";
+import USER_DATA from "./userData";
 
 import Link from "next/link";
 import { getServerAuthSession } from "@/server/auth";
@@ -11,7 +11,7 @@ const Profile = async () => {
 
   if (!session || role === "USER") {
     return (
-      <div className="w-full flex flex-col gap-8">
+      <div className="flex flex-col w-full gap-8">
         <div className="flex flex-col gap-4">
           {/* s1 */}
           <div className="flex flex-col gap-3">
@@ -32,12 +32,11 @@ const Profile = async () => {
             </h1>
           </div>
           {/* s2 */}
-          <div className="border-b border-gray-900 my-5" />
-          <div className="flex flex-col  gap-3">
+          <div className="my-5 border-b border-gray-900" />
+          <div className="flex flex-col gap-3">
             <Link
-              className="bg-blue-700 text-xl w-fit rounded-md
-          text-white py-1 px-2"
-              href="/donatelink"
+              className="px-2 py-1 text-xl text-white bg-blue-700 rounded-md w-fit"
+              href="/donate_link"
             >
               Donate Us
             </Link>
@@ -48,12 +47,11 @@ const Profile = async () => {
             </h1>
           </div>
           {/* s3 */}
-          <div className="border-b border-gray-900 my-5" />
-          <div className="flex flex-col  gap-3">
+          <div className="my-5 border-b border-gray-900" />
+          <div className="flex flex-col gap-3">
             <Link
-              className="bg-blue-700 text-xl w-fit rounded-md
-          text-white py-1 px-2"
-              href="/joinform"
+              className="px-2 py-1 text-xl text-white bg-blue-700 rounded-md w-fit"
+              href="/join_form"
             >
               Join Us
             </Link>
@@ -65,15 +63,15 @@ const Profile = async () => {
           </div>
 
           {/* s4 */}
-          <div className="border-b border-gray-900 my-5" />
+          <div className="my-5 border-b border-gray-900" />
         </div>
-        {/* <USERDATA allsession={allsession} /> */}
-        <USERDATA />
+        {/* <USER_DATA all_session={all_session} /> */}
+        <USER_DATA />
       </div>
     );
   } else if (role === "EDITOR" || role === "ADMIN") {
     return (
-      <div className="w-full flex flex-col gap-8">
+      <div className="flex flex-col w-full gap-8">
         <div className="flex flex-col gap-4">
           {/* s1 */}
           <div className="flex flex-col gap-3">
@@ -90,12 +88,11 @@ const Profile = async () => {
             </h1>
           </div>
           {/* s2 */}
-          <div className="border-b border-gray-900 my-5" />
-          <div className="flex flex-col  gap-3">
+          <div className="my-5 border-b border-gray-900" />
+          <div className="flex flex-col gap-3">
             <Link
-              className="bg-blue-700 text-xl w-fit rounded-md
-      text-white py-1 px-2"
-              href="/donatelink"
+              className="px-2 py-1 text-xl text-white bg-blue-700 rounded-md w-fit"
+              href="/donate_link"
             >
               Donate Us
             </Link>
@@ -106,12 +103,12 @@ const Profile = async () => {
             </h1>
           </div>
           {/* s3 */}
-          <div className="border-b border-gray-900 my-5" />
-          <div className="flex flex-col  gap-3">
+          <div className="my-5 border-b border-gray-900" />
+          <div className="flex flex-col gap-3">
             <Link
-              className="bg-blue-700 text-xl w-fit rounded-md
-      text-white py-1 px-2"
+              className="px-2 py-1 text-xl text-white bg-blue-700 rounded-md w-fit"
               href="/profile/post"
+              prefetch={false}
             >
               Create A Post
             </Link>
@@ -126,12 +123,11 @@ const Profile = async () => {
             </h1>
           </div>
           {/* s4 */}
-          <div className="border-b border-gray-900 my-5" />
-          <div className="flex flex-col  gap-3">
+          <div className="my-5 border-b border-gray-900" />
+          <div className="flex flex-col gap-3">
             <Link
-              className="bg-blue-700 text-xl w-fit rounded-md
-      text-white py-1 px-2"
-              href="/profile/suggestbook"
+              className="px-2 py-1 text-xl text-white bg-blue-700 rounded-md w-fit"
+              href="/profile/suggest_book"
             >
               Suggest A Book
             </Link>
@@ -144,15 +140,15 @@ const Profile = async () => {
             </h1>
           </div>
           {/* s5 */}
-          <div className="border-b border-gray-900 my-5" />
+          <div className="my-5 border-b border-gray-900" />
         </div>
-        {/* <USERDATA allsession={allsession} /> */}
-        <USERDATA />
+        {/* <USER_DATA all_session={all_session} /> */}
+        <USER_DATA />
       </div>
     );
   } else if (session.user.role === "APPLIED") {
     return (
-      <div className="w-full flex flex-col gap-8">
+      <div className="flex flex-col w-full gap-8">
         <div className="flex flex-col gap-4">
           {/* s1 */}
           <div className="flex flex-col gap-3">
@@ -173,12 +169,11 @@ const Profile = async () => {
             </h1>
           </div>
           {/* s2 */}
-          <div className="border-b border-gray-900 my-5" />
-          <div className="flex flex-col  gap-3">
+          <div className="my-5 border-b border-gray-900" />
+          <div className="flex flex-col gap-3">
             <Link
-              className="bg-blue-700 text-xl w-fit rounded-md
-          text-white py-1 px-2"
-              href="/donatelink"
+              className="px-2 py-1 text-xl text-white bg-blue-700 rounded-md w-fit"
+              href="/donate_link"
             >
               Donate Us
             </Link>
@@ -189,10 +184,10 @@ const Profile = async () => {
             </h1>
           </div>
           {/* s3 */}
-          <div className="border-b border-gray-900 my-5" />
-          <div className="flex flex-col  gap-3">
+          <div className="my-5 border-b border-gray-900" />
+          <div className="flex flex-col gap-3">
             <h1 className="text-xl text-gray-900/90">
-              Thanks for showing your intrest to work with us, please wait while
+              Thanks for showing your interest to work with us, please wait while
               are processing your request.
             </h1>
             <h1 className="text-base text-gray-900/90">
@@ -202,10 +197,10 @@ const Profile = async () => {
           </div>
 
           {/* s4 */}
-          <div className="border-b border-gray-900 my-5" />
+          <div className="my-5 border-b border-gray-900" />
         </div>
-        {/* <USERDATA allsession={allsession} /> */}
-        <USERDATA />
+        {/* <USER_DATA all_session={all_session} /> */}
+        <USER_DATA />
       </div>
     );
   }
