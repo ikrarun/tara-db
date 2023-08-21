@@ -26,13 +26,18 @@ const Mantic_Editor = () => {
   });
 
   useEffect(() => {
-    const data = editor?.getHTML();
-    if (data) setPost(data);
-  });
-const router = useRouter();
+    if (editor) {
+      const data = editor.getHTML();
+
+      if (data) setPost(data);
+    }
+  }, [editor]);
+  const router = useRouter();
   return (
     <div className="flex flex-col gap-4">
-      <div><Toaster position="bottom-left"/></div>
+      <div>
+        <Toaster position="bottom-left" />
+      </div>
       <div className="p-1 border-b border-gray-700 border-dashed">
         <input
           type="text"
@@ -133,7 +138,7 @@ const router = useRouter();
               toast.dismiss();
               toast.success("Thank for your submission");
               dismiss();
-              router.replace('/profile');
+              router.replace("/profile");
             }
           });
         }}
