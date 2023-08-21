@@ -26,12 +26,10 @@ const Mantic_Editor = () => {
   });
 
   useEffect(() => {
-    if (editor) {
-      const data = editor.getHTML();
+    const data = editor?.getHTML();
 
-      if (data) setPost(data);
-    }
-  }, [editor]);
+    if (data) setPost(data);
+  });
   const router = useRouter();
   return (
     <div className="flex flex-col gap-4">

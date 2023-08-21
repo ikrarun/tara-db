@@ -53,7 +53,7 @@ const page = async ({ params }: { params: { pid: string } }) => {
     const date = values.date?.toDateString();
     if (values.title && values.short_desc && values.wysiwyg) {
       return (
-        <div className="flex flex-col">
+        <div className="flex w-full flex-col">
           <h1 className="self-start text-3xl font-bold">{values.title}</h1>
           <h3 className="self-start p-1 text-base font-normal text-gray-600 border-b border-gray-700 border-dashed">
             {values.short_desc}
