@@ -36,7 +36,7 @@ const Profile = async () => {
           <div className="my-5 border-b border-gray-900" />
           <div className="flex flex-col gap-3">
             <Link
-              className="px-2 py-1 text-xl text-white bg-blue-700 rounded-md w-fit"
+              className="px-2 py-1 text-xl text-white bg-gray-950 rounded-md w-fit"
               href="/donate_link"
             >
               Donate Us
@@ -51,7 +51,7 @@ const Profile = async () => {
           <div className="my-5 border-b border-gray-900" />
           <div className="flex flex-col gap-3">
             <Link
-              className="px-2 py-1 text-xl text-white bg-blue-700 rounded-md w-fit"
+              className="px-2 py-1 text-xl text-white bg-gray-950 rounded-md w-fit"
               href="/join_form"
             >
               Join Us
@@ -92,7 +92,7 @@ const Profile = async () => {
           <div className="my-5 border-b border-gray-900" />
           <div className="flex flex-col gap-3">
             <Link
-              className="px-2 py-1 text-xl text-white bg-blue-700 rounded-md w-fit"
+              className="px-2 py-1 text-xl text-white bg-gray-950 rounded-md w-fit"
               href="/donate_link"
             >
               Donate Us
@@ -107,7 +107,7 @@ const Profile = async () => {
           <div className="my-5 border-b border-gray-900" />
           <div className="flex flex-col gap-3">
             <Link
-              className="px-2 py-1 text-xl text-white bg-blue-700 rounded-md w-fit"
+              className="px-2 py-1 text-xl text-white bg-gray-950 rounded-md w-fit"
               href="/profile/post"
               prefetch={false}
             >
@@ -127,7 +127,7 @@ const Profile = async () => {
           <div className="my-5 border-b border-gray-900" />
           <div className="flex flex-col gap-3">
             <Link
-              className="px-2 py-1 text-xl text-white bg-blue-700 rounded-md w-fit"
+              className="px-2 py-1 text-xl text-white bg-gray-950 rounded-md w-fit"
               href="/profile/suggest_book"
             >
               Suggest A Book
@@ -173,7 +173,7 @@ const Profile = async () => {
           <div className="my-5 border-b border-gray-900" />
           <div className="flex flex-col gap-3">
             <Link
-              className="px-2 py-1 text-xl text-white bg-blue-700 rounded-md w-fit"
+              className="px-2 py-1 text-xl text-white bg-gray-950 rounded-md w-fit"
               href="/donate_link"
             >
               Donate Us

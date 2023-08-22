@@ -41,7 +41,6 @@ const SuggestionForm = ({
         action={async (data) => {
           const res = await postData(data);
 
-          console.log(res?.id);
           if (res?.id === "INV_DATA") {
             toast.error(`Can't submit form, entries are invalid`);
           } else if (res?.id === "P2002") {
@@ -143,7 +142,7 @@ const SuggestionForm = ({
         <div className="flex flex-col w-full">
           <button
             type="submit"
-            className="block p-2 text-base font-medium text-white bg-blue-700 rounded-md w-fit text-start "
+            className="block p-2 text-base font-medium text-white bg-gray-950 rounded-md w-fit text-start "
           >
             Submit
           </button>

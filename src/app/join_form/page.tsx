@@ -29,7 +29,6 @@ const Form = () => {
       // Check if Ctrl+A is pressed (keyCode 65) and Ctrl key is also pressed (event.ctrlKey)
       if ((event.key === "a" || event.key === "A") && event.ctrlKey) {
         event.preventDefault(); // Prevent the default Ctrl+A behavior
-        console.log("Fucker");
       }
     });
     return () => {
@@ -50,7 +49,6 @@ const Form = () => {
             action={async (data) => {
               const res = await postData(data);
 
-              console.log(res?.id);
               if (res?.id === "INV_DATA") {
                 toast.error(`Can't submit form, entries are invalid`);
               } else if (res?.id === "P2002") {
@@ -137,7 +135,7 @@ const Form = () => {
 
                 <button
                   type="submit"
-                  className="block p-2 text-base font-medium text-white bg-blue-700 rounded-md w-fit text-start "
+                  className="block p-2 text-base font-medium text-white bg-gray-950 rounded-md w-fit text-start "
                 >
                   Submit
                 </button>
@@ -158,7 +156,7 @@ const Form = () => {
           <h1 className="text-base">Right Now, you can explore our app.</h1>
           <Link
             href={"/"}
-            className="px-4 py-2 text-white bg-blue-700 rounded-md w-fit"
+            className="px-4 py-2 text-white bg-gray-950 rounded-md w-fit"
           >
             Home
           </Link>
@@ -176,7 +174,7 @@ const Form = () => {
           <h1 className="text-base">Right Now, you can explore our app.</h1>
           <Link
             href={"/"}
-            className="px-4 py-2 text-white bg-blue-700 rounded-md w-fit"
+            className="px-4 py-2 text-white bg-gray-950 rounded-md w-fit"
           >
             Home
           </Link>

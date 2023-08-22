@@ -1,10 +1,18 @@
 import { apiRequestForMyths } from "@/lib/ApiSafety";
+import { prisma } from "@/server/db";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
-  const request = req.headers;
-  const readers = apiRequestForMyths.parse(request)
-  console.log(readers);
-
-  return NextResponse.json({ message: "❤️❤️❤️❤️", success: true });
+  const res = await prisma.suggestedreadings.findFirst({
+    orderBy: {
+      created_at: "desc",
+    },
+    select: {
+      title: true,
+      desc: true,
+      link: true,
+      imageUrl: true,
+    },
+  });
+  return NextResponse.json(res);
 }

@@ -12,7 +12,7 @@ const USER_DATA = ({ all_session }: { all_session?: sessions[] }) => {
         <div className="flex flex-col items-start justify-start gap-3 p-4 border rounded-md w-fit border-gray-500/70">
           <h1>Welcome {session.user.email}</h1>
           <button
-            className="px-2 py-1 text-white bg-blue-700 rounded-md"
+            className="px-2 py-1 text-white bg-gray-950 rounded-md"
             onClick={() => signOut()}
           >
             Sign out
@@ -26,7 +26,7 @@ const USER_DATA = ({ all_session }: { all_session?: sessions[] }) => {
       <div className="flex flex-col items-start justify-start gap-3 p-4 border rounded-md w-fit border-gray-500/70">
         <h1>Welcome User, Please login to access all feature(s)</h1>
         <button
-          className="px-2 py-1 text-white bg-blue-700 rounded-md"
+          className="px-2 py-1 text-white bg-gray-950 rounded-md"
           onClick={() => signIn()}
         >
           Sign In

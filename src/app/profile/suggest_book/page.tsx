@@ -39,7 +39,7 @@ const Suggested = async () => {
             You can become a contributor just by joining us.
           </h1>
           <Link
-            className="p-2 text-white bg-blue-700 rounded-md w-fit"
+            className="p-2 text-white bg-gray-950 rounded-md w-fit"
             href={"/join_form"}
           >
             Join Us
@@ -56,7 +56,7 @@ const Suggested = async () => {
         </h1>
         <h1 className="text-sm">Please login using the link below.</h1>
         <Link
-          className="p-2 text-white bg-blue-700 rounded-md w-fit"
+          className="p-2 text-white bg-gray-950 rounded-md w-fit"
           href={"/api/auth/signin"}
         >
           Sign In

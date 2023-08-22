@@ -2,17 +2,26 @@
     "typescript.tsdk": "node_modules/typescript/lib",
     "cSpell.words": [
         "Ambedkarism",
+        "Arun",
         "autodocs",
         "Bahujan",
         "clsx",
         "Dalit",
+        "getmyths",
+        "getpost",
+        "Kolkata",
+        "luxon",
+        "Manch",
         "mantine",
         "nextjs",
         "pexels",
+        "picsum",
         "postid",
         "signin",
         "suggestedreadings",
-        "tiptap"
+        "tailwindcss",
+        "tiptap",
+        "unoptimized"
     ],
     "files.exclude": {
         "**/.git": true,

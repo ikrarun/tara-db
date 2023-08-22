@@ -4,13 +4,13 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 const buttonVariants = cva(
-  "px-2 py-1 text-xl text-white bg-blue-700 rounded-md w-fit",
+  "px-2 py-1 text-xl text-white bg-gray-950 rounded-md w-fit",
   {
     variants: {
       variant: {
-        default: "px-2 py-1 text-xl text-white bg-blue-700 rounded-md w-fit",
+        default: "px-2 py-1 text-xl text-white bg-gray-950 rounded-md w-fit",
         outline:
-          "px-2 py-1 outline-2 outline-red-500 text-xl text-white bg-blue-700 rounded-md w-fit",
+          "px-2 py-1 outline-2 outline-red-500 text-xl text-white bg-gray-950 rounded-md w-fit",
       },
       size: {
         default: "font-2xl",

@@ -1,0 +1,39 @@
+import { prisma } from "@/server/db";
+import { NextRequest, NextResponse } from "next/server";
+
+export async function GET(req: NextRequest) {
+  const data = req.headers.get("id");
+
+  if (data !== null) {
+    try {
+      const response = await prisma.myths.findUnique({
+        where: {
+          id: data,
+        },
+        select: {
+          title: true,
+          short_desc: true,
+          date: true,
+          id: true,
+          Posts: {
+            select: {
+              wysiwyg: true,
+            },
+          },
+        },
+      });
+
+      return NextResponse.json(response);
+    } catch (e) {
+      // Data Fetching Failed
+      return NextResponse.json({
+        message: "Invalid Request",
+        success: false,
+      });
+    }
+  }
+  // Data is null
+  else {
+    return NextResponse.json({ message: "Invalid Request", success: false });
+  }
+}

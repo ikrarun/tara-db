@@ -108,7 +108,7 @@ const Mantic_Editor = () => {
       </RichTextEditor>
 
       <button
-        className="px-4 py-2 text-white bg-blue-700 rounded-md w-fit"
+        className="px-4 py-2 text-white bg-gray-950 rounded-md w-fit"
         onClick={() => {
           toast.loading("Please wait");
           const data = new FormData();
@@ -116,7 +116,6 @@ const Mantic_Editor = () => {
           data.append("desc", desc);
           data.append("post", post);
           post_data(data).then((res) => {
-            console.log(res);
             if (res.id === "INV_DATA") {
               toast.dismiss();
               toast.error("Please Fill All Fields");
