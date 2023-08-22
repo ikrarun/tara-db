@@ -1,7 +1,7 @@
 import React from "react";
-import FactCard from "@/componentsCard/FactCard";
+import FactCard from "@/components/cards/FactCard";
 import { prisma } from "@/server/db";
-import BookCard from "@/componentsCard/BookCard";
+import BookCard from "@/components/cards/BookCard";
 
 const getSuggested = async () => {
   const res = prisma.suggestedreadings
