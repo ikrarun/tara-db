@@ -1,5 +1,5 @@
 import React from "react";
-import BookCard from "@/UI/Card/BookCard";
+import BookCard from "@/components/cards/BookCard";
 import host from "@/server/host";
 import { prisma } from "@/server/db";
 import Link from "next/link";

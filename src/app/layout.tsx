@@ -2,8 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Raleway as Font } from "next/font/google";
 import AuthProvider from "@/server/AuthProvider";
-import Footer from "@/UI/footer";
-import Nav from "@/UI/nav";
+import Footer from "@/components/footer";
+import Nav from "@/components/nav";
 
 const font = Font({ subsets: ["latin"] });
 

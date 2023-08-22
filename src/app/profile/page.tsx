@@ -3,6 +3,7 @@ import USER_DATA from "./userData";
 
 import Link from "next/link";
 import { getServerAuthSession } from "@/server/auth";
+import { Button } from "@/components/essentials/Button";
 
 const Profile = async () => {
   const session = await getServerAuthSession();

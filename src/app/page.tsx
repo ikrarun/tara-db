@@ -1,6 +1,6 @@
-import Suggest_Reading from "@/UI/Sections/Home/suggest_reading";
-import Myths_Busting from "@/UI/Sections/Home/myth_busting";
-import Quotes_Of_Day from "@/UI/Sections/Home/quote_of_day";
+import Suggest_Reading from "@/components/Sections/Home/suggest_reading";
+import Myths_Busting from "@/components/Sections/Home/myth_busting";
+import Quotes_Of_Day from "@/components/Sections/Home/quote_of_day";
 
 export default async function Home() {
   return (

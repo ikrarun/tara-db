@@ -1,6 +1,6 @@
 import WYSIWYG from "@/server/WYSIWYG";
 import { prisma } from "@/server/db";
-import InvalidRequest from "@/UI/Card/invalidRequest";
+import InvalidRequest from "@/components/cards/invalidRequest";
 
 const getData = async (id: string) => {
   var header;

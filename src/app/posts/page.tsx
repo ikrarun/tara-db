@@ -1,5 +1,5 @@
 import React from "react";
-import FactCard from "@/UI/Card/FactCard";
+import FactCard from "@/componentsCard/FactCard";
 import { prisma } from "@/server/db";
 
 const get_myths = async () => {

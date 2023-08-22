@@ -1,5 +1,5 @@
-import Footer from "@/UI/footer";
-import NAV from "@/UI/nav";
+import Footer from "@/componentsfooter";
+import NAV from "@/componentsnav";
 export default function Home() {
   return (
     <div className="flex flex-col">
