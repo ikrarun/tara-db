@@ -1,40 +1,38 @@
 "use server";
+import { getServerAuthSession } from "@/server/auth";
 import { prisma } from "@/server/db";
+import { revalidatePath } from "next/cache";
 
 export const postData = async (data: FormData) => {
+const session = await getServerAuthSession();
   const name = data.get("title")?.toString().trim();
-  const desc = data.get("desc")?.toString().trim();
+  const book_desc = data.get("desc")?.toString().trim();
   const book = data.get("book_link")?.toString().trim();
-  const cover = data.get("cover_link")?.toString().trim();
-  if (name && desc && book && cover) {
-    return prisma.suggestedreadings
-      .create({
-        data: {
-          desc: desc,
-          imageUrl: cover,
-          title: name,
-          link: book,
-        },
-        select: {
-          id: true,
-        },
-      })
-      .then((result) => {
-        const res = {
-          id: result.id,
-        };
-        return res;
-      })
-      .catch((e) => {
-        const res = {
-          id: e.code,
-        };
-        return res;
-      });
-  } else {
-    const res = {
-      id: "INV_DATA",
+  const cover = data.get("cover_link")?.toString();
+  return name && book_desc && book && cover && session ? prisma.suggestedreadings
+  .create({
+    data: {
+      desc: book_desc,
+      imageUrl: cover,
+      title: name,
+      link: book,
+      suggestedby:session.user.id,
+    },
+    select: {
+      id: true,
+    },
+  })
+  .then((result) => {
+    revalidatePath('/')
+    return {
+      id: result.id,
     };
-    return res;
-  }
+  })
+  .catch((e) => {
+    return {
+      id: e.code,
+    };
+  }) : {
+    id: "INV_DATA",
+  };
 };

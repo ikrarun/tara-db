@@ -14,21 +14,22 @@ model Quotes {
 }
 
 model Suggestedreadings {
-  id         String   @id @default(cuid())
-  created_at DateTime @default(now()) @db.Timestamptz(6)
-  title      String   @default("") @unique
-  desc       String
-  link       String
-  imageUrl   String
+  id          String   @id @default(cuid())
+  created_at  DateTime @default(now()) @db.Timestamptz(6)
+  title       String   @unique @default("")
+  desc        String
+  link        String
+  imageUrl    String
+  suggestedby String
 }
 
 model Myths {
-  id         String    @id @default(cuid())
-  created_at DateTime  @default(now()) @db.Timestamptz(6)
-  title      String    @unique
-  short_desc   String
-  approved    Boolean?
-  creator     String?
+  id         String   @id @default(cuid())
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  title      String   @unique
+  short_desc String
+  approved   Boolean?
+  creator    String?
   date       DateTime @default(dbgenerated("(now() AT TIME ZONE 'utc-5:30'::text)")) @db.Timestamptz(6)
   Posts      Posts?
 }

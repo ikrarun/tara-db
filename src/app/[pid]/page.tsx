@@ -19,7 +19,7 @@ const page = async ({ params }: { params: { pid: string } }) => {
   try {
     const { title, date, short_desc, Posts } =
       single_Response_Schema.parse(data);
-    console.log('verified')
+    console.log("verified");
     return (
       <div className="flex w-full flex-col">
         <h1 className="self-start text-3xl font-bold">{title}</h1>
@@ -35,12 +35,17 @@ const page = async ({ params }: { params: { pid: string } }) => {
       </div>
     );
   } catch (error) {
-  return  <div className="flex w-full flex-col">
-      <h1 className="self-start text-3xl font-bold">{`Your Request in Invalid`}</h1>
-      <h3 className="self-start p-1 text-base font-normal text-gray-600 border-b border-gray-700 border-dashed">
-        {`Try again after a while`}
-      </h3>
-    </div>;
+    return (
+      <div className="flex w-full flex-col">
+        <h1 className="self-start text-3xl font-bold">{`404`}</h1>
+        <h3 className="self-start p-1 text-base font-normal text-gray-600 border-b border-gray-700 border-dashed">
+          {`Your request is invalid`}
+        </h3>
+        <h3 className="self-start p-1 text-base font-normal text-gray-600 border-b border-gray-700 border-dashed">
+          {`Try again after a while`}
+        </h3>
+      </div>
+    );
   }
 };
 

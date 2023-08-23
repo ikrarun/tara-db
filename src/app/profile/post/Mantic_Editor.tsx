@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { RichTextEditor, Link } from "@mantine/tiptap";
-import { useEditor } from "@tiptap/react";
+import { useEditor, FloatingMenu } from "@tiptap/react";
 import Highlight from "@tiptap/extension-highlight";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
@@ -13,7 +13,8 @@ const content = `<p style={text-align:center}>Edit to Start</p>`;
 const Mantic_Editor = () => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [post, setPost] = useState("");
+  const [title_len, setTitle_len] = useState<number>();
+  const [desc_len, setDesc_len] = useState<number>();
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -25,44 +26,47 @@ const Mantic_Editor = () => {
     content,
   });
 
-  useEffect(() => {
-    const data = editor?.getHTML();
-
-    if (data) setPost(data);
-  });
   const router = useRouter();
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col w-full gap-1">
       <div>
         <Toaster position="bottom-left" />
       </div>
-      <div className="p-1 border-b border-gray-700 border-dashed">
+      <div className="p-1 flex flex-row items-center gap-1 border-b w-full border-gray-700 border-dashed">
         <input
           type="text"
           placeholder="Title"
-          className="outline-none ring-0"
+          className="outline-none w-full ring-0"
           name="title"
+          autoComplete={"false"}
+          maxLength={80}
           value={title}
           onChange={(e) => {
             e.preventDefault;
             setTitle(e.target.value);
+            setTitle_len(e.target.value.length);
           }}
           id="title"
         />
+        <h1 className="text-xs text-gray-500">{title_len}/80</h1>
       </div>
-      <div className="p-1 border-b border-gray-700 border-dashed">
+      <div className="p-1 flex flex-row items-center gap-1 border-b w-full border-gray-700 border-dashed">
         <input
           type="text"
           placeholder="Desc"
-          className="outline-none ring-0"
+          className="outline-none grow w-full ring-0"
           name="desc"
+          autoComplete={"false"}
+          maxLength={120}
           value={desc}
           onChange={(e) => {
             e.preventDefault;
             setDesc(e.target.value);
+            setDesc_len(e.target.value.length);
           }}
           id="desc"
         />
+        <h1 className="text-xs text-gray-500">{desc_len}/120</h1>
       </div>
       <RichTextEditor
         className="w-full h-[60vh] overflow-auto "
@@ -73,7 +77,6 @@ const Mantic_Editor = () => {
             <RichTextEditor.Bold />
             <RichTextEditor.Italic />
             <RichTextEditor.Underline />
-            <RichTextEditor.Strikethrough />
             <RichTextEditor.ClearFormatting />
             <RichTextEditor.Highlight />
             <RichTextEditor.Code />
@@ -104,6 +107,16 @@ const Mantic_Editor = () => {
           </RichTextEditor.ControlsGroup>
         </RichTextEditor.Toolbar>
 
+        {editor && (
+          <FloatingMenu editor={editor}>
+            <RichTextEditor.ControlsGroup>
+              <RichTextEditor.H1 />
+              <RichTextEditor.H2 />
+              <RichTextEditor.BulletList />
+            </RichTextEditor.ControlsGroup>
+          </FloatingMenu>
+        )}
+
         <RichTextEditor.Content />
       </RichTextEditor>
 
@@ -111,7 +124,14 @@ const Mantic_Editor = () => {
         className="px-4 py-2 text-white bg-gray-950 rounded-md w-fit"
         onClick={() => {
           toast.loading("Please wait");
+          const post = editor?.getHTML().toString();
           const data = new FormData();
+          if (!post || !title || !desc) {
+            toast.dismiss();
+            toast.error("Fill All Details");
+            return;
+          }
+
           data.append("title", title);
           data.append("desc", desc);
           data.append("post", post);
@@ -130,13 +150,15 @@ const Mantic_Editor = () => {
               toast.dismiss();
               toast.error("Post Can't be submitted,");
               dismiss();
+              return;
             }
-            if (res.id === "SUCCESS") {
-              toast.dismiss();
-              toast.success("Thank for your submission");
-              dismiss();
-              router.replace("/profile");
+            if (res.id !== "SUCCESS") {
+              return;
             }
+            toast.dismiss();
+            toast.success("Thank for your submission");
+            dismiss();
+            router.replace("/profile");
           });
         }}
       >

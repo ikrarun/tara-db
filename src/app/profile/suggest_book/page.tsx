@@ -1,9 +1,7 @@
 import { getServerAuthSession } from "@/server/auth";
-import host from "@/server/host";
-import { redirect } from "next/navigation";
-import React from "react";
 import SuggestionForm from "./SuggestionForm";
 import Link from "next/link";
+import { Role } from "@prisma/client";
 const submitData = async (data: FormData) => {
   "use server";
   console.log(data);
@@ -29,41 +27,56 @@ const Suggested = async () => {
   }
 
   if (role === "USER" || role === "APPLIED") {
+    if (role === "USER") {
+      return (
+        <ConditionalCard role={"USER"} href={"/join_form"} result={"Join Us"} />
+      );
+    } else if (role === "APPLIED")
+      return <ConditionalCard role={"APPLIED"} href={"/"} result={"Home"} />;
+  }
+
+  if (!session) {
     return (
-      <div className="flex flex-col w-full min-h-[80vh] justify-center items-center">
-        <div className="flex flex-col items-start justify-center gap-3 p-3 border rounded-md border-gray-700/50">
-          <h1 className="text-2xl font-semibold">
-            Currently you are not a Contributor on our Platform.
-          </h1>
-          <h1 className="text-sm">
-            You can become a contributor just by joining us.
-          </h1>
-          <Link
-            className="p-2 text-white bg-gray-950 rounded-md w-fit"
-            href={"/join_form"}
-          >
-            Join Us
-          </Link>
-        </div>
-      </div>
+      <ConditionalCard
+        role={"USER"}
+        href={"/api/auth/signin"}
+        result={"Sign In"}
+      />
     );
   }
-  if (!session) {
-    <div className="flex flex-col w-full min-h-[80vh] justify-center items-center">
+};
+
+const ConditionalCard = ({
+  role,
+  href,
+  result,
+}: {
+  role: Role;
+  href: string;
+  result: string;
+}) => {
+  return (
+    <div className="flex flex-col w-full justify-center items-center">
       <div className="flex flex-col items-start justify-center gap-3 p-3 border rounded-md border-gray-700/50">
         <h1 className="text-2xl font-semibold">
-          You have to login to access this page.
+          Thanks for showing your interest.
         </h1>
-        <h1 className="text-sm">Please login using the link below.</h1>
+        <h1 className="text-sm">
+          But you have to join us, before posting anything to platform.
+        </h1>
+        <h1 className="text-xs text-gray-500">
+          {role === "APPLIED" &&
+            "If you&apos;ve already applied for joining please wait for a moment."}
+        </h1>
         <Link
           className="p-2 text-white bg-gray-950 rounded-md w-fit"
-          href={"/api/auth/signin"}
+          href={href}
         >
-          Sign In
+          {result}
         </Link>
       </div>
-    </div>;
-  }
+    </div>
+  );
 };
 
 export default Suggested;

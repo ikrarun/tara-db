@@ -3,6 +3,10 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { postData } from "./postData";
+import Image from "next/image";
+interface FileInputState {
+  selectedFile: File | null;
+}
 const SuggestionForm = ({
   submitData,
 }: {
@@ -16,20 +20,35 @@ const SuggestionForm = ({
   const [desc_length, setDes_len] = useState(1000);
   const [title_len, setTitle_len] = useState(1000);
 
-  useEffect(() => {
-    setDes_len(200 - desc.length);
-    setTitle_len(100 - title.length);
-  }, [title, desc]);
-
-  useEffect(() => {
-    const textarea = document.getElementById("textArea");
-
-    textarea?.addEventListener("keydown", function (event) {
-      if (event.key === "Enter") {
-        event.preventDefault(); // Prevent the default Enter key behavior
-      }
-    });
+  const [selectedImage, setSelectedImage] = useState<FileInputState>({
+    selectedFile: null,
   });
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files && event.target.files[0];
+    if (!selectedFile) {
+      return;
+    }
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      if (reader.result) {
+        const dataUrl = reader.result as string;
+        if (dataUrl.startsWith("data:image/")) {
+          setSelectedImage((prevState) => ({ ...prevState, selectedFile }));
+          setCover(dataUrl);
+        } else {
+          toast.dismiss();
+          toast.error("Please select an image file (JPG, JPEG, PNG).");
+        }
+      }
+    };
+    reader.readAsDataURL(selectedFile);
+  };
+
+  useEffect(() => {
+    setDes_len(desc.length);
+    setTitle_len(title.length);
+  }, [title, desc]);
 
   return (
     <div className="flex flex-col items-start justify-center w-full gap-4 select-none">
@@ -42,103 +61,125 @@ const SuggestionForm = ({
           const res = await postData(data);
 
           if (res?.id === "INV_DATA") {
+            toast.dismiss();
             toast.error(`Can't submit form, entries are invalid`);
           } else if (res?.id === "P2002") {
+            toast.dismiss();
             toast.error(`This Book is already in the suggestion list`);
           } else if (res?.id) {
-            router.replace("/profile");
+            toast.dismiss();
+            toast.success(`Your Submission is successful`);
+            toast.dismiss();
+            toast.loading(`You will be redirected to Profile Page`);
+            setTimeout(() => {
+              toast.dismiss()
+              router.replace("/profile");
+            }, 2000);
           }
         }}
       >
         {/* Title */}
-        <div className="flex flex-col w-full">
-          <div className="relative flex flex-col w-full p-3 border rounded-md border-gray-700/80">
-            <input
-              type="text"
-              name="title"
-              placeholder="Enter Title of Book"
-              maxLength={100}
-              value={title}
-              onChange={(e) => {
-                e.preventDefault;
-                setTitle(e.target.value);
-              }}
-              className="px-2 outline-none peer placeholder:text-transparent ring-0 "
-            />
-            <label className="absolute px-2 text-base font-medium text-black bg-white pointer-events-none -top-3 peer-focus:text-black peer-focus:bg-white left-3 peer-focus:-top-3 peer-placeholder-shown:top-3">
-              Title
-            </label>
-          </div>
-          <h1 className="px-3 mt-2 text-xs text-gray-500">
-            {title_len} Characters Remaining
-          </h1>
+        <div className="p-1 flex flex-row items-center gap-1 border-b w-full border-gray-700 border-dashed">
+          <input
+            type="text"
+            placeholder="Title"
+            className="outline-none w-full ring-0"
+            name="title"
+            autoComplete={"false"}
+            maxLength={100}
+            value={title}
+            minLength={4}
+            onChange={(e) => {
+              e.preventDefault;
+              setTitle(e.target.value);
+              setTitle_len(e.target.value.length);
+            }}
+            id="title"
+          />
+          <h1 className="text-xs text-gray-500">{title_len}/80</h1>
         </div>
         {/* Desc */}
-        <div className="flex flex-col w-full">
-          <div className="relative flex flex-col w-full p-3 border rounded-md border-gray-700/80">
-            <textarea
-              id="textArea"
-              maxLength={200}
-              name="desc"
-              style={{ resize: "none" }}
-              value={desc}
-              onChange={(e) => {
-                e.preventDefault;
-                setDesc(e.target.value);
-              }}
-              placeholder="Enter Description for Users"
-              className="px-2 outline-none peer placeholder:text-transparent ring-0 "
-            />
-            <label className="absolute px-2 text-base font-medium text-black bg-white pointer-events-none -top-3 peer-focus:text-black peer-focus:bg-white left-3 peer-focus:-top-3 peer-placeholder-shown:top-3">
-              Short Description
-            </label>
-          </div>
-          <h1 className="px-3 mt-2 text-xs text-gray-500">
-            {desc_length} Characters Remaining
-          </h1>
+
+        <div className="p-1 flex flex-row items-center gap-1 border-b w-full border-gray-700 border-dashed">
+          <textarea
+            placeholder="Short Description"
+            className="outline-none w-full ring-0"
+            autoComplete={"false"}
+            maxLength={200}
+            style={{ resize: "none" }}
+            name="desc"
+            value={desc}
+            rows={2}
+            onChange={(e) => {
+              e.preventDefault;
+              const cleanText = e.target.value.replace(/\n/g, "");
+
+              setDesc(cleanText);
+            }}
+          />
+          <h1 className="text-xs text-gray-500">{desc_length}/200</h1>
         </div>
+
         {/* link */}
-        <div className="flex flex-col w-full">
-          <div className="relative flex flex-col w-full p-3 border rounded-md border-gray-700/80">
-            <input
-              type="text"
-              placeholder="Enter Link of Book Resource"
-              maxLength={100}
-              value={book}
-              name="book_link"
-              onChange={(e) => {
-                e.preventDefault;
-                setBook(e.target.value);
-              }}
-              className="px-2 outline-none peer placeholder:text-transparent ring-0 "
-            />
-            <label className="absolute px-2 text-base font-medium text-black bg-white pointer-events-none -top-3 peer-focus:text-black peer-focus:bg-white left-3 peer-focus:-top-3 peer-placeholder-shown:top-3">
-              Link to Book
-            </label>
-          </div>
-          <h1 className="px-3 mt-2 text-xs text-gray-500">**Enter Url Only</h1>
+        <div className="p-1 my-1 flex flex-row items-center gap-1 border-b w-full border-gray-700 border-dashed">
+          <input
+            type="text"
+            placeholder="Link of Book"
+            className="outline-none w-full ring-0"
+            name="book_link"
+            autoComplete={"false"}
+            maxLength={300}
+            value={book}
+            minLength={4}
+            onChange={(e) => {
+              e.preventDefault;
+              setBook(e.target.value);
+            }}
+            id="book_link"
+          />
         </div>
+
         {/* image url */}
-        <div className="flex flex-col w-full">
-          <div className="relative flex flex-col w-full p-3 border rounded-md border-gray-700/80">
+
+        <div className="p-1 flex flex-row items-center gap-1 border-b w-full border-gray-700 border-dashed">
+          <label htmlFor="coverInput" className="text-gray-500 w-full">
+            {selectedImage.selectedFile
+              ? selectedImage.selectedFile.name
+              : "Choose Cover (Images only)"}
             <input
-              type="text"
-              maxLength={100}
-              value={cover}
-              name="cover_link"
-              onChange={(e) => {
-                e.preventDefault;
-                setCover(e.target.value);
-              }}
-              placeholder="Enter Link for Book Cover"
-              className="px-2 outline-none peer placeholder:text-transparent ring-0 "
+              type="file"
+              multiple={false}
+              id="coverInput"
+              style={{ display: "none" }}
+              accept=".jpg, .jpeg, .png"
+              onChange={handleFileChange}
             />
-            <label className="absolute px-2 text-base font-medium text-black bg-white pointer-events-none -top-3 peer-focus:text-black peer-focus:bg-white left-3 peer-focus:-top-3 peer-placeholder-shown:top-3">
-              Book Cover
-            </label>
-          </div>
-          <h1 className="px-3 mt-2 text-xs text-gray-500">**Enter Url Only</h1>
+          </label>
+          <input type="text" onChange={(e)=>{e.preventDefault()}} name='cover_link' value={cover} className="hidden"/>
         </div>
+        {cover ? (
+          <div className="sm:w-1/4 my-2 max-h-36 ">
+            <div className=" h-32 w-auto relative rounded-md overflow-clip">
+              <Image
+                src={cover}
+                alt=""
+                style={{ objectFit: "cover" }}
+                fill={true}
+              />
+            </div>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setCover("");
+                setSelectedImage({ selectedFile: null });
+              }}
+            >
+              Clear
+            </button>
+          </div>
+        ) : (
+          <></>
+        )}
         <div className="flex flex-col w-full">
           <button
             type="submit"

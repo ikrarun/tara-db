@@ -1,8 +1,7 @@
 import BookCard from "@/components/BookCard";
 import { bookResponse, quoteResponse, responseSchema } from "@/lib/ApiSafety";
 import host from "@/server/host";
-import { DateTime } from "luxon";
-import FactCard from "./_components/FactCard";
+import FactCard from "@/components/FactCard";
 
 export default async function Home() {
   return (
@@ -11,7 +10,6 @@ export default async function Home() {
         <Quotes_Of_Day />
         <Book_of_Day />
       </div>
-      {/* <div className="h-fit sm:min-h-[40%] bg-green-300"> */}
       <div className="h-fit sm:min-h-fit">
         <MythsBusted />
       </div>
@@ -23,37 +21,33 @@ const MythsBusted = async () => {
   const data = await get_Myths();
   try {
     const validResponses = responseSchema.parse(data);
-    if (validResponses && validResponses.length > 0) {
-      return (
-        <>
-          {validResponses.map((res, index) => (
-            <FactCard
-              key={index}
-              title={res.title}
-              short_desc={res.short_desc}
-              date={res.date}
-              link={res.id}
-            />
-          ))}
-        </>
-      );
-    } else {
-      return (
-        <FactCard
-          title={"Can't Show Any Post[s] Right Now"}
-          short_desc={"Try again after a while"}
-          date={"2023-08-22T15:45:00.000-04:00"}
-          link={data.id}
-        />
-      );
-    }
+    return validResponses && validResponses.length > 0 ? (
+      <>
+        {validResponses.map((res, index) => (
+          <FactCard
+            key={index}
+            title={res.title}
+            short_desc={res.short_desc}
+            date={res.date}
+            link={res.id}
+          />
+        ))}
+      </>
+    ) : (
+      <FactCard
+        title={"Can't Show Any Post[s] Right Now"}
+        short_desc={"Try again after a while"}
+        date={"2023-08-22T15:45:00.000-04:00"}
+        link={data.id}
+      />
+    );
   } catch (error) {
     return (
       <FactCard
         title={"Can't Show Any Post[s] Right Now"}
         short_desc={"Try again after a while"}
         date={"2023-08-22T15:45:00.000-04:00"}
-        link={'/'}
+        link={"/"}
       />
     );
   }

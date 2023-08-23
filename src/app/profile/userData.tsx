@@ -4,7 +4,7 @@ import React from "react";
 interface sessions {
   sessionToken: string;
 }
-const USER_DATA = ({ all_session }: { all_session?: sessions[] }) => {
+const USER_DATA = () => {
   const { data: session } = useSession();
   if (session) {
     return (
