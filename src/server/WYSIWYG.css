@@ -11,6 +11,7 @@
  h5,
  h6 {
   margin: 0;
+  break-before: auto;
   padding: 0;
   counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
 }
@@ -98,7 +99,6 @@ u {
   text-decoration: underline;
 }
 
-/* Style strikethrough text */
 s {
   text-decoration: line-through;
 }
@@ -117,3 +117,26 @@ blockquote {
 }
 
 
+
+/* Apply these styles to the parent container of the Markdown content */
+.container {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Style for paragraphs */
+p {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Style for code blocks */
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Style for code blocks inside pre tags */
+code {
+  white-space: pre;
+}
