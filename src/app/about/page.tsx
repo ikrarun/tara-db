@@ -2,9 +2,7 @@ import Footer from "@/components/Footer";
 import NAV from "@/components/Nav";
 export default function Home() {
   return (
-    <div className="flex flex-col">
-      <NAV />
-      <div className="flex w-full p-2 my-5">
+ 
         <div className="max-w-[900px] mx-auto w-full flex flex-col gap-2  items-center justify-center">
          {/* title */}
           <div className="relative flex flex-col items-center justify-center p-4 py-10 overflow-clip">
@@ -41,8 +39,6 @@ export default function Home() {
             </li>
           </ul>
         </div>
-      </div>
-      <Footer />
-    </div>
+    
   );
 }

@@ -27,7 +27,7 @@ const USER_DATA = () => {
         <h1>Welcome User, Please login to access all feature(s)</h1>
         <button
           className="px-2 py-1 text-white bg-gray-950 rounded-md"
-          onClick={() => signIn()}
+          onClick={() => signIn("google")}
         >
           Sign In
         </button>

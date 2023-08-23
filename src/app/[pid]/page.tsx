@@ -19,7 +19,6 @@ const page = async ({ params }: { params: { pid: string } }) => {
   try {
     const { title, date, short_desc, Posts } =
       single_Response_Schema.parse(data);
-    console.log("verified");
     return (
       <div className="flex w-full flex-col">
         <h1 className="self-start text-3xl font-bold">{title}</h1>

@@ -1,4 +1,3 @@
-import { apiRequestForMyths } from "@/lib/ApiSafety";
 import { prisma } from "@/server/db";
 import { NextRequest, NextResponse } from "next/server";
 

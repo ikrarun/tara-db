@@ -2,6 +2,7 @@ import BookCard from "@/components/BookCard";
 import { bookResponse, quoteResponse, responseSchema } from "@/lib/ApiSafety";
 import host from "@/server/host";
 import FactCard from "@/components/FactCard";
+import Link from "next/link";
 
 export default async function Home() {
   return (
@@ -22,7 +23,7 @@ const MythsBusted = async () => {
   try {
     const validResponses = responseSchema.parse(data);
     return validResponses && validResponses.length > 0 ? (
-      <>
+      <div className="flex flex-col gap-2">
         {validResponses.map((res, index) => (
           <FactCard
             key={index}
@@ -32,7 +33,12 @@ const MythsBusted = async () => {
             link={res.id}
           />
         ))}
-      </>
+        {validResponses.length >= 3 && (
+          <div className="flex flex-row items-center justify-end">
+            <Link href={'/posts'} className="p-1 select-none cursor-pointer rounded-md text-red-600">Read More..</Link>
+          </div>
+        )}
+      </div>
     ) : (
       <FactCard
         title={"Can't Show Any Post[s] Right Now"}

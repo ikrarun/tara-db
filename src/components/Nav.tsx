@@ -26,7 +26,7 @@ export const Nav = async () => {
                     src={user.user.image}
                     fill={true}
                     alt="profile_picture"
-                    className="rounded-full hover:scale-[4] transition-all duration-300 hover:translate-y-10"
+                    className="rounded-full"
                   />
                 ) : (
                   <BiSolidUserCircle size={30} />

@@ -1,10 +1,15 @@
 import React from "react";
-import FactCard from "@/components/cards/FactCard";
+import FactCard from "@/components/FactCard";
 import { prisma } from "@/server/db";
+import Link from "next/link";
 
-const get_myths = async () => {
-  const myths = await prisma.myths
+const get_myths = async (page: number) => {
+  const itemsPerPage = 5;
+  const pageNumber = page ?? 1;
+  return await prisma.myths
     .findMany({
+      skip: (pageNumber - 1) * itemsPerPage,
+      take: itemsPerPage,
       orderBy: {
         created_at: "desc",
       },
@@ -16,27 +21,35 @@ const get_myths = async () => {
       },
     })
     .then((res) => {
-      var result;
-      if (res.length > 0) {
-        result = res;
-      } else {
-        result = "code";
-      }
-      return result;
+      if (pageNumber > 1) {
+        return res.length > 0 ? res : "invalidPage";
+      } else return res.length > 0 ? res : "code";
     })
     .catch((e) => {
-      const resCode = e.code as string;
-      return resCode;
+      return e.code as string;
     });
-
-  return myths;
 };
 
-const myth_busting = async () => {
-  const myths = await get_myths();
+const myth_busting = async ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) => {
+  const { pg } = searchParams;
+  let page;
+  if (pg) {
+    const page_no = pg && (typeof pg == typeof "" ? pg : pg[0]);
+    page = page_no ? page_no : "1";
+  }
+  const fetchPage = page ? page : "1";
+
+  const page_num = parseInt(fetchPage as string) ?? 1;
+  const total_posts = await prisma.myths.count();
+  const total_pages = Math.ceil(total_posts / 5);
+  const myths = await get_myths(page_num);
 
   if (typeof myths !== "object") {
-    return (
+    return myths === "code" ? (
       <div className="flex flex-col items-start justify-center w-full gap-2 mx-auto">
         <div className="flex flex-col items-center justify-center w-full p-4 my-4">
           <div className="flex flex-col items-center justify-center w-full gap-3 p-4 border rounded-lg border-gray-600/40">
@@ -46,29 +59,64 @@ const myth_busting = async () => {
           </div>
         </div>
       </div>
+    ) : (
+      <div className="flex flex-col items-start justify-center w-full gap-2 mx-auto">
+        <div className="flex flex-col items-center justify-center w-full p-4 my-4">
+          <div className="flex flex-col items-center justify-center w-full gap-3 p-4 border rounded-lg border-gray-600/40">
+            <h1 className="w-full text-sm text-center text-gray-900">
+              Invalid Request!
+            </h1>
+          </div>
+        </div>
+      </div>
     );
   }
+
   return (
-    <div className="flex flex-col items-center justify-center w-full gap-2 mx-auto">
+    <div className="flex flex-col  items-center justify-center w-full gap-2 mx-auto">
       <div className="flex flex-col w-full">
-        <h1 className="px-5 mb-2 text-xl text-gray-800 w-fit text-start">
-          Myths Busted
+        <h1 className=" mb-2 text-xl text-gray-800 w-fit text-start">
+          We have been continuously working for providing information&apos;s
         </h1>
 
-        <div className="flex flex-col items-center justify-center p-4">
+        <div
+          style={{ scrollbarWidth: "none" }}
+          className="w-full flex flex-col gap-2 "
+        >
           {myths.map((data, index) => {
             return (
-              <div key={index} className="w-full h-fit">
+              <div key={index} className="w-full aspect-auto">
                 <FactCard
                   title={data.title}
                   short_desc={data.short_desc}
                   date={data.date.toISOString()}
                   link={data.id}
                 />
-                <hr className="w-full border-t border-gray-600 border-dashed" />
               </div>
             );
           })}
+        </div>
+        <div className="flex mt-1 flex-row justify-between">
+          {page_num == 1 ? (
+            <div />
+          ) : (
+            <Link
+              className="p-1 bg-black text-white rounded-md"
+              href={`/posts/?pg=${page_num - 1}`}
+            >
+              Prev
+            </Link>
+          )}
+          {page_num === total_pages ? (
+            <div/>
+          ) : (
+            <Link
+              className="p-1 bg-black text-white rounded-md"
+              href={`/posts/?pg=${page_num + 1}`}
+            >
+              Next
+            </Link>
+          )}
         </div>
       </div>
     </div>

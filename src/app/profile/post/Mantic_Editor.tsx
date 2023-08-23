@@ -139,17 +139,23 @@ const Mantic_Editor = () => {
             if (res.id === "INV_DATA") {
               toast.dismiss();
               toast.error("Please Fill All Fields");
-              dismiss();
+              setTimeout(() => {
+                toast.dismiss();
+              }, 2000);
             }
             if (res.id === "CODE") {
               toast.dismiss();
               toast.error("Similar Post is already available (Duplicate)");
-              dismiss();
+              setTimeout(() => {
+                toast.dismiss();
+              }, 2000);
             }
             if (res.id === "ERROR") {
               toast.dismiss();
               toast.error("Post Can't be submitted,");
-              dismiss();
+              setTimeout(() => {
+                toast.dismiss();
+              }, 2000);
               return;
             }
             if (res.id !== "SUCCESS") {
@@ -157,7 +163,10 @@ const Mantic_Editor = () => {
             }
             toast.dismiss();
             toast.success("Thank for your submission");
-            dismiss();
+            setTimeout(() => {
+              toast.dismiss();
+            }, 2000);
+
             router.replace("/profile");
           });
         }}
@@ -169,11 +178,3 @@ const Mantic_Editor = () => {
 };
 
 export default Mantic_Editor;
-function dismiss() {
-  const promise = new Promise(() => {
-    setTimeout(() => {}, 1000);
-  });
-  promise.then(() => {
-    toast.dismiss();
-  });
-}
