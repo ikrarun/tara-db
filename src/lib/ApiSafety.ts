@@ -1,15 +1,14 @@
 import { z } from "zod";
 
-export const postSchema = z.object({
-  wysiwyg: z.string(),
-});
+
 
 export const single_Response_Schema = z.object({
   title: z.string(),
   id:z.string(),
   short_desc: z.string(),
   date: z.string(),
-  Posts: postSchema.nullable(),
+  wysiwyg: z.string(),
+
 })
 export const responseSchema = z.array(
  single_Response_Schema

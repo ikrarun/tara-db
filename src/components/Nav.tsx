@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { Raleway as Font } from "next/font/google";
-import { getServerAuthSession } from "@/server/auth";
+import { getServerAuthSession } from "@/server/Auth/auth";
 import Image from "next/image";
 import { BiSolidUserCircle } from "react-icons/bi";
 

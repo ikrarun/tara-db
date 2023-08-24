@@ -1,4 +1,4 @@
-import { prisma } from "@/server/db";
+import { prisma } from "@/server/Database/db";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ message: "Invalid Request", success: false });
   }
   try {
-    const response = await prisma.myths.findUnique({
+    const response = await prisma.posts.findUnique({
       where: {
         id: data,
       },
@@ -17,11 +17,7 @@ export async function GET(req: NextRequest) {
         short_desc: true,
         date: true,
         id: true,
-        Posts: {
-          select: {
-            wysiwyg: true,
-          },
-        },
+        wysiwyg: true,
       },
     });
 

@@ -1,4 +1,4 @@
-import { prisma } from "@/server/db";
+import { prisma } from "@/server/Database/db";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -9,10 +9,9 @@ export async function GET(req: NextRequest) {
 
     // Number is ok
     if (!Number.isNaN(number) && number >= 0) {
-      // Data fetching Successful
       try {
-        const response = await prisma.myths.findMany({
-          take: number !== 0 ? number : undefined,
+        const response = await prisma.posts.findMany({
+          take: number === 0 ? undefined : number,
           orderBy: {
             created_at: "desc",
           },
@@ -20,12 +19,8 @@ export async function GET(req: NextRequest) {
             title: true,
             short_desc: true,
             date: true,
-            id:true,
-            Posts: {
-              select: {
-                wysiwyg: true,
-              },
-            },
+            id: true,
+            wysiwyg: true,
           },
         });
 

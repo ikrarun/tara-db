@@ -1,7 +1,7 @@
 "use server";
 
-import { getServerAuthSession } from "@/server/auth";
-import { prisma } from "@/server/db";
+import { getServerAuthSession } from "@/server/Auth/auth";
+import { prisma } from "@/server/Database/db";
 import { revalidatePath } from "next/cache";
 
 export default async function post_data(data: FormData) {
@@ -17,21 +17,12 @@ export default async function post_data(data: FormData) {
       };
     }
 
-    const createdMyth = await prisma.myths.create({
+    await prisma.posts.create({
       data: {
         title: post_title,
         short_desc: desc,
         creator: session.user.id,
-      },
-      select: {
-        id: true,
-      },
-    });
-
-    await prisma.posts.create({
-      data: {
         wysiwyg: post,
-        postid: createdMyth.id,
       },
       select: {
         id: true,

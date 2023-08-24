@@ -1,12 +1,12 @@
 import React from "react";
 import FactCard from "@/components/FactCard";
-import { prisma } from "@/server/db";
+import { prisma } from "@/server/Database/db";
 import Link from "next/link";
 
 const get_myths = async (page: number) => {
   const itemsPerPage = 5;
   const pageNumber = page ?? 1;
-  return await prisma.myths
+  return await prisma.posts
     .findMany({
       skip: (pageNumber - 1) * itemsPerPage,
       take: itemsPerPage,
@@ -44,7 +44,7 @@ const myth_busting = async ({
   const fetchPage = page ? page : "1";
 
   const page_num = parseInt(fetchPage as string) ?? 1;
-  const total_posts = await prisma.myths.count();
+  const total_posts = await prisma.posts.count();
   const total_pages = Math.ceil(total_posts / 5);
   const myths = await get_myths(page_num);
 

@@ -1,4 +1,4 @@
-import { getServerAuthSession } from "@/server/auth";
+import { getServerAuthSession } from "@/server/Auth/auth";
 import SuggestionForm from "./SuggestionForm";
 import Link from "next/link";
 import { Role } from "@prisma/client";

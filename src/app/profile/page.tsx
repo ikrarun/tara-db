@@ -2,35 +2,34 @@ import React from "react";
 import USER_DATA from "./userData";
 
 import Link from "next/link";
-import { getServerAuthSession } from "@/server/auth";
+import { getServerAuthSession } from "@/server/Auth/auth";
 import FactCard from "@/components/FactCard";
-import { prisma } from "@/server/db";
+import { prisma } from "@/server/Database/db";
 
 const getLastPostByMe = async (id: string) => {
   try {
-    const res = await prisma.myths
-      .findFirst({
-        orderBy: {
-          created_at: "desc",
-        },
-        where: {
-          creator: id,
-        },
-        select: {
-          title: true,
-          short_desc: true,
-          date: true,
-          id: true,
-        },
-      })
-      .then((res) => {
-        return res ? res : "code";
-      })
-      .catch(() => {
-        return "code";
-      });
-
-    return res;
+    
+    return await prisma.posts
+    .findFirst({
+      orderBy: {
+        created_at: "desc",
+      },
+      where: {
+        creator: id,
+      },
+      select: {
+        title: true,
+        short_desc: true,
+        date: true,
+        id: true,
+      },
+    })
+    .then((res) => {
+      return res ? res : "code";
+    })
+    .catch(() => {
+      return "code";
+    });
   } catch (e) {
     return "code";
   }

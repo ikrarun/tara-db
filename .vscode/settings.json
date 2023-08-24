@@ -14,6 +14,7 @@
         "luxon",
         "Manch",
         "mantine",
+        "NEXTAUTH",
         "nextjs",
         "pexels",
         "picsum",
@@ -43,7 +44,6 @@
         ".gitignore": true,
         "next-env.d.ts": true,
         "postcss.config.js": true,
-        "package.json": true,
         "pnpm-lock.yaml": true,
         "README.md": true
     },
@@ -59,7 +59,6 @@
         ".gitignore",
         "next-env.d.ts",
         "postcss.config.js",
-        "package.json",
         "pnpm-lock.yaml",
         "README.md"
     ]

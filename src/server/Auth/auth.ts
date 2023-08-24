@@ -5,7 +5,7 @@ import {
   type DefaultSession,
 } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { prisma } from "@/server/db";
+import { prisma } from "@/server/Database/db";
 import { Role } from "@prisma/client";
 
 declare module "next-auth" {

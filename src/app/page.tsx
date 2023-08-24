@@ -1,6 +1,6 @@
 import BookCard from "@/components/BookCard";
 import { bookResponse, quoteResponse, responseSchema } from "@/lib/ApiSafety";
-import host from "@/server/host";
+import host from "@/server/Database/host";
 import FactCard from "@/components/FactCard";
 import Link from "next/link";
 
@@ -19,7 +19,7 @@ export default async function Home() {
 }
 
 const MythsBusted = async () => {
-  const data = await get_Myths();
+  const data = await get_Post();
   try {
     const validResponses = responseSchema.parse(data);
     return validResponses && validResponses.length > 0 ? (
@@ -120,8 +120,8 @@ async function get_Books() {
   return data;
 }
 
-async function get_Myths() {
-  const data = await fetch(`${host}/api/getmyths`, {
+async function get_Post() {
+  const data = await fetch(`${host}/api/get_all_post`, {
     next: {
       revalidate: 10,
     },

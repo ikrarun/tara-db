@@ -1,0 +1,21 @@
+.my_style h1 {
+  @apply text-3xl font-semibold;
+}
+
+.my_style h2 {
+  @apply text-2xl font-semibold;
+}
+.my_style h3 {
+  @apply text-xl font-semibold;
+}
+
+.my_style blockquote {
+  @apply border-l-4 border-gray-500 pl-4 italic my-4;
+}
+.my_style p code {
+  @apply px-2 py-1 text-sm font-mono;
+}
+.my_style a {
+  @apply text-blue-600 underline-offset-2 underline ;
+}
+

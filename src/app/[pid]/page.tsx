@@ -1,15 +1,14 @@
-import { responseSchema, single_Response_Schema } from "@/lib/ApiSafety";
-import WYSIWYG from "@/server/WYSIWYG";
-import host from "@/server/host";
+import { single_Response_Schema } from "@/lib/ApiSafety";
+import WYSIWYG from "@/server/Document/WYSIWYG";
+import host from "@/server/Database/host";
 
 const getData = async (bid: string) => {
-  const res = await fetch(`${host}/api/getpost`, {
+  return await fetch(`${host}/api/get_unique`, {
     headers: {
       id: bid,
     },
     next: { revalidate: 30 },
   }).then((res) => res.json());
-  return res;
 };
 
 const page = async ({ params }: { params: { pid: string } }) => {
@@ -17,7 +16,7 @@ const page = async ({ params }: { params: { pid: string } }) => {
 
   const data = await getData(bid);
   try {
-    const { title, date, short_desc, Posts } =
+    const { title, date, short_desc, wysiwyg } =
       single_Response_Schema.parse(data);
     return (
       <div className="flex w-full flex-col">
@@ -29,7 +28,7 @@ const page = async ({ params }: { params: { pid: string } }) => {
           {date}
         </h3>
         <div className="self-start w-full mt-12 overflow-x-auto my_style">
-          <WYSIWYG data={Posts?.wysiwyg ?? ""} />
+          <WYSIWYG data={wysiwyg ?? ""} />
         </div>
       </div>
     );
