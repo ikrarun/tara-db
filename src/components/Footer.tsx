@@ -6,6 +6,7 @@ const Footer = () => (
       {"|"}
       <Link
         href="https://github.com/codemanch"
+        target="_blank"
         className="font-light underline underline-offset-2 "
       >
         Crafted By: Kr. Arun

@@ -1,7 +1,7 @@
 import { getServerAuthSession } from "@/server/Auth/auth";
 import SuggestionForm from "./SuggestionForm";
-import Link from "next/link";
 import { Role } from "@prisma/client";
+import { Button } from "@/components/Button";
 
 const Suggested = async () => {
   const session = await getServerAuthSession();
@@ -63,12 +63,11 @@ const ConditionalCard = ({
           {role === "APPLIED" &&
             "If you&apos;ve already applied for joining please wait for a moment."}
         </h1>
-        <Link
-          className="p-2 text-white bg-gray-950 rounded-md w-fit"
+        <Button
           href={href}
         >
           {result}
-        </Link>
+        </Button>
       </div>
     </div>
   );

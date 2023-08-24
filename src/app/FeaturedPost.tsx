@@ -1,7 +1,7 @@
 import { responseSchema } from "@/lib/ApiSafety";
 import CardForPost from "@/components/CardForPost";
-import Link from "next/link";
 import host from "@/server/Database/host";
+import { Button } from "@/components/Button";
 
 type responseType = {
   title: string;
@@ -60,12 +60,7 @@ function dataAvailable(validResponses: responseType) {
       ))}
       {validResponses.length >= 3 && (
         <div className="flex flex-row items-center justify-end">
-          <Link
-            href={"/posts"}
-            className="p-1 select-none cursor-pointer rounded-md text-red-600"
-          >
-            Read More..
-          </Link>
+          <Button href={"/posts"}>Read More..</Button>
         </div>
       )}
     </div>

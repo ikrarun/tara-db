@@ -1,7 +1,7 @@
 import React from "react";
 import CardForPost from "@/components/CardForPost";
 import { prisma } from "@/server/Database/db";
-import Link from "next/link";
+import { Button } from "@/components/Button";
 
 const get_myths = async (page: number) => {
   const itemsPerPage = 5;
@@ -100,22 +100,12 @@ const myth_busting = async ({
           {page_num == 1 ? (
             <div />
           ) : (
-            <Link
-              className="p-1 bg-blue-700 text-white rounded-md"
-              href={`/posts/?pg=${page_num - 1}`}
-            >
-              Prev
-            </Link>
+            <Button href={`/posts/?pg=${page_num - 1}`}>Prev</Button>
           )}
           {page_num === total_pages ? (
             <div />
           ) : (
-            <Link
-              className="p-1 bg-blue-700 text-white rounded-md"
-              href={`/posts/?pg=${page_num + 1}`}
-            >
-              Next
-            </Link>
+            <Button href={`/posts/?pg=${page_num + 1}`}>Next</Button>
           )}
         </div>
       </div>

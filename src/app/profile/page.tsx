@@ -1,37 +1,7 @@
 import React from "react";
 import USER_DATA from "../../components/userData";
-
-import Link from "next/link";
 import { getServerAuthSession } from "@/server/Auth/auth";
-
-// const getLastPostByMe = async (id: string) => {
-//   try {
-    
-//     return await prisma.posts
-//     .findFirst({
-//       orderBy: {
-//         created_at: "desc",
-//       },
-//       where: {
-//         creator: id,
-//       },
-//       select: {
-//         title: true,
-//         short_desc: true,
-//         date: true,
-//         id: true,
-//       },
-//     })
-//     .then((res) => {
-//       return res ? res : "code";
-//     })
-//     .catch(() => {
-//       return "code";
-//     });
-//   } catch (e) {
-//     return "code";
-//   }
-// };
+import { Button } from "@/components/Button";
 
 const Profile = async () => {
   const session = await getServerAuthSession();
@@ -55,22 +25,11 @@ const Profile = async () => {
           </h1>
         </div>
 
-        {/* s3  User Posts and option to create new one*/}
+        {/* s3  User Posts and option to create new one
         <div className="flex flex-col w-fit gap-3">
-          <Link
-            className="px-2 py-1 text-center text-xl text-white bg-blue-700 rounded-md"
-            href="/profile/suggest_book"
-          >
-            Suggest A Book
-          </Link>
-          <Link
-            className="px-2 py-1 text-center text-xl text-white bg-blue-700 rounded-md"
-            href="/profile/post"
-            prefetch={false}
-          >
-            Create A Post
-          </Link>
-        </div>
+          <Button href="/profile/suggest_book">Suggest A Book</Button>
+          <Button href="/profile/post">Create A Post</Button>
+        </div> */}
       </div>
       <div className="my-4 border-b border-gray-900" />
       <USER_DATA />
@@ -81,12 +40,9 @@ const Profile = async () => {
         <h1 className="text-2xl">
           Would you like to contribute to this project?
         </h1>
-        <Link
-          className="px-2 py-1 text-xl text-white bg-blue-700 rounded-md w-fit"
-          href="/join_us"
-        >
-          Join Us
-        </Link>
+        <div className="flex flex-col justify-start items-start w-full">
+          <Button className="w-fit self-start" href="/join_us">Join Us</Button>
+        </div>
 
         <h1 className="text-base text-gray-900/90">
           Join us as a contributor and be a vital part of our mission to create

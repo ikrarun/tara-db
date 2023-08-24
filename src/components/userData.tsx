@@ -1,4 +1,5 @@
 "use client";
+import { Button } from "./Button";
 import { signIn, signOut, useSession } from "next-auth/react";
 import React from "react";
 interface sessions {
@@ -10,13 +11,9 @@ const USER_DATA = () => {
     return (
       <div className="flex h-full flex-col w-fit">
         <div className="flex flex-col items-start justify-start gap-3 p-4 border rounded-md w-fit border-gray-500/70">
-          <h1>Welcome {session.user.email}</h1>
-          <button
-            className="px-2 py-1 text-white bg-blue-700 rounded-md"
-            onClick={() => signOut()}
-          >
-            Sign out
-          </button>
+          <h1>Welcome {session.user.name}</h1>
+          <h1>{session.user.email}</h1>
+          <Button onClick={() => signOut()}>Sign out</Button>
         </div>
       </div>
     );
@@ -25,12 +22,7 @@ const USER_DATA = () => {
     <div className="flex flex-col h-full w-fit ">
       <div className="flex flex-col mx-auto items-start justify-start gap-3 p-4 border rounded-md w-fit border-gray-500/70">
         <h1>Welcome User, Please login to access all feature(s)</h1>
-        <button
-          className="px-2 py-1 text-white bg-blue-700 rounded-md"
-          onClick={() => signIn("google")}
-        >
-          Sign In
-        </button>
+        <Button onClick={() => signIn("google")}>Sign In</Button>
       </div>
     </div>
   );

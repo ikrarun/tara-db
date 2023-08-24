@@ -2,9 +2,11 @@
 import React from "react";
 import { useFormik } from "formik";
 import { z } from "zod";
+import { Button } from "@/components/Button";
 import { submit_Form } from "./submitFormData";
 import { useSession } from "next-auth/react";
 import USER_DATA from "../../components/userData";
+import { Toaster, toast } from "react-hot-toast";
 
 const Page = () => {
   const { data: session } = useSession();
@@ -18,31 +20,32 @@ const Page = () => {
       id: user_id ?? "",
     },
     onSubmit: async (values) => {
-      const firstName = z.string().parse(values.first_name);
-      const lastName = z.string().parse(values.last_name);
-      const email = z.string().email().parse(values.email);
-      const id = z.string().parse(values.id);
-      const phone = z
-        .string()
-        .regex(/^\d{10}$/)
-        .parse(values.phone);
+      toast.loading("Please Wait");
 
-      if (firstName && lastName && email && phone && id) {
-        const res = await submit_Form(values);
-        return res;
+      const res = await submit_Form(values);
+      if (res === "true") {
+        toast.dismiss();
+        toast.success("Thanks for showing your interest");
       }
-      return "failed";
+      if (res === "failed") {
+        toast.dismiss();
+        toast.error(
+          "Can't accept your submission, your submission already exist"
+        );
+      }
+      return;
     },
   });
 
   return user_id ? (
-    <form onSubmit={formik.handleSubmit} className="mx-auto">
-      <div className="grid gap-6 mb-6 md:grid-cols-2">
+    <form onSubmit={formik.handleSubmit} className="mx-auto w-full">
+      <div className="grid w-full gap-6 mb-6 md:grid-cols-2">
         {/* First Name */}
+        <Toaster position="bottom-left" />
         <div className="w-full">
           <label
             htmlFor="first_name"
-            className="block mb-2 text-sm font-medium text-gray-900 "
+            className="block w-full mb-2 text-sm font-medium text-gray-900 "
           >
             First name
           </label>
@@ -51,7 +54,7 @@ const Page = () => {
             id="first_name"
             onChange={formik.handleChange}
             value={formik.values.first_name}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+            className="bg-gray-50  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
             placeholder="John"
             required
           />
@@ -115,12 +118,12 @@ const Page = () => {
         </div>
       </div>
 
-      <button
+      <Button
         type="submit"
         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center "
       >
         Submit
-      </button>
+      </Button>
     </form>
   ) : (
     <div className="flex flex-col h-full w-full items-center justify-center">

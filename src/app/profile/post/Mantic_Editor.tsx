@@ -9,6 +9,7 @@ import TextAlign from "@tiptap/extension-text-align";
 import post_data from "./postData";
 import { Toaster, toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/Button";
 const content = `<p style={text-align:center}>Edit to Start</p>`;
 const Mantic_Editor = () => {
   const [title, setTitle] = useState("");
@@ -119,8 +120,7 @@ const Mantic_Editor = () => {
         <RichTextEditor.Content />
       </RichTextEditor>
 
-      <button
-        className="px-4 mt-2 py-2 text-white bg-blue-700 rounded-md w-fit"
+      <Button
         onClick={() => {
           toast.loading("Please wait");
           const post = editor?.getHTML().toString();
@@ -172,7 +172,7 @@ const Mantic_Editor = () => {
         }}
       >
         Submit
-      </button>
+      </Button>
     </div>
   );
 };

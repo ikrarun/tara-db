@@ -4,10 +4,10 @@ import React, { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { postData } from "./postData";
 import Image from "next/image";
+import { Button } from "@/components/Button";
 interface FileInputState {
   selectedFile: File | null;
 }
-
 
 const SuggestionForm = () => {
   const router = useRouter();
@@ -23,7 +23,7 @@ const SuggestionForm = () => {
   });
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = event.target.files && event.target.files[0];
+    const selectedFile = event.target.files?.[0];
     if (!selectedFile) {
       return;
     }
@@ -173,7 +173,7 @@ const SuggestionForm = () => {
                 fill={true}
               />
             </div>
-            <button
+            <Button
               onClick={(e) => {
                 e.preventDefault();
                 setCover("");
@@ -181,18 +181,13 @@ const SuggestionForm = () => {
               }}
             >
               Clear
-            </button>
+            </Button>
           </div>
         ) : (
           <></>
         )}
         <div className="flex flex-col w-full">
-          <button
-            type="submit"
-            className="block p-2 text-base font-medium text-white bg-blue-700 rounded-md w-fit text-start "
-          >
-            Submit
-          </button>
+          <Button className="w-fit mx-auto" type="submit">Submit</Button>
         </div>
       </form>
     </div>
