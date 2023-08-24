@@ -34,7 +34,6 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
-        "public": true,
         "node_modules": true,
         "cache": true,
         ".vscode": true,
@@ -49,7 +48,6 @@
         "README.md": true
     },
     "hide-files.files": [
-        "public",
         "node_modules",
         "cache",
         ".vscode",
