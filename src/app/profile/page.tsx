@@ -3,37 +3,35 @@ import USER_DATA from "./userData";
 
 import Link from "next/link";
 import { getServerAuthSession } from "@/server/Auth/auth";
-import FactCard from "@/components/FactCard";
-import { prisma } from "@/server/Database/db";
 
-const getLastPostByMe = async (id: string) => {
-  try {
+// const getLastPostByMe = async (id: string) => {
+//   try {
     
-    return await prisma.posts
-    .findFirst({
-      orderBy: {
-        created_at: "desc",
-      },
-      where: {
-        creator: id,
-      },
-      select: {
-        title: true,
-        short_desc: true,
-        date: true,
-        id: true,
-      },
-    })
-    .then((res) => {
-      return res ? res : "code";
-    })
-    .catch(() => {
-      return "code";
-    });
-  } catch (e) {
-    return "code";
-  }
-};
+//     return await prisma.posts
+//     .findFirst({
+//       orderBy: {
+//         created_at: "desc",
+//       },
+//       where: {
+//         creator: id,
+//       },
+//       select: {
+//         title: true,
+//         short_desc: true,
+//         date: true,
+//         id: true,
+//       },
+//     })
+//     .then((res) => {
+//       return res ? res : "code";
+//     })
+//     .catch(() => {
+//       return "code";
+//     });
+//   } catch (e) {
+//     return "code";
+//   }
+// };
 
 const Profile = async () => {
   const session = await getServerAuthSession();
@@ -60,13 +58,13 @@ const Profile = async () => {
         {/* s3  User Posts and option to create new one*/}
         <div className="flex flex-col w-fit gap-3">
           <Link
-            className="px-2 py-1 text-center text-xl text-white bg-gray-950 rounded-md"
+            className="px-2 py-1 text-center text-xl text-white bg-blue-700 rounded-md"
             href="/profile/suggest_book"
           >
             Suggest A Book
           </Link>
           <Link
-            className="px-2 py-1 text-center text-xl text-white bg-gray-950 rounded-md"
+            className="px-2 py-1 text-center text-xl text-white bg-blue-700 rounded-md"
             href="/profile/post"
             prefetch={false}
           >
@@ -84,8 +82,8 @@ const Profile = async () => {
           Would you like to contribute to this project?
         </h1>
         <Link
-          className="px-2 py-1 text-xl text-white bg-gray-950 rounded-md w-fit"
-          href="https://forms.gle/nqEXZPQC35NtmPkv7"
+          className="px-2 py-1 text-xl text-white bg-blue-700 rounded-md w-fit"
+          href="/join_form"
         >
           Join Us
         </Link>
@@ -95,7 +93,7 @@ const Profile = async () => {
           positive change.
         </h1>
       </div>
-      <div className="my-2 border-b border-gray-900" />
+      <div className="my-2 border-b w-fit border-gray-900" />
       <USER_DATA />
     </div>
   );

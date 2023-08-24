@@ -7,11 +7,9 @@ import Image from "next/image";
 interface FileInputState {
   selectedFile: File | null;
 }
-const SuggestionForm = ({
-  submitData,
-}: {
-  submitData: (data: FormData) => Promise<string>;
-}) => {
+
+
+const SuggestionForm = () => {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -72,8 +70,8 @@ const SuggestionForm = ({
             toast.dismiss();
             toast.loading(`You will be redirected to Profile Page`);
             setTimeout(() => {
-              toast.dismiss()
-              router.replace("/profile");
+              toast.dismiss();
+              router.replace("/");
             }, 2000);
           }
         }}
@@ -155,7 +153,15 @@ const SuggestionForm = ({
               onChange={handleFileChange}
             />
           </label>
-          <input type="text" onChange={(e)=>{e.preventDefault()}} name='cover_link' value={cover} className="hidden"/>
+          <input
+            type="text"
+            onChange={(e) => {
+              e.preventDefault();
+            }}
+            name="cover_link"
+            value={cover}
+            className="hidden"
+          />
         </div>
         {cover ? (
           <div className="sm:w-1/4 my-2 max-h-36 ">
@@ -183,7 +189,7 @@ const SuggestionForm = ({
         <div className="flex flex-col w-full">
           <button
             type="submit"
-            className="block p-2 text-base font-medium text-white bg-gray-950 rounded-md w-fit text-start "
+            className="block p-2 text-base font-medium text-white bg-blue-700 rounded-md w-fit text-start "
           >
             Submit
           </button>

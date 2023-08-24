@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 const BookCard = ({
@@ -30,6 +30,12 @@ const BookCard = ({
       <h1 className="text-2xl font-bold">{title}</h1>
       <h1 className="text-base font-semibold">{desc}</h1>
     </Link>
+    {/* <Link
+      className="p-2 absolute bottom-2 right-2 w-fit flex bg-blue-700  rounded-md h-fit gap-3 items-start justify-end flex-col"
+      href={"/books"}
+    >
+      More
+    </Link> */}
   </div>
 );
 

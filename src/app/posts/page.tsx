@@ -54,7 +54,7 @@ const myth_busting = async ({
         <div className="flex flex-col items-center justify-center w-full p-4 my-4">
           <div className="flex flex-col items-center justify-center w-full gap-3 p-4 border rounded-lg border-gray-600/40">
             <h1 className="w-full text-sm text-center text-gray-900">
-              No Myths Busted Till Now!
+              No Articles available right now!
             </h1>
           </div>
         </div>
@@ -101,17 +101,17 @@ const myth_busting = async ({
             <div />
           ) : (
             <Link
-              className="p-1 bg-black text-white rounded-md"
+              className="p-1 bg-blue-700 text-white rounded-md"
               href={`/posts/?pg=${page_num - 1}`}
             >
               Prev
             </Link>
           )}
           {page_num === total_pages ? (
-            <div/>
+            <div />
           ) : (
             <Link
-              className="p-1 bg-black text-white rounded-md"
+              className="p-1 bg-blue-700 text-white rounded-md"
               href={`/posts/?pg=${page_num + 1}`}
             >
               Next

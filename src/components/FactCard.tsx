@@ -18,7 +18,7 @@ const FactCard = ({
   const formattedDate = format(dateObject, "dd-MM-yyyy");
   return (
     <Link className="flex" href={`/${link}`}>
-      <div className="flex border bg-cyan-700 gap-3 sm:gap-0 text-white backdrop-blur-sm border-gray-700/70 rounded-md sm:flex-row flex-col w-full p-4">
+      <div className="flex border bg-blue-700 gap-3 sm:gap-0 text-white backdrop-blur-sm border-gray-700/70 rounded-md sm:flex-row flex-col w-full p-4">
         <div className="flex flex-col grow gap-2">
           <h1 className="text-lg select-none">{title}</h1>
           <h1 className="text-sm text-gray-200 select-none">{short_desc}</h1>

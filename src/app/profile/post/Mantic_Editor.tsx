@@ -86,7 +86,6 @@ const Mantic_Editor = () => {
             <RichTextEditor.H1 />
             <RichTextEditor.H2 />
             <RichTextEditor.H3 />
-            <RichTextEditor.H4 />
           </RichTextEditor.ControlsGroup>
 
           <RichTextEditor.ControlsGroup>
@@ -121,7 +120,7 @@ const Mantic_Editor = () => {
       </RichTextEditor>
 
       <button
-        className="px-4 py-2 text-white bg-gray-950 rounded-md w-fit"
+        className="px-4 mt-2 py-2 text-white bg-blue-700 rounded-md w-fit"
         onClick={() => {
           toast.loading("Please wait");
           const post = editor?.getHTML().toString();
@@ -131,7 +130,8 @@ const Mantic_Editor = () => {
             toast.error("Fill All Details");
             return;
           }
-
+          toast.dismiss();
+          toast.success("Please wait");
           data.append("title", title);
           data.append("desc", desc);
           data.append("post", post);

@@ -8,11 +8,11 @@ const USER_DATA = () => {
   const { data: session } = useSession();
   if (session) {
     return (
-      <div className="flex flex-col w-full">
+      <div className="flex h-full flex-col w-fit">
         <div className="flex flex-col items-start justify-start gap-3 p-4 border rounded-md w-fit border-gray-500/70">
           <h1>Welcome {session.user.email}</h1>
           <button
-            className="px-2 py-1 text-white bg-gray-950 rounded-md"
+            className="px-2 py-1 text-white bg-blue-700 rounded-md"
             onClick={() => signOut()}
           >
             Sign out
@@ -22,11 +22,11 @@ const USER_DATA = () => {
     );
   }
   return (
-    <div className="flex flex-col w-full ">
-      <div className="flex flex-col items-start justify-start gap-3 p-4 border rounded-md w-fit border-gray-500/70">
+    <div className="flex flex-col h-full w-fit ">
+      <div className="flex flex-col mx-auto items-start justify-start gap-3 p-4 border rounded-md w-fit border-gray-500/70">
         <h1>Welcome User, Please login to access all feature(s)</h1>
         <button
-          className="px-2 py-1 text-white bg-gray-950 rounded-md"
+          className="px-2 py-1 text-white bg-blue-700 rounded-md"
           onClick={() => signIn("google")}
         >
           Sign In

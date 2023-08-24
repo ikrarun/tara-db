@@ -2,11 +2,6 @@ import { getServerAuthSession } from "@/server/Auth/auth";
 import SuggestionForm from "./SuggestionForm";
 import Link from "next/link";
 import { Role } from "@prisma/client";
-const submitData = async (data: FormData) => {
-  "use server";
-  console.log(data);
-  return "a";
-};
 
 const Suggested = async () => {
   const session = await getServerAuthSession();
@@ -21,7 +16,7 @@ const Suggested = async () => {
             Thanks for choosing to suggest a book to our users.
           </h1>
         </div>
-        <SuggestionForm submitData={submitData} />
+        <SuggestionForm />
       </div>
     );
   }

@@ -34,14 +34,14 @@ const page = async ({ params }: { params: { pid: string } }) => {
     );
   } catch (error) {
     return (
-      <div className="flex w-full flex-col">
-        <h1 className="self-start text-3xl font-bold">{`404`}</h1>
-        <h3 className="self-start p-1 text-base font-normal text-gray-600 border-b border-gray-700 border-dashed">
-          {`Your request is invalid`}
-        </h3>
-        <h3 className="self-start p-1 text-base font-normal text-gray-600 border-b border-gray-700 border-dashed">
-          {`Try again after a while`}
-        </h3>
+      <div className="flex flex-col items-start justify-center w-full gap-2 mx-auto">
+        <div className="flex flex-col items-center justify-center w-full p-4 my-4">
+          <div className="flex flex-col items-center justify-center w-full gap-3 p-4 border rounded-lg border-gray-600/40">
+            <h1 className="w-full text-sm text-center text-gray-900">
+              Invalid Request!
+            </h1>
+          </div>
+        </div>
       </div>
     );
   }
