@@ -24,7 +24,7 @@ const Suggested = async () => {
   if (role === "USER" || role === "APPLIED") {
     if (role === "USER") {
       return (
-        <ConditionalCard role={"USER"} href={"/join_form"} result={"Join Us"} />
+        <ConditionalCard role={"USER"} href={"/join_us"} result={"Join Us"} />
       );
     } else if (role === "APPLIED")
       return <ConditionalCard role={"APPLIED"} href={"/"} result={"Home"} />;
