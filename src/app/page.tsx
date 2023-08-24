@@ -3,16 +3,17 @@ import { bookResponse, quoteResponse, responseSchema } from "@/lib/ApiSafety";
 import host from "@/server/Database/host";
 import FactCard from "@/components/FactCard";
 import Link from "next/link";
-
+import About from '@/app/about/page'
 export default async function Home() {
   return (
     <div className="grow w-full flex gap-3 flex-col">
-      <div className="grow flex gap-3 flex-col sm:flex-row ">
+      {/* <div className="grow flex gap-3 flex-col sm:flex-row ">
         <Quotes_Of_Day />
         <Book_of_Day />
-      </div>
+      </div> */}
       <div className="h-fit sm:min-h-fit">
-        <MythsBusted />
+        {/* <MythsBusted /> */}
+        <About/>
       </div>
     </div>
   );
