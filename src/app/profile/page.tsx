@@ -83,7 +83,7 @@ const Profile = async () => {
         </h1>
         <Link
           className="px-2 py-1 text-xl text-white bg-blue-700 rounded-md w-fit"
-          href="/join_form"
+          href="/join_us"
         >
           Join Us
         </Link>
