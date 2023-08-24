@@ -20,7 +20,7 @@ export const Nav = async () => {
               TARA-DB
             </Link>
             <div className="relative w-8 h-full aspect-square">
-              <Link href={"/"}>
+              <Link href={"/profile"}>
                 {user?.user.image ? (
                   <Image
                     src={user.user.image}
