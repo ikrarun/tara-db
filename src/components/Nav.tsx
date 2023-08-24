@@ -3,9 +3,9 @@ import React from "react";
 import { Raleway as Font } from "next/font/google";
 import { getServerAuthSession } from "@/server/Auth/auth";
 import Image from "next/image";
-import { BiSolidUserCircle } from "react-icons/bi";
 import { Button } from "./Button";
 import MobileNav from "./MobileNav";
+import host from "@/server/Database/host";
 
 const font = Font({ subsets: ["latin"] });
 export const Nav = async () => {
@@ -32,16 +32,14 @@ export const Nav = async () => {
               </Button>
               <div className="relative w-8 h-full aspect-square">
                 <Link href={"/profile"}>
-                  {user?.user.image ? (
+                  {
                     <Image
-                      src={user.user.image}
+                      src={user?.user.image ?? `${host}/profile.png`}
                       fill={true}
                       alt="profile_picture"
                       className="rounded-full"
                     />
-                  ) : (
-                    <BiSolidUserCircle size={30} />
-                  )}
+                  }
                 </Link>
               </div>
             </div>
@@ -51,16 +49,14 @@ export const Nav = async () => {
               <div className="flex screen flex-col items-center justify-center gap-4">
                 <div className="relative w-2/12 aspect-square">
                   <Link href={"/profile"}>
-                    {user?.user.image ? (
+                    {
                       <Image
-                        src={user.user.image}
+                        src={user?.user.image ?? `${host}/profile.png`}
                         fill={true}
                         alt="profile_picture"
                         className="rounded-full"
                       />
-                    ) : (
-                      <BiSolidUserCircle size={30} />
-                    )}
+                    }
                   </Link>
                 </div>
                 <div className=" flex flex-col gap-3">
