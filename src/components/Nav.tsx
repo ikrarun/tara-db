@@ -4,6 +4,7 @@ import { Raleway as Font } from "next/font/google";
 import { getServerAuthSession } from "@/server/Auth/auth";
 import Image from "next/image";
 import { BiSolidUserCircle } from "react-icons/bi";
+import { Button } from "./Button";
 
 const font = Font({ subsets: ["latin"] });
 export const Nav = async () => {
@@ -19,19 +20,23 @@ export const Nav = async () => {
             >
               TARA-DB
             </Link>
-            <div className="relative w-8 h-full aspect-square">
-              <Link href={"/profile"}>
-                {user?.user.image ? (
-                  <Image
-                    src={user.user.image}
-                    fill={true}
-                    alt="profile_picture"
-                    className="rounded-full"
-                  />
-                ) : (
-                  <BiSolidUserCircle size={30} />
-                )}
-              </Link>
+            <div className="inline-flex gap-2 items-center">
+              <Button href="/profile/suggest_book" variant="outline">Suggest Book</Button>
+              <Button href="/profile/post" variant="outline">Create Post</Button>
+              <div className="relative w-8 h-full aspect-square">
+                <Link href={"/profile"}>
+                  {user?.user.image ? (
+                    <Image
+                      src={user.user.image}
+                      fill={true}
+                      alt="profile_picture"
+                      className="rounded-full"
+                    />
+                  ) : (
+                    <BiSolidUserCircle size={30} />
+                  )}
+                </Link>
+              </div>
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import USER_DATA from "./userData";
+import USER_DATA from "../../components/userData";
 
 import Link from "next/link";
 import { getServerAuthSession } from "@/server/Auth/auth";

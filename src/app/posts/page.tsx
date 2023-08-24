@@ -1,5 +1,5 @@
 import React from "react";
-import FactCard from "@/components/FactCard";
+import CardForPost from "@/components/CardForPost";
 import { prisma } from "@/server/Database/db";
 import Link from "next/link";
 
@@ -86,7 +86,7 @@ const myth_busting = async ({
           {myths.map((data, index) => {
             return (
               <div key={index} className="w-full aspect-auto">
-                <FactCard
+                <CardForPost
                   title={data.title}
                   short_desc={data.short_desc}
                   date={data.date.toISOString()}

@@ -3,26 +3,17 @@ import { VariantProps, cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-const buttonVariants = cva(
-  "px-2 py-1 text-xl text-white bg-gray-950 rounded-md w-fit",
-  {
-    variants: {
-      variant: {
-        default: "px-2 py-1 text-xl text-white bg-gray-950 rounded-md w-fit",
-        outline:
-          "px-2 py-1 outline-2 outline-red-500 text-xl text-white bg-gray-950 rounded-md w-fit",
-      },
-      size: {
-        default: "font-2xl",
-        sm: "font-xs",
-      },
+const buttonVariants = cva("text-center font-semibold px-2 py-1 rounded-xl ", {
+  variants: {
+    variant: {
+      default: "text-white bg-blue-700",
+      outline: "text-blue-700 border bg-white border-blue-700",
     },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
@@ -31,12 +22,12 @@ export interface ButtonProps
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, children, href, variant, size, ...props }, ref) => {
+  ({ className, children, href, variant, ...props }, ref) => {
     if (href) {
       return (
         <Link
           href={href}
-          className={cn(buttonVariants({ variant, size, className }))}
+          className={cn(buttonVariants({ variant, className }))}
         >
           {children}
         </Link>
@@ -44,7 +35,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     }
     return (
       <button
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(buttonVariants({ variant, className }))}
         ref={ref}
         {...props}
       >

@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <AuthProvider>
         <body className={font.className}>
-          <div className="flex select-none flex-col w-full min-h-screen">
+          <div className="flex select-none screen flex-col w-full">
             <Nav />
             <div className="max-w-[900px] grow w-full flex flex-row  p-4 mx-auto">
               {children}

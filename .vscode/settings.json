@@ -45,7 +45,8 @@
         "next-env.d.ts": true,
         "postcss.config.js": true,
         "pnpm-lock.yaml": true,
-        "README.md": true
+        "README.md": true,
+        "public": true
     },
     "hide-files.files": [
         "node_modules",
@@ -59,6 +60,7 @@
         "next-env.d.ts",
         "postcss.config.js",
         "pnpm-lock.yaml",
-        "README.md"
+        "README.md",
+        "public"
     ]
 }
