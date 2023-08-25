@@ -1,5 +1,4 @@
-import Footer from "_components/Footer";
-import NAV from "_components/Nav";
+
 export default function Home() {
   return (
  

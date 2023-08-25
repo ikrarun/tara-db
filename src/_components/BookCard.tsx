@@ -19,7 +19,7 @@ const BookCard = ({ imageUrl, link, title, desc }: BookComponents) => (
     />
 
     {/* Link with Text Content */}
-    <Link
+    <a
       href={link ?? "/"}
       target="_blank"
       className="p-4 w-full z-20 flex bg-gradient-to-t from-black/90 to-black/60 h-full gap-3 items-start justify-end flex-col"
@@ -27,7 +27,7 @@ const BookCard = ({ imageUrl, link, title, desc }: BookComponents) => (
       <h1 className="text-sm font-semibold">Book of the Day</h1>
       <h1 className="text-2xl font-bold">{title}</h1>
       <h1 className="text-base font-semibold">{desc}</h1>
-    </Link>
+    </a>
   </div>
 );
 

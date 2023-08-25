@@ -34,7 +34,7 @@ const Suggested = async () => {
     return (
       <ConditionalCard
         role={"USER"}
-        href={"/api/auth/signin/google"}
+        href={"/api/auth/signin"}
         result={"Sign In"}
       />
     );
