@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Button } from "./Button";
 import MobileNav from "./MobileNav";
 import host from "_database/host";
+import p_pic from './profile.png'
 
 const font = Font({ subsets: ["latin"] });
 export const Nav = async () => {
@@ -34,7 +35,7 @@ export const Nav = async () => {
                 <Link href={"/profile"}>
                   {
                     <Image
-                      src={user?.user.image ?? `${host}/profile.png`}
+                      src={user?.user.image ?? p_pic}
                       fill={true}
                       alt="profile_picture"
                       className="rounded-full"
