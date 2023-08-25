@@ -48,7 +48,7 @@ function dataFetchError() {
 
 function dataAvailable(validResponses: responseType) {
   return (
-    <div className="flex flex-col bg-red-500 p-2 w-full items-start justify-start gap-2">
+    <div className="flex flex-col w-full items-start justify-start gap-2">
       {validResponses.map((res, index) => (
         <CardForPost
           key={index}

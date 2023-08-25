@@ -52,7 +52,7 @@ export const Nav = async () => {
                   <Link href={"/profile"}>
                     {
                       <Image
-                        src={user?.user.image ?? `${host}/profile.png`}
+                        src={user?.user.image ?? p_pic}
                         fill={true}
                         alt="profile_picture"
                         className="rounded-full"
