@@ -1,11 +1,11 @@
 import Link from "next/link";
 import React from "react";
 import { Raleway as Font } from "next/font/google";
-import { getServerAuthSession } from "@/server/Auth/auth";
+import { getServerAuthSession } from "_auth/auth";
 import Image from "next/image";
 import { Button } from "./Button";
 import MobileNav from "./MobileNav";
-import host from "@/server/Database/host";
+import host from "_database/host";
 
 const font = Font({ subsets: ["latin"] });
 export const Nav = async () => {

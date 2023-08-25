@@ -1,11 +1,10 @@
 "use client";
 import React from "react";
 import { useFormik } from "formik";
-import { z } from "zod";
-import { Button } from "@/components/Button";
+import { Button } from "_components/Button";
 import { submit_Form } from "./submitFormData";
 import { useSession } from "next-auth/react";
-import USER_DATA from "../../components/userData";
+import USER_DATA from "_components/userData";
 import { Toaster, toast } from "react-hot-toast";
 
 const Page = () => {

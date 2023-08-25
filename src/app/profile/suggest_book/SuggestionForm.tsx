@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { postData } from "./postData";
 import Image from "next/image";
-import { Button } from "@/components/Button";
+import { Button } from "_components/Button";
 interface FileInputState {
   selectedFile: File | null;
 }

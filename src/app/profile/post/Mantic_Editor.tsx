@@ -9,7 +9,7 @@ import TextAlign from "@tiptap/extension-text-align";
 import post_data from "./postData";
 import { Toaster, toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/Button";
+import { Button } from "_components/Button";
 const content = `<p style={text-align:center}>Edit to Start</p>`;
 const Mantic_Editor = () => {
   const [title, setTitle] = useState("");

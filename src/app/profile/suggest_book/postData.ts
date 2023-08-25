@@ -1,6 +1,6 @@
 "use server";
-import { getServerAuthSession } from "@/server/Auth/auth";
-import { prisma } from "@/server/Database/db";
+import { getServerAuthSession } from "_auth/auth";
+import { prisma } from "_database/db";
 import { revalidatePath } from "next/cache";
 
 export const postData = async (data: FormData) => {

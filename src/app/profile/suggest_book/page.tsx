@@ -1,7 +1,7 @@
-import { getServerAuthSession } from "@/server/Auth/auth";
+import { getServerAuthSession } from "_auth/auth";
 import SuggestionForm from "./SuggestionForm";
 import { Role } from "@prisma/client";
-import { Button } from "@/components/Button";
+import { Button } from "_components/Button";
 
 const Suggested = async () => {
   const session = await getServerAuthSession();

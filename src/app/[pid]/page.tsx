@@ -1,6 +1,6 @@
-import { single_Response_Schema } from "@/lib/ApiSafety";
-import WYSIWYG from "@/server/Document/WYSIWYG";
-import host from "@/server/Database/host";
+import { single_Response_Schema } from "_lib/ApiSafety";
+import WYSIWYG from "_editor/WYSIWYG";
+import host from "_database/host";
 
 const getData = async (bid: string) => {
   return await fetch(`${host}/api/get_unique`, {
@@ -43,7 +43,10 @@ function showError() {
       <div className="flex flex-col items-center justify-center w-full p-4 my-4">
         <div className="flex flex-col items-center justify-center w-full gap-3 p-4 border rounded-lg border-gray-600/40">
           <h1 className="w-full text-sm text-center text-gray-900">
-            Invalid Request!
+            404!
+          </h1>
+          <h1 className="w-full text-sm text-center text-gray-900">
+            Page Not Found!
           </h1>
         </div>
       </div>

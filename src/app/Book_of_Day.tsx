@@ -1,6 +1,6 @@
-import BookCard from "@/components/BookCard";
-import { bookResponse } from "@/lib/ApiSafety";
-import host from "@/server/Database/host";
+import BookCard from "_components/BookCard";
+import { bookResponse } from "_lib/ApiSafety";
+import host from "_database/host";
 
 export async function get_Books() {
   return await fetch(`${host}/api/suggested_readings`, {

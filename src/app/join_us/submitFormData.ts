@@ -1,7 +1,7 @@
 "use server";
 
-import { validForm } from "@/lib/form_validator";
-import { prisma } from "@/server/Database/db";
+import { validForm } from "_lib/form_validator";
+import { prisma } from "_database/db";
 
 export async function submit_Form(data: validForm) {
   return await prisma.joiningRequest

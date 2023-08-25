@@ -1,7 +1,7 @@
-import { responseSchema } from "@/lib/ApiSafety";
-import CardForPost from "@/components/CardForPost";
-import host from "@/server/Database/host";
-import { Button } from "@/components/Button";
+import { responseSchema } from "_lib/ApiSafety";
+import CardForPost from "_components/CardForPost";
+import host from "_database/host";
+import { Button } from "_components/Button";
 
 type responseType = {
   title: string;

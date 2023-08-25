@@ -2,7 +2,7 @@
 import Editor from "./Mantic_Editor";
 import { useSession } from "next-auth/react";
 import { Role } from "@prisma/client";
-import { Button } from "@/components/Button";
+import { Button } from "_components/Button";
 const Post = () => {
   const { data: session } = useSession();
   const role = session?.user.role;

@@ -1,7 +1,7 @@
 import React from "react";
-import CardForPost from "@/components/CardForPost";
-import { prisma } from "@/server/Database/db";
-import { Button } from "@/components/Button";
+import CardForPost from "_components/CardForPost";
+import { prisma } from "_database/db";
+import { Button } from "_components/Button";
 
 const get_myths = async (page: number) => {
   const itemsPerPage = 5;

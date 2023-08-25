@@ -1,9 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Nunito_Sans as Font } from "next/font/google";
-import AuthProvider from "@/server/Auth/AuthProvider";
-import Footer from "@/components/Footer";
-import Nav from "@/components/Nav";
+import AuthProvider from "_auth/AuthProvider";
+import Footer from "_components/Footer";
+import Nav from "_components/Nav";
 
 const font = Font({ subsets: ["latin"] });
 

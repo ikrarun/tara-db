@@ -1,6 +1,6 @@
-import { quoteResponse } from "@/lib/ApiSafety";
-import QuoteCard from "@/components/QuoteCard";
-import host from "@/server/Database/host";
+import { quoteResponse } from "_lib/ApiSafety";
+import QuoteCard from "_components/QuoteCard";
+import host from "_database/host";
 /**
  * Generate a random quote daily for the users.*/
 export const Quotes_Of_Day = async () => {
