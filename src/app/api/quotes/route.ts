@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-
-export async function GET(req: NextRequest) {
-  const request = req.headers;
-  console.log(request)
-  return NextResponse.json({ message: "❤️❤️❤️❤️", success: true });
+import quotes from './quotes.json'
+export async function GET() {
+  function getRandomQuote() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    return quotes[randomIndex];
+  }
+  
+  const randomQuote = getRandomQuote();
+  return NextResponse.json(randomQuote);
 }

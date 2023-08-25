@@ -8,7 +8,7 @@ interface BookComponents {
 }
 
 const BookCard = ({ imageUrl, link, title, desc }: BookComponents) => (
-  <div className="text-white grow sm:w-[60%] h-fit aspect-video sm:aspect-auto relative rounded-lg overflow-clip">
+  <div className="text-white grow sm:w-[60%] h-fit sm:aspect-auto relative rounded-lg overflow-clip">
     {/* Background Image */}
     <div
       className="absolute -z-10 top-0 left-0 w-full h-full bg-cover bg-no-repeat"

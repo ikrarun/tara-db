@@ -19,9 +19,22 @@ export const responseSchema = z.array(
 
 export const quoteResponse = z.object({
   id: z.number(),
-  quote: z.string(),
+  content: z.string(),
   author: z.string(),
 });
+
+
+const quoteSchema = z.object({
+  _id: z.string(),
+  content: z.string(),
+  author: z.string(),
+  tags: z.array(z.string()),
+  authorSlug: z.string(),
+  length: z.number(),
+  dateAdded: z.string(),
+  dateModified: z.string(),
+});
+
 
 export const bookResponse = z.object({
   link: z.string(),

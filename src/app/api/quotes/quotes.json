@@ -1,0 +1,503 @@
+[
+    {
+      "id": 1,
+      "content": "The only way to do great work is to love what you do.",
+      "author": "Steve Jobs"
+    },
+    {
+      "id": 2,
+      "content": "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+      "author": "Winston Churchill"
+    },
+    {
+      "id": 3,
+      "content": "Believe you can and you're halfway there.",
+      "author": "Theodore Roosevelt"
+    },
+    {
+      "id": 4,
+      "content": "In the middle of every difficulty lies opportunity.",
+      "author": "Albert Einstein"
+    },
+    {
+      "id": 5,
+      "content": "Don't watch the clock; do what it does. Keep going.",
+      "author": "Sam Levenson"
+    },
+    {
+      "id": 6,
+      "content": "The future depends on what you do today.",
+      "author": "Mahatma Gandhi"
+    },
+    {
+      "id": 7,
+      "content": "It does not matter how slowly you go, as long as you do not stop.",
+      "author": "Confucius"
+    },
+    {
+      "id": 8,
+      "content": "Your time is limited, don't waste it living someone else's life.",
+      "author": "Steve Jobs"
+    },
+    {
+      "id": 9,
+      "content": "You miss 100% of the shots you don't take.",
+      "author": "Wayne Gretzky"
+    },
+    {
+      "id": 10,
+      "content": "The only limit to our realization of tomorrow will be our doubts of today.",
+      "author": "Franklin D. Roosevelt"
+    },
+    {
+      "id": 11,
+      "content": "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart.",
+      "author": "Roy T. Bennett"
+    },
+    {
+      "id": 12,
+      "content": "It always seems impossible until it is done.",
+      "author": "Nelson Mandela"
+    },
+    {
+      "id": 13,
+      "content": "The only person you should try to be better than is the person you were yesterday.",
+      "author": "Anonymous"
+    },
+    {
+      "id": 14,
+      "content": "Success is walking from failure to failure with no loss of enthusiasm.",
+      "author": "Winston Churchill"
+    },
+    {
+      "id": 15,
+      "content": "You are never too old to set another goal or to dream a new dream.",
+      "author": "C.S. Lewis"
+    },
+    {
+      "id": 16,
+      "content": "What you get by achieving your goals is not as important as what you become by achieving your goals.",
+      "author": "Zig Ziglar"
+    },
+    {
+      "id": 17,
+      "content": "The best time to plant a tree was 20 years ago. The second best time is now.",
+      "author": "Chinese Proverb"
+    },
+    {
+      "id": 18,
+      "content": "The secret of getting ahead is getting started.",
+      "author": "Mark Twain"
+    },
+    {
+      "id": 19,
+      "content": "If you can dream it, you can do it.",
+      "author": "Walt Disney"
+    },
+    {
+      "id": 20,
+      "content": "The road to success and the road to failure are almost exactly the same.",
+      "author": "Colin R. Davis"
+    },
+    {
+      "id": 21,
+      "content": "I find that the harder I work, the more luck I seem to have.",
+      "author": "Thomas Jefferson"
+    },
+    {
+      "id": 22,
+      "content": "The future belongs to those who believe in the beauty of their dreams.",
+      "author": "Eleanor Roosevelt"
+    },
+    {
+      "id": 23,
+      "content": "Success is not how high you have climbed, but how you make a positive difference to the world.",
+      "author": "Roy T. Bennett"
+    },
+    {
+      "id": 24,
+      "content": "The only thing standing between you and your dream is the will to try and the belief that it is actually possible.",
+      "author": "Joel Brown"
+    },
+    {
+      "id": 25,
+      "content": "The way to get started is to quit talking and begin doing.",
+      "author": "Walt Disney"
+    },
+    {
+      "id": 26,
+      "content": "Success usually comes to those who are too busy to be looking for it.",
+      "author": "Henry David Thoreau"
+    },
+    {
+      "id": 27,
+      "content": "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.",
+      "author": "Christian D. Larson"
+    },
+    {
+      "id": 28,
+      "content": "The secret to getting ahead is getting started.",
+      "author": "Mark Twain"
+    },
+    {
+      "id": 29,
+      "content": "Don't be afraid to give up the good to go for the great.",
+      "author": "John D. Rockefeller"
+    },
+    {
+      "id": 30,
+      "content": "The only place where success comes before work is in the dictionary.",
+      "author": "Vidal Sassoon"
+    },
+    {
+      "id": 31,
+      "content": "Success is not in what you have, but who you are.",
+      "author": "Bo Bennett"
+    },
+    {
+      "id": 32,
+      "content": "Don't wait. The time will never be just right.",
+      "author": "Napoleon Hill"
+    },
+    {
+      "id": 33,
+      "content": "You don’t have to be great to start, but you have to start to be great.",
+      "author": "Zig Ziglar"
+    },
+    {
+      "id": 34,
+      "content": "The future depends on what you do today.",
+      "author": "Mahatma Gandhi"
+    },
+    {
+      "id": 35,
+      "content": "The harder the conflict, the greater the triumph.",
+      "author": "George Washington"
+    },
+    {
+      "id": 36,
+      "content": "It does not matter how slowly you go as long as you do not stop.",
+      "author": "Confucius"
+    },
+    {
+      "id": 37,
+      "content": "Success is not just about making money. It's about making a difference.",
+      "author": "Unknown"
+    },
+    {
+      "id": 38,
+      "content": "You miss 100% of the shots you don't take.",
+      "author": "Wayne Gretzky"
+    },
+    {
+      "id": 39,
+      "content": "The only limit to our realization of tomorrow will be our doubts of today.",
+      "author": "Franklin D. Roosevelt"
+    },
+    {
+      "id": 40,
+      "content": "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart.",
+      "author": "Roy T. Bennett"
+    },
+    {
+      "id": 41,
+      "content": "It always seems impossible until it's done.",
+      "author": "Nelson Mandela"
+    },
+    {
+      "id": 42,
+      "content": "The only person you should try to be better than is the person you were yesterday.",
+      "author": "Unknown"
+    },
+    {
+      "id": 43,
+      "content": "The best time to plant a tree was 20 years ago. The second best time is now.",
+      "author": "Chinese Proverb"
+    },
+    {
+      "id": 44,
+      "content": "The secret of getting ahead is getting started.",
+      "author": "Mark Twain"
+    },
+    {
+      "id": 45,
+      "content": "Your time is limited, don't waste it living someone else's life.",
+      "author": "Steve Jobs"
+    },
+    {
+      "id": 46,
+      "content": "You are never too old to set another goal or to dream a new dream.",
+      "author": "C.S. Lewis"
+    },
+    {
+      "id": 47,
+      "content": "What you get by achieving your goals is not as important as what you become by achieving your goals.",
+      "author": "Zig Ziglar"
+    },
+    {
+      "id": 48,
+      "content": "The only limit to our realization of tomorrow will be our doubts of today.",
+      "author": "Franklin D. Roosevelt"
+    },
+    {
+      "id": 49,
+      "content": "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart.",
+      "author": "Roy T. Bennett"
+    },
+    {
+      "id": 50,
+      "content": "It always seems impossible until it's done.",
+      "author": "Nelson Mandela"
+    },
+    {
+      "id": 51,
+      "content": "The only person you should try to be better than is the person you were yesterday.",
+      "author": "Unknown"
+    },
+    {
+      "id": 52,
+      "content": "The best time to plant a tree was 20 years ago. The second best time is now.",
+      "author": "Chinese Proverb"
+    },
+    {
+      "id": 53,
+      "content": "The secret of getting ahead is getting started.",
+      "author": "Mark Twain"
+    },
+    {
+      "id": 54,
+      "content": "Your time is limited, don't waste it living someone else's life.",
+      "author": "Steve Jobs"
+    },
+    {
+      "id": 55,
+      "content": "You are never too old to set another goal or to dream a new dream.",
+      "author": "C.S. Lewis"
+    },
+    {
+      "id": 56,
+      "content": "What you get by achieving your goals is not as important as what you become by achieving your goals.",
+      "author": "Zig Ziglar"
+    },
+    {
+      "id": 57,
+      "content": "The only limit to our realization of tomorrow will be our doubts of today.",
+      "author": "Franklin D. Roosevelt"
+    },
+    {
+      "id": 58,
+      "content": "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart.",
+      "author": "Roy T. Bennett"
+    },
+    {
+      "id": 59,
+      "content": "It always seems impossible until it's done.",
+      "author": "Nelson Mandela"
+    },
+    {
+      "id": 60,
+      "content": "The only person you should try to be better than is the person you were yesterday.",
+      "author": "Unknown"
+    },
+    {
+      "id": 61,
+      "content": "The best time to plant a tree was 20 years ago. The second best time is now.",
+      "author": "Chinese Proverb"
+    },
+    {
+      "id": 62,
+      "content": "The secret of getting ahead is getting started.",
+      "author": "Mark Twain"
+    },
+    {
+      "id": 63,
+      "content": "Your time is limited, don't waste it living someone else's life.",
+      "author": "Steve Jobs"
+    },
+    {
+      "id": 64,
+      "content": "You are never too old to set another goal or to dream a new dream.",
+      "author": "C.S. Lewis"
+    },
+    {
+      "id": 65,
+      "content": "What you get by achieving your goals is not as important as what you become by achieving your goals.",
+      "author": "Zig Ziglar"
+    },
+    {
+      "id": 66,
+      "content": "The only limit to our realization of tomorrow will be our doubts of today.",
+      "author": "Franklin D. Roosevelt"
+    },
+    {
+      "id": 67,
+      "content": "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart.",
+      "author": "Roy T. Bennett"
+    },
+    {
+      "id": 68,
+      "content": "It always seems impossible until it's done.",
+      "author": "Nelson Mandela"
+    },
+    {
+      "id": 69,
+      "content": "The only person you should try to be better than is the person you were yesterday.",
+      "author": "Unknown"
+    },
+    {
+      "id": 70,
+      "content": "The best time to plant a tree was 20 years ago. The second best time is now.",
+      "author": "Chinese Proverb"
+    },
+    {
+      "id": 71,
+      "content": "The secret of getting ahead is getting started.",
+      "author": "Mark Twain"
+    },
+    {
+      "id": 72,
+      "content": "Your time is limited, don't waste it living someone else's life.",
+      "author": "Steve Jobs"
+    },
+    {
+      "id": 73,
+      "content": "You are never too old to set another goal or to dream a new dream.",
+      "author": "C.S. Lewis"
+    },
+    {
+      "id": 74,
+      "content": "What you get by achieving your goals is not as important as what you become by achieving your goals.",
+      "author": "Zig Ziglar"
+    },
+    {
+      "id": 75,
+      "content": "The only limit to our realization of tomorrow will be our doubts of today.",
+      "author": "Franklin D. Roosevelt"
+    },
+    {
+      "id": 76,
+      "content": "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart.",
+      "author": "Roy T. Bennett"
+    },
+    {
+      "id": 77,
+      "content": "It always seems impossible until it's done.",
+      "author": "Nelson Mandela"
+    },
+    {
+      "id": 78,
+      "content": "The only person you should try to be better than is the person you were yesterday.",
+      "author": "Unknown"
+    },
+    {
+      "id": 79,
+      "content": "The best time to plant a tree was 20 years ago. The second best time is now.",
+      "author": "Chinese Proverb"
+    },
+    {
+      "id": 80,
+      "content": "The secret of getting ahead is getting started.",
+      "author": "Mark Twain"
+    },
+    {
+      "id": 81,
+      "content": "Your time is limited, don't waste it living someone else's life.",
+      "author": "Steve Jobs"
+    },
+    {
+      "id": 82,
+      "content": "You are never too old to set another goal or to dream a new dream.",
+      "author": "C.S. Lewis"
+    },
+    {
+      "id": 83,
+      "content": "What you get by achieving your goals is not as important as what you become by achieving your goals.",
+      "author": "Zig Ziglar"
+    },
+    {
+      "id": 84,
+      "content": "The only limit to our realization of tomorrow will be our doubts of today.",
+      "author": "Franklin D. Roosevelt"
+    },
+    {
+      "id": 85,
+      "content": "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart.",
+      "author": "Roy T. Bennett"
+    },
+    {
+      "id": 86,
+      "content": "It always seems impossible until it's done.",
+      "author": "Nelson Mandela"
+    },
+    {
+      "id": 87,
+      "content": "The only person you should try to be better than is the person you were yesterday.",
+      "author": "Unknown"
+    },
+    {
+      "id": 88,
+      "content": "The best time to plant a tree was 20 years ago. The second best time is now.",
+      "author": "Chinese Proverb"
+    },
+    {
+      "id": 89,
+      "content": "The secret of getting ahead is getting started.",
+      "author": "Mark Twain"
+    },
+    {
+      "id": 90,
+      "content": "Your time is limited, don't waste it living someone else's life.",
+      "author": "Steve Jobs"
+    },
+    {
+      "id": 91,
+      "content": "You are never too old to set another goal or to dream a new dream.",
+      "author": "C.S. Lewis"
+    },
+    {
+      "id": 92,
+      "content": "What you get by achieving your goals is not as important as what you become by achieving your goals.",
+      "author": "Zig Ziglar"
+    },
+    {
+      "id": 93,
+      "content": "The only limit to our realization of tomorrow will be our doubts of today.",
+      "author": "Franklin D. Roosevelt"
+    },
+    {
+      "id": 94,
+      "content": "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart.",
+      "author": "Roy T. Bennett"
+    },
+    {
+      "id": 95,
+      "content": "It always seems impossible until it's done.",
+      "author": "Nelson Mandela"
+    },
+    {
+      "id": 96,
+      "content": "The only person you should try to be better than is the person you were yesterday.",
+      "author": "Unknown"
+    },
+    {
+      "id": 97,
+      "content": "The best time to plant a tree was 20 years ago. The second best time is now.",
+      "author": "Chinese Proverb"
+    },
+    {
+      "id": 98,
+      "content": "The secret of getting ahead is getting started.",
+      "author": "Mark Twain"
+    },
+    {
+      "id": 99,
+      "content": "Your time is limited, don't waste it living someone else's life.",
+      "author": "Steve Jobs"
+    },
+    {
+      "id": 100,
+      "content": "You are never too old to set another goal or to dream a new dream.",
+      "author": "C.S. Lewis"
+    }
+  ]
+  

@@ -25,6 +25,7 @@
         "suggestedreadings",
         "tailwindcss",
         "tiptap",
+        "trpc",
         "unoptimized"
     ],
     "files.exclude": {

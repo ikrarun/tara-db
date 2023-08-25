@@ -1,37 +1,22 @@
 import { quoteResponse } from "@/lib/ApiSafety";
-
+import QuoteCard from "@/components/QuoteCard";
+import host from "@/server/Database/host";
 /**
  * Generate a random quote daily for the users.*/
 export const Quotes_Of_Day = async () => {
   const data = await get_Quotes();
   try {
-    const { quote, author } = quoteResponse.parse(data);
-    return (
-      <div className=" w-full select-none bg-gray-950/70 backdrop-blur-sm text-white grow p-4 gap-3 rounded-md items-start justify-center flex flex-col">
-        <h1 className="text-sm font-light">Quote of the Day</h1>
-        <h1 className="text-2xl font-bold">{quote}</h1>
-        <h1 className="text-lg font-semibold">{author}</h1>
-      </div>
-    );
+    const { content, author } = quoteResponse.parse(data);
+    return <QuoteCard quote={content} author={author} />;
   } catch (error) {
-    return (
-      <div className=" w-full select-none bg-gray-950 backdrop-blur-sm text-white sm:w-[60%] p-4 gap-3 rounded-md items-start justify-center flex flex-col">
-        <h1 className="text-sm font-light">Quote of the Day</h1>
-        <h1 className="text-2xl font-bold">Is Currently Now Available</h1>
-        <h1 className="text-lg font-semibold">Try again after a while</h1>
-      </div>
-    );
+    return <QuoteCard />;
   }
 };
 
-
-
 export async function get_Quotes() {
-  const data = await fetch("https://dummyjson.com/quotes/random", {
+  return await fetch(`${host}/api/quotes`, {
     next: {
-      revalidate: 10,
+      revalidate: 60 * 60 * 12,
     },
   }).then((res) => res.json());
-  return data;
 }
-
