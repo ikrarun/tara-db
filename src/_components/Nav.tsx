@@ -5,7 +5,6 @@ import { getServerAuthSession } from "_auth/auth";
 import Image from "next/image";
 import { Button } from "./Button";
 import MobileNav from "./MobileNav";
-import host from "_database/host";
 import p_pic from './profile.png'
 
 const font = Font({ subsets: ["latin"] });

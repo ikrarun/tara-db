@@ -1,6 +1,5 @@
 import { responseSchema } from "_lib/ApiSafety";
 import CardForPost from "_components/CardForPost";
-import host from "_database/host";
 import { Button } from "_components/Button";
 
 type responseType = {
@@ -12,7 +11,7 @@ type responseType = {
 }[];
 
 export async function get_Post() {
-  return await fetch(`${host}/api/get_all_post`, {
+  return await fetch(`${process.env.HOST}/api/get_all_post`, {
     next: {
       revalidate: 10,
     },

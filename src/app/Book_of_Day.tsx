@@ -1,9 +1,8 @@
 import BookCard from "_components/BookCard";
 import { bookResponse } from "_lib/ApiSafety";
-import host from "_database/host";
 
 export async function get_Books() {
-  return await fetch(`${host}/api/suggested_readings`, {
+  return await fetch(`${process.env.HOST}/api/suggested_readings`, {
     next: {
       revalidate: 10,
     },

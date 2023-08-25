@@ -1,6 +1,5 @@
 import { quoteResponse } from "_lib/ApiSafety";
 import QuoteCard from "_components/QuoteCard";
-import host from "_database/host";
 /**
  * Generate a random quote daily for the users.*/
 export const Quotes_Of_Day = async () => {
@@ -14,7 +13,7 @@ export const Quotes_Of_Day = async () => {
 };
 
 export async function get_Quotes() {
-  return await fetch(`${host}/api/quotes`, {
+  return await fetch(`${process.env.HOST}/api/quotes`, {
     next: {
       revalidate: 60 * 60 * 12,
     },

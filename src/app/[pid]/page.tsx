@@ -1,9 +1,8 @@
 import { single_Response_Schema } from "_lib/ApiSafety";
 import WYSIWYG from "_editor/WYSIWYG";
-import host from "_database/host";
 
 const getData = async (bid: string) => {
-  return await fetch(`${host}/api/get_unique`, {
+  return await fetch(`${process.env.HOST}/api/get_unique`, {
     headers: {
       id: bid,
     },
