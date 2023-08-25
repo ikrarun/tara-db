@@ -5,7 +5,7 @@ const Footer = () => (
       <h1 className="font-light">Copyright &#64; 2023 | </h1>
 
       <Link
-        href="https://github.com/codemanch"
+        href="https://github.com/ikrarun"
         target="_blank"
         className="font-light underline underline-offset-2 "
       >
