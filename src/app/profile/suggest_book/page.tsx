@@ -1,7 +1,7 @@
 import { getServerAuthSession } from "_auth/auth";
 import SuggestionForm from "./SuggestionForm";
 import { Role } from "@prisma/client";
-import Button from "./button";
+import Button from "_components/ConditionalButton";
 
 const Suggested = async () => {
   const session = await getServerAuthSession();

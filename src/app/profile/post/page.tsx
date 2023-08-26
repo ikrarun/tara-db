@@ -2,7 +2,7 @@
 import Editor from "./Mantic_Editor";
 import { useSession } from "next-auth/react";
 import { Role } from "@prisma/client";
-import { Button } from "_components/Button";
+import Button from "_components/ConditionalButton";
 const Post = () => {
   const { data: session } = useSession();
   const role = session?.user.role;
@@ -33,23 +33,19 @@ const Post = () => {
   }
 
   if (!session) {
-    return (
-      <ConditionalCard
-        role={"USER"}
-        href={"/api/auth/signin/google"}
-        result={"Sign In"}
-      />
-    );
+    return <ConditionalCard role={"USER"} login={true} result={"Sign In"} />;
   }
 };
 
 const ConditionalCard = ({
   role,
   href,
+  login,
   result,
 }: {
   role: Role;
-  href: string;
+  login?: boolean;
+  href?: string;
   result: string;
 }) => {
   return (
@@ -65,7 +61,7 @@ const ConditionalCard = ({
           {role === "APPLIED" &&
             "If you&apos;ve already applied for joining please wait for a moment."}
         </h1>
-        <Button href={href}>{result}</Button>
+        <Button href={href ?? ""} login={login} result={result} />
       </div>
     </div>
   );

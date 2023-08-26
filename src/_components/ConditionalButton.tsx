@@ -1,3 +1,4 @@
+'use client'
 import { Button } from "_components/Button";
 import { signIn } from "next-auth/react";
 import React from "react";
