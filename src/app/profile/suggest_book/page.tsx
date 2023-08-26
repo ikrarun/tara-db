@@ -1,7 +1,7 @@
 import { getServerAuthSession } from "_auth/auth";
 import SuggestionForm from "./SuggestionForm";
 import { Role } from "@prisma/client";
-import { Button } from "_components/Button";
+import Button from "./button";
 
 const Suggested = async () => {
   const session = await getServerAuthSession();
@@ -31,23 +31,19 @@ const Suggested = async () => {
   }
 
   if (!session) {
-    return (
-      <ConditionalCard
-        role={"USER"}
-        href={"/api/auth/signin"}
-        result={"Sign In"}
-      />
-    );
+    return <ConditionalCard role={"USER"} login={true} result={"Sign In"} />;
   }
 };
 
 const ConditionalCard = ({
   role,
   href,
+  login,
   result,
 }: {
   role: Role;
-  href: string;
+  href?: string;
+  login?: boolean;
   result: string;
 }) => {
   return (
@@ -63,11 +59,7 @@ const ConditionalCard = ({
           {role === "APPLIED" &&
             "If you&apos;ve already applied for joining please wait for a moment."}
         </h1>
-        <Button
-          href={href}
-        >
-          {result}
-        </Button>
+        <Button href={href??''} login={login} result={result} />
       </div>
     </div>
   );
