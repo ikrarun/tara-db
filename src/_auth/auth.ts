@@ -7,6 +7,7 @@ import {
 import GoogleProvider from "next-auth/providers/google";
 import { prisma } from "_database/db";
 import { Role } from "@prisma/client";
+import { GetServerSidePropsContext } from "next";
 
 declare module "next-auth" {
   interface Session extends DefaultSession {
@@ -48,9 +49,9 @@ export const authOptions: NextAuthOptions = {
 export const getServerAuthSession = () => {
   return getServerSession(authOptions);
 };
-// export const getServerAuthSession = (ctx: {
-//   req: GetServerSidePropsContext["req"];
-//   res: GetServerSidePropsContext["res"];
-// }) => {
-//   return getServerSession(ctx.req, ctx.res, authOptions);
-// };
+export const getContextServerAuthSession = (ctx: {
+  req: GetServerSidePropsContext["req"];
+  res: GetServerSidePropsContext["res"];
+}) => {
+  return getServerSession(ctx.req, ctx.res, authOptions);
+};

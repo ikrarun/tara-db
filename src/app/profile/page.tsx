@@ -24,12 +24,6 @@ const Profile = async () => {
             we make meaningful strides towards our project&apos;s goals.
           </h1>
         </div>
-
-        {/* s3  User Posts and option to create new one
-        <div className="flex flex-col w-fit gap-3">
-          <Button href="/profile/suggest_book">Suggest A Book</Button>
-          <Button href="/profile/post">Create A Post</Button>
-        </div> */}
       </div>
       <div className="my-4 border-b border-gray-900" />
       <USER_DATA />
@@ -41,7 +35,9 @@ const Profile = async () => {
           Would you like to contribute to this project?
         </h1>
         <div className="flex flex-col justify-start items-start w-full">
-          <Button className="w-fit self-start" href="/join_us">Join Us</Button>
+          <Button className="w-fit self-start" href="/join_us">
+            Join Us
+          </Button>
         </div>
 
         <h1 className="text-base text-gray-900/90">

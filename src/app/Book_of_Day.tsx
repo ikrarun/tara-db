@@ -1,30 +1,20 @@
 import BookCard from "_components/BookCard";
-import { bookResponse } from "_lib/ApiSafety";
-
-export async function get_Books() {
-  return await fetch(`${process.env.HOST}/api/suggested_readings`, {
-    next: {
-      revalidate: 10,
-    },
-  }).then((res) => res.json());
-}
-
-
+import { serverClient } from "_trpc/_important/serverClient";
 
 export const Book_of_Day = async () => {
-  const data = await get_Books();
-  try {
-    const { title, desc, imageUrl, link } = bookResponse.parse(data);
-    return (
-      <BookCard imageUrl={imageUrl} link={link} title={title} desc={desc} />
-    );
-  } catch (error) {
-    return (
-      <BookCard
-        title={"Can't Recommend Any Book Right Now"}
-        desc={"Try again after a while"} />
-    );
-  }
+  const data = await serverClient.getBooks();
+
+  return typeof data === "boolean" ? (
+    <BookCard
+      title={"Can't Recommend Any Book Right Now"}
+      desc={"Try again after a while"}
+    />
+  ) : (
+    <BookCard
+      imageUrl={data.imageUrl}
+      link={data.link}
+      title={data.title ?? ""}
+      desc={data.desc ?? ""}
+    />
+  );
 };
-
-
