@@ -26,7 +26,15 @@ export const get_Post = async () => {
 export const FeaturedPost = async () => {
   const res = await get_Post();
   return "code" in res ? (
-    <div>Error</div>
+    <div className="flex flex-col items-start justify-center w-full gap-2 mx-auto">
+      <div className="flex flex-col items-center justify-center w-full p-4 my-4">
+        <div className="flex flex-col items-center justify-center w-full gap-3 p-4 border rounded-lg border-gray-600/40">
+          <h1 className="w-full text-sm text-center text-gray-900">
+            No Articles available right now!
+          </h1>
+        </div>
+      </div>
+    </div>
   ) : (
     <div className="flex flex-col w-full items-start justify-start gap-2">
       {res.map((res, index) => (
