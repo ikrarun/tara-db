@@ -18,9 +18,9 @@ const getBooks = async () => {
     next: {
       revalidate: 60,
     },
-  });
-  const result = await data.json();
-  return result as Data;
+  }).then((res) => res.json());
+
+  return data as Data;
 };
 
 export const Book_of_Day = async () => {

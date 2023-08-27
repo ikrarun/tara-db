@@ -18,14 +18,16 @@ export const get_Post = async () => {
       take: "3",
       type: "card",
     },
-  });
+  }).then((res) => res.json());
 
-  return (await data.json()) as Data;
+  return data as Data;
 };
 
 export const FeaturedPost = async () => {
   const res = await get_Post();
-  return "code" in res ? <div>Error</div> : (
+  return "code" in res ? (
+    <div>Error</div>
+  ) : (
     <div className="flex flex-col w-full items-start justify-start gap-2">
       {res.map((res, index) => (
         <CardForPost

@@ -17,9 +17,9 @@ const get_Quotes = async () => {
     next: {
       revalidate: 60,
     },
-  });
-  const result = await data.json();
-  return result as Data;
+  }).then((res) => res.json());
+
+  return data as Data;
 };
 
 export const Quotes_Of_Day = async () => {

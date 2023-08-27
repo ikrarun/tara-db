@@ -8,7 +8,7 @@ interface pageParams {
 }
 
 type Data =
- | {
+  | {
       id: string;
       title: string;
       short_desc: string;
@@ -26,18 +26,20 @@ const page = async ({ params }: pageParams) => {
   const data = await fetch(`${host}/api/get_all_post`, {
     headers: {
       post_id: bid,
-      type:'full'
+      type: "full",
     },
     next: {
       revalidate: 60,
     },
-  });
-  const result = await data.json();
+  }).then((res) => res.json());
+  const result = data as Data;
   return showData(result);
 };
 
 function showData(data: Data) {
-  return "code" in data ? <div>Error</div> : (
+  return "code" in data ? (
+    <div>Error</div>
+  ) : (
     <div className="flex w-full flex-col">
       <h1 className="self-start text-3xl font-bold">{data.title}</h1>
       <h3 className="self-start p-1 text-base font-normal text-gray-600 border-b border-gray-700 border-dashed">

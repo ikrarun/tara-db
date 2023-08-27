@@ -19,11 +19,8 @@ const get_Post = async () => {
     headers: {
       type: "card",
     },
-  });
-  const data = await res.json();
-  const formattedData = data as Data;
-  console.log(formattedData);
-  return formattedData;
+  }).then((res) => res.json());
+  return res as Data;
 };
 
 const Posts = async () => {
