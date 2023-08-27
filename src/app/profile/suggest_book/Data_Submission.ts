@@ -26,7 +26,7 @@ export default async function Data_Submission(formData: FormData) {
 
   try {
     const validatedData = formDataSchema.parse(formDataObject);
-    console.log("Data is valid:", validatedData);
+    // console.log("Data is valid:", validatedData);
 
     return await prisma.suggestedreadings
       .create({
