@@ -3,7 +3,7 @@ import { VariantProps, cva } from "class-variance-authority";
 import { cn } from "Lib/utils";
 import Link from "next/link";
 
-const buttonVariants = cva("text-center font-semibold px-2 py-1 rounded-full ", {
+const buttonVariants = cva("text-center font-semibold px-2 py-1 rounded-md ", {
   variants: {
     variant: {
       default: "text-white bg-blue-700",

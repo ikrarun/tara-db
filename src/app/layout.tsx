@@ -19,17 +19,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <AuthProvider>
-        <body className={font.className}>
-          <div className="flex select-none screen flex-col w-full">
+      <body className={font.className}>
+        <AuthProvider>
+          <div className="flex h-screen">
+            {/* Left Side Navigation */}
             <Nav />
-            <div className="max-w-[900px] grow w-full flex flex-row  p-4 mx-auto">
-              {children}
+            {/* Main Content Area */}
+            {/* Centered Content Area */}
+            <div className="mx-auto max-w-[900px] p-4 w-full">{children}</div>
+            {/* Right Side Content */}
+            <div className="bg-red-500 flex-grow hidden sm:flex flex-shrink-0 w-1/5 p-4">
+              {/* Right side content goes here */}
+              Right Content
             </div>
-            <Footer />
           </div>
-        </body>
-      </AuthProvider>
+        </AuthProvider>
+      </body>
     </html>
   );
 }
