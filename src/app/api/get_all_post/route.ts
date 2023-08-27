@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
   const post_id = header.get("post_id");
 
   try {
-    if (type === "card" && take != null && typeof parseInt(take) === "number") {
+    if (type === "card" && take != null) {
       return await prisma.posts
         .findMany({
           take: parseInt(take),
@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
               : { code: 500, result: false }
           );
         });
-    } else if (type === "card") {
+    } else if (type === "card" && take === null) {
       return await prisma.posts
         .findMany({
           select: {
