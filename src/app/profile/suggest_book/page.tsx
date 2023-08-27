@@ -1,4 +1,4 @@
-import { getServerAuthSession } from "_auth/auth";
+import { getServerAuthSession } from "Auth/auth";
 import SuggestionForm from "./SuggestionForm";
 import { Role } from "@prisma/client";
 import Button from "_components/ConditionalButton";

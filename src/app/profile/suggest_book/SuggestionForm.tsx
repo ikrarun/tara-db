@@ -2,15 +2,16 @@
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
-import { postData } from "./postData";
 import Image from "next/image";
 import { Button } from "_components/Button";
+import Data_Submission from "./Data_Submission";
 interface FileInputState {
   selectedFile: File | null;
 }
 
 const SuggestionForm = () => {
   const router = useRouter();
+  const [isPending, setIsPending] = useState(false);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [book, setBook] = useState("");
@@ -32,8 +33,13 @@ const SuggestionForm = () => {
       if (reader.result) {
         const dataUrl = reader.result as string;
         if (dataUrl.startsWith("data:image/")) {
-          setSelectedImage((prevState) => ({ ...prevState, selectedFile }));
-          setCover(dataUrl);
+          if (selectedFile.size <= 100 * 1024) {
+            setSelectedImage((prevState) => ({ ...prevState, selectedFile }));
+            setCover(dataUrl);
+          } else {
+            toast.dismiss();
+            toast.error("Image size should be 100KB or smaller.");
+          }
         } else {
           toast.dismiss();
           toast.error("Please select an image file (JPG, JPEG, PNG).");
@@ -56,24 +62,24 @@ const SuggestionForm = () => {
       <form
         className="flex flex-col w-full gap-2"
         action={async (data) => {
-          const res = await postData(data);
-
-          if (res?.id === "INV_DATA") {
+          toast.dismiss();
+          toast.loading("Kindly wait");
+          const res = await Data_Submission(data);
+          await new Promise((resolve) => setTimeout(resolve, 1000)); // Introduce a delay of 2000 milliseconds (2 seconds)
+          if ("error" in res) {
             toast.dismiss();
-            toast.error(`Can't submit form, entries are invalid`);
-          } else if (res?.id === "P2002") {
+            toast.error(res.error);
+          } else if ("code" in res) {
             toast.dismiss();
-            toast.error(`This Book is already in the suggestion list`);
-          } else if (res?.id) {
+            toast.error(
+              "Either you have already filled this form or number is already in use"
+            );
+          } else if ("message" in res) {
             toast.dismiss();
-            toast.success(`Your Submission is successful`);
-            toast.dismiss();
-            toast.loading(`You will be redirected to Profile Page`);
-            setTimeout(() => {
-              toast.dismiss();
-              router.replace("/");
-            }, 2000);
+            toast.success("Your Submission Successful");
           }
+          router.replace("/");
+          setIsPending(false);
         }}
       >
         {/* Title */}
@@ -187,7 +193,13 @@ const SuggestionForm = () => {
           <></>
         )}
         <div className="flex flex-col w-full">
-          <Button className="w-fit mx-auto" type="submit">Submit</Button>
+          <Button
+            className="w-fit mx-auto disabled:bg-gray-700"
+            disabled={isPending}
+            type="submit"
+          >
+            Submit
+          </Button>
         </div>
       </form>
     </div>

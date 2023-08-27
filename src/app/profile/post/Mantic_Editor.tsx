@@ -1,18 +1,19 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { RichTextEditor, Link } from "@mantine/tiptap";
 import { useEditor, FloatingMenu } from "@tiptap/react";
 import Highlight from "@tiptap/extension-highlight";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
-import post_data from "./postData";
+import Data_Submission from "./Data_Submission";
 import { Toaster, toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Button } from "_components/Button";
 const content = `<p style={text-align:center}>Edit to Start</p>`;
 const Mantic_Editor = () => {
   const [title, setTitle] = useState("");
+  const [isPending, setIsPending] = useState(false);
   const [desc, setDesc] = useState("");
   const [title_len, setTitle_len] = useState<number>();
   const [desc_len, setDesc_len] = useState<number>();
@@ -28,8 +29,46 @@ const Mantic_Editor = () => {
   });
 
   const router = useRouter();
+
+  const onSubmitData = async (data: FormData) => {
+    const res = await Data_Submission(data);
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // Introduce a delay of 2000 milliseconds (2 seconds)
+    if ("error" in res) {
+      toast.dismiss();
+      toast.error(res.error);
+    } else if ("code" in res) {
+      toast.dismiss();
+      toast.error(
+        "Either you have already filled this form or number is already in use"
+      );
+    } else if ("message" in res) {
+      toast.dismiss();
+      toast.success("Your Submission Successful");
+    }
+    router.replace("/");
+    setIsPending(false);
+  };
+
   return (
-    <div className="flex flex-col w-full gap-1">
+    <form
+      className="flex flex-col w-full gap-1"
+      action={() => {
+        toast.loading("Kindly wait");
+        const post = editor?.getHTML().toString();
+        const data = new FormData();
+        if (!post || !title || !desc) {
+          toast.dismiss();
+          toast.error("Fill All Details");
+          return;
+        }
+        toast.dismiss();
+        toast.loading("Kindly wait");
+        data.append("title", title);
+        data.append("desc", desc);
+        data.append("post", post);
+        onSubmitData(data);
+      }}
+    >
       <div>
         <Toaster position="bottom-left" />
       </div>
@@ -120,60 +159,10 @@ const Mantic_Editor = () => {
         <RichTextEditor.Content />
       </RichTextEditor>
 
-      <Button
-        onClick={() => {
-          toast.loading("Please wait");
-          const post = editor?.getHTML().toString();
-          const data = new FormData();
-          if (!post || !title || !desc) {
-            toast.dismiss();
-            toast.error("Fill All Details");
-            return;
-          }
-          toast.dismiss();
-          toast.success("Please wait");
-          data.append("title", title);
-          data.append("desc", desc);
-          data.append("post", post);
-          post_data(data).then((res) => {
-            if (res.id === "INV_DATA") {
-              toast.dismiss();
-              toast.error("Please Fill All Fields");
-              setTimeout(() => {
-                toast.dismiss();
-              }, 2000);
-            }
-            if (res.id === "CODE") {
-              toast.dismiss();
-              toast.error("Similar Post is already available (Duplicate)");
-              setTimeout(() => {
-                toast.dismiss();
-              }, 2000);
-            }
-            if (res.id === "ERROR") {
-              toast.dismiss();
-              toast.error("Post Can't be submitted,");
-              setTimeout(() => {
-                toast.dismiss();
-              }, 2000);
-              return;
-            }
-            if (res.id !== "SUCCESS") {
-              return;
-            }
-            toast.dismiss();
-            toast.success("Thank for your submission");
-            setTimeout(() => {
-              toast.dismiss();
-            }, 2000);
-
-            router.replace("/profile");
-          });
-        }}
-      >
+      <Button disabled={isPending} type="submit">
         Submit
       </Button>
-    </div>
+    </form>
   );
 };
 

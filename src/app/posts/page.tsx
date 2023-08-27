@@ -1,10 +1,35 @@
 import React from "react";
 import CardForPost from "_components/CardForPost";
-import { serverClient } from "_trpc/_important/serverClient";
+import { host } from "Lib/host";
+
+
+type Data =
+  | {
+      title: string;
+      short_desc: string;
+      date: Date;
+      id:string
+    }[]
+  | { code: any; result: boolean };
+
+const get_Post =async()=>{
+  const res = await fetch(`${host}/api/get_all_post`,{
+    next:{
+      revalidate:60
+    },
+    headers:{
+      type:'card'
+    }
+  })
+
+  return await res.json() as Data
+
+}
+
 
 const Posts = async () => {
-  const myths = await serverClient.getAllPost();
-  if (typeof myths === "boolean") {
+  const res = await get_Post();
+  if ('code' in res) {
     return (
       <div className="flex flex-col items-start justify-center w-full gap-2 mx-auto">
         <div className="flex flex-col items-center justify-center w-full p-4 my-4">
@@ -29,7 +54,7 @@ const Posts = async () => {
           style={{ scrollbarWidth: "none" }}
           className="w-full flex flex-col gap-2 "
         >
-          {myths.map((data, index) => {
+          {res.map((data, index) => {
             return (
               <div key={index} className="w-full aspect-auto">
                 <CardForPost

@@ -1,10 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Nunito_Sans as Font } from "next/font/google";
-import AuthProvider from "_auth/AuthProvider";
+import AuthProvider from "Auth/AuthProvider";
 import Footer from "_components/Footer";
 import Nav from "_components/Nav";
-import { Provider } from "_trpc/_important/Provider";
 
 const font = Font({ subsets: ["latin"] });
 
@@ -25,7 +24,7 @@ export default function RootLayout({
           <div className="flex select-none screen flex-col w-full">
             <Nav />
             <div className="max-w-[900px] grow w-full flex flex-row  p-4 mx-auto">
-              <Provider>{children}</Provider>
+              {children}
             </div>
             <Footer />
           </div>

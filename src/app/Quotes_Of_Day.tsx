@@ -1,13 +1,34 @@
+import { host } from "Lib/host";
 import QuoteCard from "_components/QuoteCard";
-import { serverClient } from "_trpc/_important/serverClient";
-/**
- * Generate a random quote daily for the users.*/
+
+type Data =
+  | {
+      id: number;
+      content: string;
+      author: string;
+    }
+  | {
+      code: any;
+      result: boolean;
+    };
+
+const get_Quotes = async () => {
+  const data = await fetch(`${host}/api/get_Quotes`, {
+    next: {
+      revalidate: 60,
+    },
+  });
+  const result = await data.json();
+  return result as Data;
+};
+
 export const Quotes_Of_Day = async () => {
-  const data = await serverClient.getQuotes();
-  try {
+  const data = await get_Quotes();
+
+  if ("code" in data) {
+    return <QuoteCard />;
+  } else {
     const { content, author } = data;
     return <QuoteCard quote={content} author={author} />;
-  } catch (error) {
-    return <QuoteCard />;
   }
 };

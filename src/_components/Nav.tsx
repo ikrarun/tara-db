@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { Raleway as Font } from "next/font/google";
-import { getServerAuthSession } from "_auth/auth";
+import { getServerAuthSession } from "Auth/auth";
 import Image from "next/image";
 import { Button } from "./Button";
 import MobileNav from "./MobileNav";

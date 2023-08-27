@@ -1,6 +1,5 @@
-import { TRPCError } from "@trpc/server";
-import WYSIWYG from "_editor/WYSIWYG";
-import { serverClient } from "_trpc/_important/serverClient";
+import WYSIWYG from "Editor/WYSIWYG";
+import { host } from "Lib/host";
 
 interface pageParams {
   params: {
@@ -8,24 +7,37 @@ interface pageParams {
   };
 }
 
-type Data = {
-  id: string;
-  title: string;
-  short_desc: string;
-  wysiwyg: string;
-  date: Date;
-};
+type Data =
+ | {
+      id: string;
+      title: string;
+      short_desc: string;
+      wysiwyg: string;
+      date: Date;
+    }
+  | {
+      code: any;
+      result: boolean;
+    };
 
 const page = async ({ params }: pageParams) => {
   const bid = params.pid;
-  const data = await serverClient.getUnique(bid);
-  return showData(data);
+
+  const data = await fetch(`${host}/api/get_all_post`, {
+    headers: {
+      post_id: bid,
+      type:'full'
+    },
+    next: {
+      revalidate: 60,
+    },
+  });
+  const result = await data.json();
+  return showData(result);
 };
 
-function showData(
-  data: Awaited<ReturnType<(typeof serverClient)["getUnique"]>>
-) {
-  return typeof data === "boolean" ? <div>Error</div> : (
+function showData(data: Data) {
+  return "code" in data ? <div>Error</div> : (
     <div className="flex w-full flex-col">
       <h1 className="self-start text-3xl font-bold">{data.title}</h1>
       <h3 className="self-start p-1 text-base font-normal text-gray-600 border-b border-gray-700 border-dashed">
