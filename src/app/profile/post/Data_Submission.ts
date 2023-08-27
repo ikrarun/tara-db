@@ -26,7 +26,7 @@ export default async function post_data(formData: FormData) {
   };
   try {
     const validatedData = formDataSchema.parse(formDataObject);
-    console.log("Data is valid:", validatedData);
+    // console.log("Data is valid:", validatedData);
 
     return await prisma.posts
       .create({
@@ -53,7 +53,7 @@ export default async function post_data(formData: FormData) {
     if (error instanceof z.ZodError) {
       const firstValidationError = error.errors[0];
 
-      return firstValidationError.message
+      return firstValidationError?.message
         ? { error: firstValidationError.message, result: false }
         : { error: "unknown", result: false };
     }

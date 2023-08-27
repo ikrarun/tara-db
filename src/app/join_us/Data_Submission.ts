@@ -52,7 +52,7 @@ export default async function submitData(formData: FormData) {
     if (error instanceof z.ZodError) {
       const firstValidationError = error.errors[0];
 
-      return firstValidationError.message
+      return firstValidationError?.message
         ? { error: firstValidationError.message, result: false }
         : { error: "unknown", result: false };
     }
