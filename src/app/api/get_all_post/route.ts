@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
     if (type === "card") {
       return await prisma.posts
         .findMany({
-          take: parseInt(take??'z') ?? undefined,
+          take: parseInt(take??'z') ?? null,
           select: {
             title: true,
             short_desc: true,
