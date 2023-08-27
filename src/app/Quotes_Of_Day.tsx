@@ -13,7 +13,7 @@ type Data =
     };
 
 const get_Quotes = async () => {
-  const data = await fetch(`${host}/api/get_Quotes`, {
+  const data = await fetch(`${host}/api/get_quotes`, {
     next: {
       revalidate: 60,
     },
