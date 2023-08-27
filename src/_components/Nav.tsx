@@ -70,8 +70,7 @@ export const Nav = async () => {
         </div>
       </div>
       <MobileNav>
-        <div className="flex flex-col items-start justify-start">
-          <Link href={"/"}>Home</Link>
+        <div className="flex flex-col text-white items-start justify-start">
           <Link
             href={"/"}
             className="inline-flex hover:bg-gray-700/30 rounded-full py-3 px-5 items-center justify-center gap-2 text-xl"
@@ -91,6 +90,8 @@ export const Nav = async () => {
             {<RiNewspaperLine />}Articles
           </Link>
         </div>
+    
+
       </MobileNav>
     </>
   );
