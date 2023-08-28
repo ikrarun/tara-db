@@ -18,10 +18,6 @@ export const ConditionalCard = ({
         <h1 className="text-sm">
           But you have to join us, before posting anything to platform.
         </h1>
-        <h1 className="text-xs text-gray-500">
-          {role === "APPLIED" &&
-            "If you&apos;ve already applied for joining please wait for a moment."}
-        </h1>
         <ConditionalButton
           classes="text-sm sm:text-base"
           href={href ?? ""}

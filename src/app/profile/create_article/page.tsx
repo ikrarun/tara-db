@@ -1,8 +1,6 @@
 "use client";
 import Editor from "./Mantic_Editor";
 import { useSession } from "next-auth/react";
-import { Role } from "@prisma/client";
-import ConditionalButton from "_components/ConditionalButton";
 import { ConditionalCard } from "_components/ConditionalCard";
 const Post = () => {
   const { data: session } = useSession();

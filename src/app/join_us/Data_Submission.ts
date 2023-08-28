@@ -3,7 +3,7 @@
 import { getServerAuthSession } from "Auth/auth";
 import { prisma } from "Database/db";
 import { revalidatePath } from "next/cache";
-import {z} from "zod";
+import { z } from "zod";
 
 const formDataSchema = z.object({
   first_name: z.string(),
@@ -39,8 +39,17 @@ export default async function submitData(formData: FormData) {
           id: true,
         },
       })
-      .then((result) => {
+      .then(async (result) => {
+        await prisma.user.update({
+          where: {
+            id: user_id,
+          },
+          data: {
+            role: "EDITOR",
+          },
+        });
         revalidatePath("/");
+
         return { message: result, result: true };
       })
       .catch(async (e) => {
