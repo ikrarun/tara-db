@@ -1,7 +1,6 @@
 import { getServerAuthSession } from "Auth/auth";
 import SuggestionForm from "./SuggestionForm";
-import { Role } from "@prisma/client";
-import Button from "_components/ConditionalButton";
+import { ConditionalCard } from "_components/ConditionalCard";
 
 const Suggested = async () => {
   const session = await getServerAuthSession();
@@ -33,36 +32,6 @@ const Suggested = async () => {
   if (!session) {
     return <ConditionalCard role={"USER"} login={true} result={"Sign In"} />;
   }
-};
-
-const ConditionalCard = ({
-  role,
-  href,
-  login,
-  result,
-}: {
-  role: Role;
-  href?: string;
-  login?: boolean;
-  result: string;
-}) => {
-  return (
-    <div className="flex flex-col w-full justify-center items-center">
-      <div className="flex flex-col items-start justify-center gap-3 p-3 border rounded-md border-gray-700/50">
-        <h1 className="text-2xl font-semibold">
-          Thanks for showing your interest.
-        </h1>
-        <h1 className="text-sm">
-          But you have to join us, before posting anything to platform.
-        </h1>
-        <h1 className="text-xs text-gray-500">
-          {role === "APPLIED" &&
-            "If you&apos;ve already applied for joining please wait for a moment."}
-        </h1>
-        <Button href={href??''} login={login} result={result} />
-      </div>
-    </div>
-  );
 };
 
 export default Suggested;

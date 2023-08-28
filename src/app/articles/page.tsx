@@ -1,5 +1,5 @@
 import React from "react";
-import CardForPost from "_components/CardForPost";
+import CardForArticle from "_components/CardForArticle";
 import { host } from "Lib/host";
 
 type Data =
@@ -53,7 +53,7 @@ const Posts = async () => {
           {res.map((data, index) => {
             return (
               <div key={index} className="w-full aspect-auto">
-                <CardForPost
+                <CardForArticle
                   title={data.title}
                   short_desc={data.short_desc}
                   date={data.date}

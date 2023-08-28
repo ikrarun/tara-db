@@ -35,7 +35,7 @@ const Profile = async () => {
           Would you like to contribute to this project?
         </h1>
         <div className="flex flex-col justify-start items-start w-full">
-          <Button className="w-fit self-start" href="/join_us">
+          <Button className="text-sm sm:text-base inline-flex bg-blue-700 text-white hover:bg-blue-800 rounded-full py-3 px-5 items-center justify-center gap-2" href="/join_us">
             Join Us
           </Button>
         </div>
