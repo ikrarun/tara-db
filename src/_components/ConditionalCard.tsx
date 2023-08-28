@@ -11,7 +11,7 @@ export const ConditionalCard = ({
 }) => {
   return (
     <div className="flex flex-col w-full justify-center bg-gray-400/30 rounded-md h-80 items-center">
-      <div className="flex flex-col items-start justify-center gap-3 p-3 border rounded-md border-gray-700/50">
+      <div className="flex flex-col items-start justify-center gap-3 p-3 ">
         <h1 className="text-2xl font-semibold">
           Thanks for showing your interest.
         </h1>

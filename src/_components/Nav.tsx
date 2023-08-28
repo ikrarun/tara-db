@@ -37,7 +37,8 @@ export const Nav = async () => {
               {<RiHome6Line />}Home
             </Link>
             <Link
-              href={"/books"} prefetch={false}
+              href={"/books"}
+              prefetch={false}
               className="inline-flex hover:bg-gray-700/30 rounded-full py-3 px-5 items-center justify-center gap-2 text-xl"
             >
               {<RiBookOpenLine />}Book&apos;s
@@ -49,12 +50,11 @@ export const Nav = async () => {
               {<RiNewspaperLine />}Articles
             </Link>
             <Link
-            href={"/profile/suggest_book"}
-            className="inline-flex hover:bg-gray-700/30 rounded-full py-3 px-5 items-center justify-center gap-2 text-xl"
-          >
-            {<BiSolidEdit />}Suggest Book
-          </Link>
-
+              href={"/profile/suggest_book"}
+              className="inline-flex hover:bg-gray-700/30 rounded-full py-3 px-5 items-center justify-center gap-2 text-xl"
+            >
+              {<BiSolidEdit />}Suggest Book
+            </Link>
           </div>
 
           {/* //? Bottom Section */}
@@ -78,11 +78,13 @@ export const Nav = async () => {
                     fill
                   />
                 </div>
-                <div className="flex flex-col px-3">
-                  <h1 className="text-base">{user?.user.name ?? "Profile"}</h1>
-                  <h1 className="text-base capitalize">
-                    {user?.user.role.toLowerCase() ?? ""}
+                <div className="flex flex-col justify-center items-center px-3">
+                  <h1 className="text-xl">
+                    {user?.user.name ?? "Profile"}
                   </h1>
+                  {/* <h1 className="text-base capitalize">
+                    {user?.user.role.toLowerCase() ?? ""}
+                  </h1> */}
                 </div>
               </div>
             </Link>
@@ -107,7 +109,8 @@ export const Nav = async () => {
             {<RiHome6Line />}Home
           </Link>
           <Link
-            href={"/books"} prefetch={false}
+            href={"/books"}
+            prefetch={false}
             className="inline-flex hover:bg-gray-700/30 rounded-full py-3 px-5 items-center justify-center gap-2 text-xl"
           >
             {<RiBookOpenLine />}Books
@@ -135,13 +138,13 @@ export const Nav = async () => {
                 {<IoCreateOutline />}Create
               </Link>
               <Link
-              href={"/"}
-              prefetch={false}
-              className="inline-flex hover:bg-gray-700/30 rounded-full py-3 px-5 items-center justify-center gap-2 text-xl"
-            >
-              <TfiCreditCard />
-              <h1>Donate</h1>
-            </Link>
+                href={"/"}
+                prefetch={false}
+                className="inline-flex hover:bg-gray-700/30 rounded-full py-3 px-5 items-center justify-center gap-2 text-xl"
+              >
+                <TfiCreditCard />
+                <h1>Donate</h1>
+              </Link>
               {/* //! Profile Section */}
               <Link
                 href={"/profile"}
@@ -155,13 +158,13 @@ export const Nav = async () => {
                       fill
                     />
                   </div>
-                  <div className="flex flex-col px-3">
-                    <h1 className="text-base">
+                  <div className="flex flex-col justify-center items-center px-3">
+                    <h1 className="text-xl">
                       {user?.user.name ?? "Profile"}
                     </h1>
-                    <h1 className="text-base capitalize">
+                    {/* <h1 className="text-base capitalize">
                       {user?.user.role.toLowerCase() ?? ""}
-                    </h1>
+                    </h1> */}
                   </div>
                 </div>
               </Link>
