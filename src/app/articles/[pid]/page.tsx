@@ -38,7 +38,7 @@ const page = async ({ params }: pageParams) => {
 
 function showData(data: Data) {
   return "code" in data ? (
-    <div>Error</div>
+    <div>404 Invalid Request</div>
   ) : (
     <div className="flex w-full flex-col">
       <h1 className="self-start text-3xl font-bold">{data.title}</h1>

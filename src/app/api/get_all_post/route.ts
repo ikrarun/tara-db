@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
 
   try {
     if (type === "card" && take != null) {
-      return await prisma.posts
+      return await prisma.articles
         .findMany({
           take: parseInt(take),
           select: {
@@ -32,7 +32,7 @@ export async function GET(req: NextRequest) {
           );
         });
     } else if (type === "card" && take === null) {
-      return await prisma.posts
+      return await prisma.articles
         .findMany({
           select: {
             title: true,
@@ -54,7 +54,7 @@ export async function GET(req: NextRequest) {
           );
         });
     } else if (type === "full" && post_id) {
-      return await prisma.posts
+      return await prisma.articles
         .findUnique({
           where: {
             id: post_id,

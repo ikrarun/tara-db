@@ -1,4 +1,4 @@
-import CardForPost from "_components/CardForPost";
+import CardForPost from "_components/CardForArticle";
 import { Button } from "_components/Button";
 import { host } from "Lib/host";
 
@@ -23,7 +23,7 @@ export const get_Post = async () => {
   return data as Data;
 };
 
-export const FeaturedPost = async () => {
+export const FeaturedArticle = async () => {
   const res = await get_Post();
   return "code" in res ? (
     <div className="flex flex-col items-start justify-center w-full gap-2 mx-auto">
@@ -48,9 +48,11 @@ export const FeaturedPost = async () => {
       ))}
       {res.length >= 3 && (
         <div className="flex flex-row items-center justify-end">
-          <Button href={"/posts"}>Read More..</Button>
+          <Button href={"/articles"}>Read More..</Button>
         </div>
       )}
     </div>
   );
 };
+
+export default FeaturedArticle

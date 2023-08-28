@@ -2,8 +2,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Nunito_Sans as Font } from "next/font/google";
 import AuthProvider from "Auth/AuthProvider";
-import Footer from "_components/Footer";
 import Nav from "_components/Nav";
+import PageName from "_components/PageName";
+import Right_Tab from "_components/Right_Tab";
 
 const font = Font({ subsets: ["latin"] });
 
@@ -19,19 +20,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={font.className}>
+      <body style={font.style} className="select-none">
         <AuthProvider>
           <div className="flex h-screen">
             {/* Left Side Navigation */}
             <Nav />
-            {/* Main Content Area */}
             {/* Centered Content Area */}
-            <div className="mx-auto max-w-[900px] p-4 w-full">{children}</div>
-            {/* Right Side Content */}
-            <div className="bg-red-500 flex-grow hidden sm:flex flex-shrink-0 w-1/5 p-4">
-              {/* Right side content goes here */}
-              Right Content
+
+            <div className="mx-auto max-w-[900px] flex-col flex w-full">
+              <div className="inline-flex sm:hidden text-white bg-blue-700 sticky p-3 justify-start items-center">
+                <PageName />
+              </div>
+              <div className="p-4">{children}</div>
             </div>
+            {/* Right Side Content */}
+            <Right_Tab/>
           </div>
         </AuthProvider>
       </body>

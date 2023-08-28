@@ -23,7 +23,7 @@ model Suggestedreadings {
   suggestedby String
 }
 
-model Posts {
+model Articles {
   id         String   @id @default(cuid())
   title      String   @unique
   short_desc String
