@@ -64,6 +64,7 @@ export async function GET(req: NextRequest) {
             short_desc: true,
             date: true,
             wysiwyg: true,
+            creator:true,
           },
         })
         .then((res) => {
