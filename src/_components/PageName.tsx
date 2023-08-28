@@ -26,7 +26,7 @@ const PageName = () => {
       return;
     }
     if (pathname === "/join_us") {
-      setRealPath("Join US");
+      setRealPath("Join Us");
       return;
     }
 
