@@ -39,13 +39,13 @@ const Mantic_Editor = () => {
     } else if ("code" in res) {
       toast.dismiss();
       toast.error(
-        "Either you have already filled this form or number is already in use"
+        "Some Error Occurred while Submission"
       );
     } else if ("message" in res) {
       toast.dismiss();
       toast.success("Your Submission Successful");
+      router.replace("/");
     }
-    router.replace("/");
     setIsPending(false);
   };
 

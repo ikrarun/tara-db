@@ -5,9 +5,11 @@ import { useSession } from "next-auth/react";
 import Data_Submission from "./Data_Submission";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   const { data: session } = useSession();
+  const router = useRouter();
   const user_id = session?.user.id as string;
   const [isPending, setIsPending] = useState(false);
 
@@ -26,6 +28,7 @@ const Page = () => {
     } else if ("message" in res) {
       toast.dismiss();
       toast.success("Your Submission Successful");
+      router.back();
     }
 
     setIsPending(false);
