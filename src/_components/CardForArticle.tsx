@@ -11,14 +11,14 @@ interface PostData {
   link: string;
 }
 
-const CardForPost = ({ title, short_desc, date, link }: PostData) => {
+const CardForArticle = ({ title, short_desc, date, link }: PostData) => {
   dayjs.extend(utc);
   dayjs.extend(customParseFormat);
   const inputDate = dayjs.utc(date, "YYYY-MM-DDTHH:mm:ss.SSSZ");
   const formattedDate = inputDate.format("DD-MM-YYYY");
 
   return (
-    <Link className="flex w-full" href={`/${link}`}>
+    <Link className="flex w-full" href={`/article/${link}`}>
       <div className="flex border bg-blue-700 gap-3 sm:gap-0 text-white backdrop-blur-sm border-gray-700/70 rounded-md sm:flex-row flex-col w-full p-4">
         <div className="flex flex-col grow gap-2">
           <h1 className="text-lg select-none">{title}</h1>
@@ -35,4 +35,4 @@ const CardForPost = ({ title, short_desc, date, link }: PostData) => {
   );
 };
 
-export default CardForPost;
+export default CardForArticle;

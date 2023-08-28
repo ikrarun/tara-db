@@ -1,4 +1,4 @@
-import { FeaturedPost } from "./FeaturedPost";
+import { FeaturedArticle } from "./FeaturedArticle";
 import { Quotes_Of_Day } from "./Quotes_Of_Day";
 import { Book_of_Day } from "./Book_of_Day";
 export default async function Home() {
@@ -9,7 +9,7 @@ export default async function Home() {
         <Quotes_Of_Day />
       </div>
       <div className="h-fit flex w-full flex-col items-start justify-start">
-        <FeaturedPost />
+        <FeaturedArticle />
       </div>
     </div>
   );

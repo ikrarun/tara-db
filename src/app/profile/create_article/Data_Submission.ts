@@ -28,7 +28,7 @@ export default async function post_data(formData: FormData) {
     const validatedData = formDataSchema.parse(formDataObject);
     // console.log("Data is valid:", validatedData);
 
-    return await prisma.posts
+    return await prisma.articles
       .create({
         data: {
           short_desc: validatedData.desc,
