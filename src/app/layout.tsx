@@ -26,11 +26,8 @@ export default function RootLayout({
             {/* Left Side Navigation */}
             <Nav />
             {/* Centered Content Area */}
-
             <div className="mx-auto max-w-[900px] flex-col flex w-full">
-              <div className="inline-flex sm:hidden text-white bg-blue-700 sticky p-3 justify-start items-center">
                 <PageName />
-              </div>
               <div className="p-4">{children}</div>
             </div>
             {/* Right Side Content */}

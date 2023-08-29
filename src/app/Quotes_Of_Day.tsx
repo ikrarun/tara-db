@@ -1,25 +1,16 @@
-import { host } from "Lib/host";
+import { get_quotes } from "Lib/apiPaths";
 import QuoteCard from "_components/QuoteCard";
 
-type Data =
-  | {
-      id: number;
-      content: string;
-      author: string;
-    }
-  | {
-      code: any;
-      result: boolean;
-    };
+
 
 const get_Quotes = async () => {
-  const data = await fetch(`${host}/api/get_quotes`, {
+  const data = await fetch(get_quotes, {
     next: {
       revalidate: 60,
     },
   }).then((res) => res.json());
 
-  return data as Data;
+  return data as Quotes;
 };
 
 export const Quotes_Of_Day = async () => {

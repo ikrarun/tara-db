@@ -38,6 +38,8 @@ const PageName = () => {
     return;
   }, [pathname]);
   return (
+    <div className="inline-flex sm:hidden text-white bg-blue-700 sticky p-3 justify-start items-center">
+             
     <div className="flex w-full flex-row items-center justify-between">
       <h1 className="capitalize px-2 font-semibold text-xl">
         {realPath ?? "Home"}
@@ -45,6 +47,7 @@ const PageName = () => {
       <Link href="/" className="capitalize px-2 font-semibold text-xl">
         <RiHome6Line />
       </Link>
+    </div>
     </div>
   );
 };

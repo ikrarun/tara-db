@@ -1,18 +1,11 @@
 import React from "react";
 import CardForArticle from "_components/CardForArticle";
-import { host } from "Lib/host";
+import { get_all_post } from "Lib/apiPaths";
 
-type Data =
-  | {
-      title: string;
-      short_desc: string;
-      date: Date;
-      id: string;
-    }[]
-  | { code: any; result: boolean };
+
 
 const get_Post = async () => {
-  const res = await fetch(`${host}/api/get_all_post`, {
+  const res = await fetch(get_all_post, {
     next: {
       revalidate: 60,
     },
@@ -20,7 +13,7 @@ const get_Post = async () => {
       type: "card",
     },
   }).then((res) => res.json());
-  return res as Data;
+  return res as ArrayArticles;
 };
 
 const Posts = async () => {

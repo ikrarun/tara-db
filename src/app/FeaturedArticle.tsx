@@ -1,18 +1,11 @@
 import CardForPost from "_components/CardForArticle";
 import { Button } from "_components/Button";
-import { host } from "Lib/host";
+import { get_all_post } from "Lib/apiPaths";
 
-type Data =
-  | {
-      title: string;
-      short_desc: string;
-      date: Date;
-      id: string;
-    }[]
-  | { code: any; result: boolean };
+
 
 export const get_Post = async () => {
-  const data = await fetch(`${host}/api/get_all_post`, {
+  const data = await fetch(get_all_post, {
     next: { revalidate: 60 },
     headers: {
       take: "3",
@@ -20,7 +13,7 @@ export const get_Post = async () => {
     },
   }).then((res) => res.json());
 
-  return data as Data;
+  return data as ArrayArticles;
 };
 
 export const FeaturedArticle = async () => {

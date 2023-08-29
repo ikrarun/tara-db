@@ -4,7 +4,7 @@ import { Inter as Font } from "next/font/google";
 import { getServerAuthSession } from "Auth/auth";
 import Image from "next/image";
 import MobileNav from "./MobileNav";
-import p_pic from "./profile.png";
+import profile from "_components/profile.svg";
 import { RiHome6Line, RiBookOpenLine, RiNewspaperLine } from "react-icons/ri";
 import { IoCreateOutline } from "react-icons/io5";
 import { BiSolidEdit } from "react-icons/bi";
@@ -71,10 +71,10 @@ export const Nav = async () => {
               className="inline-flex text-black hover:bg-gray-700/30 rounded-full py-1 px-2 items-center justify-center gap-2 text-xl"
             >
               <div className="flex flex-row relative gap-1 justify-start p-1 items-center">
-                <div className="relative rounded-full overflow-clip w-10 h-10">
+                <div className="relative rounded-full overflow-hidden w-10 h-10">
                   <Image
                     alt="Profile Pic"
-                    src={user?.user.image ?? p_pic}
+                    src={user?.user.image ?? profile}
                     fill
                   />
                 </div>
@@ -151,10 +151,10 @@ export const Nav = async () => {
                 className="inline-flex hover:bg-gray-100/30 text-white bg-gray-700/30 rounded-full py-1 px-2 items-center justify-center gap-2 text-xl"
               >
                 <div className="flex flex-row relative gap-1 justify-start p-1 items-center">
-                  <div className="relative rounded-full overflow-clip w-10 h-10">
+                  <div className="relative rounded-full overflow-hidden w-10 h-10">
                     <Image
                       alt="Profile Pic"
-                      src={user?.user.image ?? p_pic}
+                      src={user?.user.image ?? profile}
                       fill
                     />
                   </div>

@@ -1,30 +1,14 @@
 import WYSIWYG from "Editor/WYSIWYG";
-import { host } from "Lib/host";
+import { get_all_post } from "Lib/apiPaths";
 import ConditionalButton from "_components/ConditionalButton";
 
-interface pageParams {
-  params: {
-    pid: string;
-  };
-}
 
-type Data =
-  | {
-      id: string;
-      title: string;
-      short_desc: string;
-      wysiwyg: string;
-      date: Date;
-    }
-  | {
-      code: any;
-      result: boolean;
-    };
+
 
 const page = async ({ params }: pageParams) => {
   const bid = params.pid;
 
-  const data = await fetch(`${host}/api/get_all_post`, {
+  const data = await fetch(get_all_post, {
     headers: {
       post_id: bid,
       type: "full",
@@ -33,11 +17,11 @@ const page = async ({ params }: pageParams) => {
       revalidate: 60,
     },
   }).then((res) => res.json());
-  const result = data as Data;
+  const result = data as Article;
   return showData(result);
 };
 
-function showData(data: Data) {
+function showData(data: Article) {
   return "code" in data ? (
     <div className="flex flex-col w-full justify-center bg-gray-400/30 rounded-md h-80 items-center">
       <div className="flex flex-col items-start justify-center gap-3 p-3 ">
