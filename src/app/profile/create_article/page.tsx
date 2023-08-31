@@ -1,7 +1,16 @@
 "use client";
 import Editor from "./Mantic_Editor";
 import { useSession } from "next-auth/react";
-import { ConditionalCard } from "_components/ConditionalCard";
+import { RoleBasedCard } from "components/Cards/RoleBasedCard";
+
+enum Role {
+  USER,
+  ADMIN,
+  APPLIED,
+  EDITOR,
+  NOROLE,
+}
+
 const Post = () => {
   const { data: session } = useSession();
   const role = session?.user.role;
@@ -24,15 +33,12 @@ const Post = () => {
 
   if (role === "USER" || role === "APPLIED") {
     if (role === "USER") {
-      return (
-        <ConditionalCard role={"USER"} href={"/join_us"} result={"Join Us"} />
-      );
-    } else if (role === "APPLIED")
-      return <ConditionalCard role={"APPLIED"} href={"/"} result={"Home"} />;
+      return <RoleBasedCard role={Role.USER} />;
+    } else if (role === "APPLIED") return <RoleBasedCard role={Role.APPLIED} />;
   }
 
   if (!session) {
-    return <ConditionalCard role={"USER"} login={true} result={"Sign In"} />;
+    return <RoleBasedCard role={Role.NOROLE} />;
   }
 };
 

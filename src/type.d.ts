@@ -1,5 +1,5 @@
 type Article =
-  | {
+  | {    
       id: string;
       title: string;
       short_desc: string;
@@ -48,3 +48,16 @@ type Suggested_Book =
       code: any;
       result: boolean;
     };
+
+    
+enum Login {
+  SINGIN,
+  SINGOUT,
+};
+enum Role {
+  USER,
+  ADMIN,
+  APPLIED,
+  EDITOR,
+  NOROLE
+}

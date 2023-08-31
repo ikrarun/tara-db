@@ -6,7 +6,8 @@ import Link from "next/link";
 const buttonVariants = cva("", {
   variants: {
     variant: {
-      default: "inline-flex bg-blue-700 text-white hover:bg-blue-800 rounded-full py-2 px-4 items-center justify-center gap-2 text-xl",
+      default:
+        "inline-flex bg-blue-700 text-white hover:bg-blue-800 rounded-full py-2 px-4 items-center justify-center gap-2 text-xl",
     },
   },
   defaultVariants: {

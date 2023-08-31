@@ -9,7 +9,8 @@ import TextAlign from "@tiptap/extension-text-align";
 import Data_Submission from "./Data_Submission";
 import { Toaster, toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { Button } from "_components/Button";
+import { Button } from "components/Buttons/Button";
+
 const content = `<p style={text-align:center}>Edit to Start</p>`;
 const Mantic_Editor = () => {
   const [title, setTitle] = useState("");
@@ -38,9 +39,7 @@ const Mantic_Editor = () => {
       toast.error(res.error);
     } else if ("code" in res) {
       toast.dismiss();
-      toast.error(
-        "Some Error Occurred while Submission"
-      );
+      toast.error("Some Error Occurred while Submission");
     } else if ("message" in res) {
       toast.dismiss();
       toast.success("Your Submission Successful");

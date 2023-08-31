@@ -1,11 +1,16 @@
 import { getServerAuthSession } from "Auth/auth";
 import SuggestionForm from "./SuggestionForm";
-import { ConditionalCard } from "_components/ConditionalCard";
-
+import { RoleBasedCard } from "components/Cards/RoleBasedCard";
+enum Role {
+  USER,
+  ADMIN,
+  APPLIED,
+  EDITOR,
+  NOROLE,
+}
 const Suggested = async () => {
   const session = await getServerAuthSession();
   const role = session?.user.role;
-
   if (role === "EDITOR" || role === "ADMIN") {
     return (
       <div className="min-h-[70vh] flex flex-col w-full items-center gap-4 justify-center">
@@ -23,14 +28,14 @@ const Suggested = async () => {
   if (role === "USER" || role === "APPLIED") {
     if (role === "USER") {
       return (
-        <ConditionalCard role={"USER"} href={"/join_us"} result={"Join Us"} />
+        <RoleBasedCard role={Role.USER}  />
       );
     } else if (role === "APPLIED")
-      return <ConditionalCard role={"APPLIED"} href={"/"} result={"Home"} />;
+      return <RoleBasedCard role={Role.APPLIED}/>;
   }
 
   if (!session) {
-    return <ConditionalCard role={"USER"} login={true} result={"Sign In"} />;
+    return <RoleBasedCard role={Role.USER}/>;
   }
 };
 

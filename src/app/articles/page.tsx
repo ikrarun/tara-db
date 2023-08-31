@@ -1,8 +1,6 @@
 import React from "react";
-import CardForArticle from "_components/CardForArticle";
+import CardForArticle from "components/Cards/CardForArticle";
 import { get_all_post } from "Lib/apiPaths";
-
-
 
 const get_Post = async () => {
   const res = await fetch(get_all_post, {

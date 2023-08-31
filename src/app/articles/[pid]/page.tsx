@@ -1,9 +1,6 @@
+import { Button } from "components/Buttons/Button";
 import WYSIWYG from "Editor/WYSIWYG";
 import { get_all_post } from "Lib/apiPaths";
-import ConditionalButton from "_components/ConditionalButton";
-
-
-
 
 const page = async ({ params }: pageParams) => {
   const bid = params.pid;
@@ -29,11 +26,9 @@ function showData(data: Article) {
           Thanks for showing your interest.
         </h1>
         <h1 className="text-sm">Requested Content is Not Available</h1>
-        <ConditionalButton
-          classes="text-sm sm:text-base"
-          href={"/"}
-          result={"Home"}
-        />
+        <Button className="text-sm sm:text-base" href={"/"}>
+          Home
+        </Button>
       </div>
     </div>
   ) : (

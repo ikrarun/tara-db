@@ -1,7 +1,5 @@
 import { get_quotes } from "Lib/apiPaths";
-import QuoteCard from "_components/QuoteCard";
-
-
+import QuoteCard from "components/Cards/QuoteCard";
 
 const get_Quotes = async () => {
   const data = await fetch(get_quotes, {

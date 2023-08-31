@@ -39,15 +39,21 @@ const PageName = () => {
   }, [pathname]);
   return (
     <div className="inline-flex sm:hidden text-white bg-blue-700 sticky p-3 justify-start items-center">
-             
-    <div className="flex w-full flex-row items-center justify-between">
-      <h1 className="capitalize px-2 font-semibold text-xl">
-        {realPath ?? "Home"}
-      </h1>
-      <Link href="/" className="capitalize px-2 font-semibold text-xl">
-        <RiHome6Line />
-      </Link>
-    </div>
+      <div className="flex w-full flex-row items-center justify-between">
+        <h1 className="capitalize px-2 font-semibold text-xl">
+          {realPath ?? "Home"}
+        </h1>
+        <Link
+          href="/"
+          className={
+            realPath === "Home"
+              ? "hidden"
+              : "capitalize px-2 font-semibold text-xl"
+          }
+        >
+          <RiHome6Line />
+        </Link>
+      </div>
     </div>
   );
 };
