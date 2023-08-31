@@ -1,9 +1,6 @@
 import WYSIWYG from "Editor/WYSIWYG";
 import { get_all_post } from "Lib/apiPaths";
-import ConditionalButton from "_components/ConditionalButton";
-
-
-
+import ConditionalButton from "components/Buttons/ConditionalButton";
 
 const page = async ({ params }: pageParams) => {
   const bid = params.pid;

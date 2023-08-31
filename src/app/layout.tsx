@@ -2,9 +2,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Nunito_Sans as Font } from "next/font/google";
 import AuthProvider from "Auth/AuthProvider";
-import Nav from "_components/Nav";
-import PageName from "_components/PageName";
-import Right_Tab from "_components/Right_Tab";
+import Nav from "components/Nav/PrimaryNav";
+import PageName from "components/Nav/Header";
+import Right_Tab from "components/Nav/SecondryNav";
 
 const font = Font({ subsets: ["latin"] });
 
@@ -27,11 +27,11 @@ export default function RootLayout({
             <Nav />
             {/* Centered Content Area */}
             <div className="mx-auto max-w-[900px] flex-col flex w-full">
-                <PageName />
+              <PageName />
               <div className="p-4">{children}</div>
             </div>
             {/* Right Side Content */}
-            <Right_Tab/>
+            <Right_Tab />
           </div>
         </AuthProvider>
       </body>

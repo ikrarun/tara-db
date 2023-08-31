@@ -1,12 +1,11 @@
 "use client";
-import { Button } from "_components/Button";
-import USER_DATA from "_components/userData";
+import { Button } from "components/Buttons/Button";
+import USER_DATA from "Auth/userData";
 import { useSession } from "next-auth/react";
 import Data_Submission from "./Data_Submission";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import ConditionalButton from "_components/ConditionalButton";
 
 const Page = () => {
   const { data: session } = useSession();
@@ -141,24 +140,22 @@ const Page = () => {
       </div>
     );
   }
-  if(session?.user.role==='ADMIN'|| session?.user.role==='EDITOR')
-  return (
-    <div className="flex flex-col w-full justify-center bg-gray-400/30 rounded-md h-80 items-center">
-      <div className="flex flex-col items-start justify-center gap-3 p-3 ">
-        <h1 className="text-2xl font-semibold">
-          Thanks for showing your interest.
-        </h1>
-        <h1 className="text-sm">
-          But you are already a contributor on this platform.
-        </h1>
-        <ConditionalButton
-          classes="text-sm sm:text-base"
-          href={"/"}
-          result={"Home"}
-        />
+  if (session?.user.role === "ADMIN" || session?.user.role === "EDITOR")
+    return (
+      <div className="flex flex-col w-full justify-center bg-gray-400/30 rounded-md h-80 items-center">
+        <div className="flex flex-col items-start justify-center gap-3 p-3 ">
+          <h1 className="text-2xl font-semibold">
+            Thanks for showing your interest.
+          </h1>
+          <h1 className="text-sm">
+            But you are already a contributor on this platform.
+          </h1>
+          <Button className="text-sm sm:text-base" href={"/"}>
+            "Home"
+          </Button>
+        </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default Page;

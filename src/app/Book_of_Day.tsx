@@ -1,6 +1,5 @@
 import { get_suggested_book } from "Lib/apiPaths";
-import BookCard from "_components/BookCard";
-
+import BookCard from "components/Cards/BookCard";
 
 const getBooks = async () => {
   const data = await fetch(get_suggested_book, {

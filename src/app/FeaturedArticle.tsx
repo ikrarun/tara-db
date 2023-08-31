@@ -1,8 +1,6 @@
-import CardForPost from "_components/CardForArticle";
-import { Button } from "_components/Button";
+import CardForPost from "components/Cards/CardForArticle";
+import { Button } from "components/Buttons/Button";
 import { get_all_post } from "Lib/apiPaths";
-
-
 
 export const get_Post = async () => {
   const data = await fetch(get_all_post, {
@@ -48,4 +46,4 @@ export const FeaturedArticle = async () => {
   );
 };
 
-export default FeaturedArticle
+export default FeaturedArticle;

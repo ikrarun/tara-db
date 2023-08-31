@@ -1,7 +1,7 @@
 import React from "react";
-import USER_DATA from "../../_components/userData";
+import USER_DATA from "../../Auth/userData";
 import { getServerAuthSession } from "Auth/auth";
-import { Button } from "_components/Button";
+import { Button } from "components/Buttons/Button";
 
 const Profile = async () => {
   const session = await getServerAuthSession();

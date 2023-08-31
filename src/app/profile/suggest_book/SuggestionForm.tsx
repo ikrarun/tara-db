@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import Image from "next/image";
-import { Button } from "_components/Button";
+import { Button } from "components/Buttons/Button";
 import Data_Submission from "./Data_Submission";
 interface FileInputState {
   selectedFile: File | null;
@@ -71,9 +71,7 @@ const SuggestionForm = () => {
             toast.error(res.error);
           } else if ("code" in res) {
             toast.dismiss();
-            toast.error(
-              "Some error Occurred while Submission"
-            );
+            toast.error("Some error Occurred while Submission");
           } else if ("message" in res) {
             toast.dismiss();
             toast.success("Your Submission Successful");
