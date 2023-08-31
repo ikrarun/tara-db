@@ -15,7 +15,7 @@ enum Login {
 
 const Content = ({ role }:{role:Role}) => {
   let content;
-console.log(role)
+// console.log(role)
   switch (role) {
     case Role.ADMIN||Role.EDITOR:
       content = <div className='flex gap-2 flex-col'>
