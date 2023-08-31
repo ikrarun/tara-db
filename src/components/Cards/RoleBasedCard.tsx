@@ -7,6 +7,12 @@ enum Role {
   EDITOR,
   NOROLE
 }
+
+enum Login {
+  SIGNIN,
+  SIGNOUT,
+}
+
 const Content = ({ role }:{role:Role}) => {
   let content;
 console.log(role)
@@ -38,13 +44,15 @@ console.log(role)
       </div>
       break;
     default:
-     content = <div className='flex gap-2 flex-col'>
-      <div className='flex flex-col gap-2 ml-2'>
-        <h1>Thanks for Showing your Intrest.</h1>
-        <h1>But,It seems you're are logged In.</h1>
+     content = (
+       <div className="flex gap-2 flex-col">
+         <div className="flex flex-col gap-2 ml-2">
+           <h1>Thanks for Showing your Intrest.</h1>
+           <h1>But,It seems you&apos;re are logged In.</h1>
+         </div>
+         <AuthButton classes="w-fit sm:text-sm text-xs" login={Login.SIGNIN} />
        </div>
-                <AuthButton classes='w-fit sm:text-sm text-xs' login={Login.SINGIN}/>
-      </div>
+     );
   }
 
 

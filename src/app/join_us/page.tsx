@@ -151,7 +151,7 @@ const Page = () => {
             But you are already a contributor on this platform.
           </h1>
           <Button className="text-sm sm:text-base" href={"/"}>
-            "Home"
+            Home
           </Button>
         </div>
       </div>

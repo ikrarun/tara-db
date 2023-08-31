@@ -2,7 +2,15 @@
 import Editor from "./Mantic_Editor";
 import { useSession } from "next-auth/react";
 import { RoleBasedCard } from "components/Cards/RoleBasedCard";
-import { Role } from "type";
+
+enum Role {
+  USER,
+  ADMIN,
+  APPLIED,
+  EDITOR,
+  NOROLE,
+}
+
 const Post = () => {
   const { data: session } = useSession();
   const role = session?.user.role;
@@ -30,7 +38,7 @@ const Post = () => {
   }
 
   if (!session) {
-    return <RoleBasedCard role={Role.USER} />;
+    return <RoleBasedCard role={Role.NOROLE} />;
   }
 };
 

@@ -3,6 +3,11 @@ import { Button } from "components/Buttons/Button";
 import { signIn, signOut } from "next-auth/react";
 import React from "react";
 
+enum Login {
+  SIGNIN,
+  SIGNOUT,
+}
+
 const AuthButton = ({
   login,
   classes,
@@ -10,7 +15,7 @@ const AuthButton = ({
   login: Login;
   classes?: string;
 }) => {
-  return login === Login.SINGIN ? (
+  return login === Login.SIGNIN ? (
     <Button
       className={classes}
       onClick={() => {

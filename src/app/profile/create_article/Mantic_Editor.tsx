@@ -10,6 +10,7 @@ import Data_Submission from "./Data_Submission";
 import { Toaster, toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Button } from "components/Buttons/Button";
+
 const content = `<p style={text-align:center}>Edit to Start</p>`;
 const Mantic_Editor = () => {
   const [title, setTitle] = useState("");
