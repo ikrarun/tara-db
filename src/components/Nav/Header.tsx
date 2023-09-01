@@ -25,8 +25,8 @@ export default function Header (){
       setRealPath("Create Article");
       return;
     }
-    if (pathname === "/join_us") {
-      setRealPath("Join Us");
+    if (pathname === "/profile/update") {
+      setRealPath("Update Profile");
       return;
     }
 

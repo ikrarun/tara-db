@@ -13,6 +13,7 @@ declare module "next-auth" {
   interface Session extends DefaultSession {
     user: DefaultSession["user"] & {
       id: string;
+      lastloginLocation: string;
       // ...other properties
       role: Role;
     };
@@ -21,6 +22,7 @@ declare module "next-auth" {
   interface User {
     // ...other properties
     role: Role;
+    lastloginLocation: string;
   }
 }
 
@@ -33,6 +35,7 @@ export const authOptions: NextAuthOptions = {
         id: user.id,
         role: user.role,
       },
+      location: user.lastloginLocation,
     }),
   },
   adapter: PrismaAdapter(prisma),
@@ -45,15 +48,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   events: {
-    signIn: async (data) => {
-      console.log(data.user.id);
-      const latestRow = await prisma.session.findMany({
-        where: {
-          id: data.user.id,
-        },
-      }).then((res) => res);
-      console.log(latestRow);
-    },
+    signIn: async (data) => {},
   },
 };
 
@@ -66,3 +61,17 @@ export const getContextServerAuthSession = (ctx: {
 }) => {
   return getServerSession(ctx.req, ctx.res, authOptions);
 };
+
+async function lastSignIN(data: string) {
+  const lastSignIN = await prisma.session
+    .findFirst({
+      orderBy: {
+        expires: "desc",
+      },
+      where: {
+        userId: data,
+      },
+    })
+    .then((res) => res?.id);
+  return lastSignIN;
+}

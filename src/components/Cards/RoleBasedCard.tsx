@@ -45,10 +45,10 @@ function Content({ role }: { role: Role }) {
         <div className="flex gap-2 flex-col">
           <div className="flex flex-col gap-2 ml-2">
             <h1>Thanks for Showing your Intrest.</h1>
-            <h1>But You have to Join us, for making Contributions.</h1>
+            <h1>If you want to contribute, Just update your Profile and that's it.</h1>
           </div>
-          <Button className="w-fit sm:text-sm text-xs" href="/join_us">
-            Join US
+          <Button className="w-fit sm:text-sm text-xs" href="/profile/update">
+            Update Now
           </Button>
         </div>
       );

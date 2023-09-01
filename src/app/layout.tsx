@@ -5,6 +5,7 @@ import AuthProvider from "Lib/Auth/AuthProvider";
 import Nav from "components/Nav/PrimaryNav";
 import PageName from "components/Nav/Header";
 import Right_Tab from "components/Nav/SecondryNav";
+import RootToast from "components/Cards/RootToast";
 
 const font = Font({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body style={font.style} className="select-none">
         <AuthProvider>
+          <RootToast/>
           <div className="flex h-screen">
             {/* Left Side Navigation */}
             <Nav />
