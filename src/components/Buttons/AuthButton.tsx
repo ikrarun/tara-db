@@ -1,39 +1,57 @@
 "use client";
-import { Button } from "components/Buttons/Button";
 import { signIn, signOut } from "next-auth/react";
-import React from "react";
+import { AuthEnums } from "enum";
 
-enum Login {
-  SIGNIN,
-  SIGNOUT,
+import { ButtonHTMLAttributes, forwardRef } from "react";
+import { VariantProps, cva } from "class-variance-authority";
+import { cn } from "Lib/Utils/twClasses";
+
+const authButtonVariant = cva(
+  "inline-flex rounded-full py-3 px-5 items-center justify-center gap-2 text-xl",
+  {
+    variants: {
+      variant: {
+        default: "bg-blue-700 text-white hover:bg-blue-800",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+);
+
+export interface ButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof authButtonVariant> {
+  authFunction: AuthEnums;
 }
 
-const AuthButton = ({
-  login,
-  classes,
-}: {
-  login: Login;
-  classes?: string;
-}) => {
-  return login === Login.SIGNIN ? (
-    <Button
-      className={classes}
-      onClick={() => {
-        signIn("google");
-      }}
-    >
-      Sign IN
-    </Button>
-  ) : (
-    <Button
-      className={classes}
-      onClick={() => {
-        signOut();
-      }}
-    >
-      Sing Out
-    </Button>
-  );
-};
+const AuthButton = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, children, authFunction, ...props }, ref) => {
+    return authFunction === AuthEnums.SIGNIN ? (
+      <button
+        className={cn(authButtonVariant({ className }))}
+        {...props}
+        onClick={() => {
+          signIn("google");
+        }}
+      >
+        Sign IN
+      </button>
+    ) : (
+      <button
+        className={cn(authButtonVariant({ className }))}
+        {...props}
+        onClick={() => {
+          signOut();
+        }}
+      >
+        Sign Out
+      </button>
+    );
+  }
+);
+AuthButton.displayName = "AuthButton";
 
+export { authButtonVariant };
 export default AuthButton;

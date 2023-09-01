@@ -1,8 +1,8 @@
 import { Button } from "components/Buttons/Button";
-import WYSIWYG from "Editor/WYSIWYG";
-import { get_all_post } from "Lib/apiPaths";
+import WYSIWYG from "components/Editor/WYSIWYG";
+import { get_all_post } from "Lib/Utils/apiPaths";
 
-const page = async ({ params }: pageParams) => {
+export default async function ({ params }: pageParams) {
   const bid = params.pid;
 
   const data = await fetch(get_all_post, {
@@ -16,7 +16,7 @@ const page = async ({ params }: pageParams) => {
   }).then((res) => res.json());
   const result = data as Article;
   return showData(result);
-};
+}
 
 function showData(data: Article) {
   return "code" in data ? (
@@ -46,5 +46,3 @@ function showData(data: Article) {
     </div>
   );
 }
-
-export default page;

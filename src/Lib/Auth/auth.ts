@@ -5,7 +5,7 @@ import {
   type DefaultSession,
 } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { prisma } from "Database/db";
+import { prisma } from "Lib/Database/db";
 import { Role } from "@prisma/client";
 import { GetServerSidePropsContext } from "next";
 
@@ -13,6 +13,7 @@ declare module "next-auth" {
   interface Session extends DefaultSession {
     user: DefaultSession["user"] & {
       id: string;
+      lastloginLocation: string;
       // ...other properties
       role: Role;
     };
@@ -21,6 +22,7 @@ declare module "next-auth" {
   interface User {
     // ...other properties
     role: Role;
+    lastloginLocation: string;
   }
 }
 
@@ -33,6 +35,7 @@ export const authOptions: NextAuthOptions = {
         id: user.id,
         role: user.role,
       },
+      location: user.lastloginLocation,
     }),
   },
   adapter: PrismaAdapter(prisma),
@@ -44,6 +47,9 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_SECRET ?? "",
     }),
   ],
+  events: {
+    signIn: async (data) => {},
+  },
 };
 
 export const getServerAuthSession = () => {
@@ -55,3 +61,17 @@ export const getContextServerAuthSession = (ctx: {
 }) => {
   return getServerSession(ctx.req, ctx.res, authOptions);
 };
+
+async function lastSignIN(data: string) {
+  const lastSignIN = await prisma.session
+    .findFirst({
+      orderBy: {
+        expires: "desc",
+      },
+      where: {
+        userId: data,
+      },
+    })
+    .then((res) => res?.id);
+  return lastSignIN;
+}

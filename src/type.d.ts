@@ -50,14 +50,3 @@ type Suggested_Book =
     };
 
     
-enum Login {
-  SINGIN,
-  SINGOUT,
-};
-enum Role {
-  USER,
-  ADMIN,
-  APPLIED,
-  EDITOR,
-  NOROLE
-}

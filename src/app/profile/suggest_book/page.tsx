@@ -1,13 +1,9 @@
-import { getServerAuthSession } from "Auth/auth";
+import { getServerAuthSession } from "Lib/Auth/auth";
 import SuggestionForm from "./SuggestionForm";
 import { RoleBasedCard } from "components/Cards/RoleBasedCard";
-enum Role {
-  USER,
-  ADMIN,
-  APPLIED,
-  EDITOR,
-  NOROLE,
-}
+import { Role } from "enum";
+
+
 const Suggested = async () => {
   const session = await getServerAuthSession();
   const role = session?.user.role;
@@ -25,17 +21,12 @@ const Suggested = async () => {
     );
   }
 
-  if (role === "USER" || role === "APPLIED") {
-    if (role === "USER") {
-      return (
-        <RoleBasedCard role={Role.USER}  />
-      );
-    } else if (role === "APPLIED")
-      return <RoleBasedCard role={Role.APPLIED}/>;
+  if (role === "USER") {
+    return <RoleBasedCard role={Role.USER} />;
   }
 
   if (!session) {
-    return <RoleBasedCard role={Role.USER}/>;
+    return <RoleBasedCard role={Role.NOROLE} />;
   }
 };
 

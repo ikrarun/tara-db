@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, forwardRef } from "react";
 import { VariantProps, cva } from "class-variance-authority";
-import { cn } from "Lib/utils";
+import { cn } from "Lib/Utils/twClasses";
 import Link from "next/link";
 
 const navbuttonVariants = cva(
