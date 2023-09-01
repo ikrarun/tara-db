@@ -63,14 +63,15 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String       @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?      @unique
   emailVerified DateTime?
   image         String?
-  role          Role      @default(USER)
+  role          Role         @default(USER)
   accounts      Account[]
   sessions      Session[]
+  UserProfile   UserProfile?
 }
 
 model VerificationToken {
@@ -81,17 +82,19 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+model UserProfile {
+  id      String @id @default(cuid())
+  userId  String @unique
+  phone   String @unique
+  state   String
+  pincode Int
+  address String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
 enum Role {
   USER
   ADMIN
   EDITOR
   BANNED
-}
-
-model JoiningRequest {
-  id         String @id @default(cuid())
-  first_name String @default("")
-  last_name  String @default("")
-  phone      String @unique 
-  email      String 
 }

@@ -48,61 +48,25 @@ const Page = () => {
           }}
           className="grid w-full gap-6 mb-6 md:grid-cols-2"
         >
-          {/* Real Name */}
-          <div className="w-full">
-            <label
-              htmlFor="real_name"
-              className="block w-full mb-2 text-sm font-medium text-gray-900 "
-            >
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              disabled={true}
-              name="name"
-              value={session?.user?.name??''}
-              onChange={()=> {}}
-              className="disabled:bg-blue-200 cursor-not-allowed border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-              placeholder="John"
-              required
-            />
-          </div>
           {/* Pen Name */}
           <div className="w-full">
             <label
-              htmlFor="user_name"
+              htmlFor="village-name"
               className="block mb-2 text-sm font-medium text-gray-900"
             >
-              User Name
+              Village
             </label>
             <input
               type="text"
-              id="user_name"
-              name="user_name"
+              id="village-name"
+              name="village-name"
               min={2}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-              placeholder="Doe"
+              placeholder="Village"
               required
             />
           </div>
-          {/* Email */}
-          <div className="w-full">
-            <label
-              htmlFor="email"
-              className="block mb-2 text-sm font-medium text-gray-900 "
-            >
-              Email address
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-              placeholder="abc-xyz@mail.com"
-              required
-            />
-          </div>
+
           {/* Phone */}
           <div className="w-full">
             <label
@@ -127,7 +91,7 @@ const Page = () => {
           <Button
             type="submit"
             disabled={isPending}
-            className="text-white disabled:bg-gray-700 w-full sm:w-fit bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+            className="text-white h-fit self-end disabled:bg-gray-700 w-full sm:w-fit bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
           >
             Submit
           </Button>
