@@ -84,8 +84,8 @@ model VerificationToken {
 enum Role {
   USER
   ADMIN
-  APPLIED
   EDITOR
+  BANNED
 }
 
 model JoiningRequest {

@@ -44,6 +44,17 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_SECRET ?? "",
     }),
   ],
+  events: {
+    signIn: async (data) => {
+      console.log(data.user.id);
+      const latestRow = await prisma.session.findMany({
+        where: {
+          id: data.user.id,
+        },
+      }).then((res) => res);
+      console.log(latestRow);
+    },
+  },
 };
 
 export const getServerAuthSession = () => {
