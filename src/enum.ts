@@ -5,7 +5,7 @@ export enum AuthEnums {
 export enum Role {
   USER,
   ADMIN,
-  APPLIED,
+  BANNED,
   EDITOR,
   NOROLE
 }

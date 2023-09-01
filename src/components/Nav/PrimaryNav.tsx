@@ -52,7 +52,7 @@ export default function Nav() {
 
   return (
     <>
-      <div
+      <nav
         style={font.style}
         className="bg-white border-r border-gray-700/20 text-black items-end justify-start flex-grow hidden sm:flex flex-col flex-shrink-0 w-1/5 p-4"
       >
@@ -82,11 +82,11 @@ export default function Nav() {
             <ProfileButton />
           </div>
         </div>
-      </div>
+      </nav>
 
       {/* //? Mobile Navigation */}
 
-      <div className=" flex sm:hidden items-center justify-center">
+      <nav className=" flex sm:hidden items-center justify-center">
         <div
           onClick={() => {
             setIsVisible(!isVisible);
@@ -129,7 +129,7 @@ export default function Nav() {
             </div>
           </div>
         </div>
-      </div>
+      </nav>
     </>
   );
 }

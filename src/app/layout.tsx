@@ -6,6 +6,7 @@ import Nav from "components/Nav/PrimaryNav";
 import PageName from "components/Nav/Header";
 import Right_Tab from "components/Nav/SecondryNav";
 import RootToast from "components/Cards/RootToast";
+import React from "react";
 
 const font = Font({ subsets: ["latin"] });
 
@@ -21,10 +22,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={font.style} className="select-none">
+      <body style={font.style} className="select-none flex h-screen">
         <AuthProvider>
-          <RootToast/>
-          <div className="flex h-screen">
+          <RootToast />
+          <React.Fragment>
             {/* Left Side Navigation */}
             <Nav />
             {/* Centered Content Area */}
@@ -34,7 +35,7 @@ export default function RootLayout({
             </div>
             {/* Right Side Content */}
             <Right_Tab />
-          </div>
+          </React.Fragment>
         </AuthProvider>
       </body>
     </html>

@@ -25,27 +25,16 @@ function Content({ role }: { role: Role }) {
         </div>
       );
       break;
-    case Role.APPLIED:
-      content = (
-        <div className="flex gap-2 flex-col">
-          <div className="flex flex-col gap-2 ml-2">
-            <h1>Thanks for Showing your Intrest.</h1>
-            <h1>
-              But you have to wait for sometime as you have already applied.
-            </h1>
-          </div>
-          <Button className="w-fit sm:text-sm text-xs" href="/profile">
-            Profile
-          </Button>
-        </div>
-      );
-      break;
+
     case Role.USER:
       content = (
         <div className="flex gap-2 flex-col">
           <div className="flex flex-col gap-2 ml-2">
             <h1>Thanks for Showing your Intrest.</h1>
-            <h1>If you want to contribute, Just update your Profile and that's it.</h1>
+            <h1>
+              If you want to contribute, Just update your Profile and
+              that&apos;s it.
+            </h1>
           </div>
           <Button className="w-fit sm:text-sm text-xs" href="/profile/update">
             Update Now

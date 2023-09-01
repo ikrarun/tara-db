@@ -6,15 +6,59 @@ import Data_Submission from "./Data_Submission";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { Input } from "components/Input/input";
 
 const Page = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const [isPending, setIsPending] = useState(false);
 
+  const indianStates = [
+    { value: "Andhra Pradesh", label: "Andhra Pradesh" },
+    { value: "Arunachal Pradesh", label: "Arunachal Pradesh" },
+    { value: "Assam", label: "Assam" },
+    { value: "Bihar", label: "Bihar" },
+    { value: "Chhattisgarh", label: "Chhattisgarh" },
+    { value: "Goa", label: "Goa" },
+    { value: "Gujarat", label: "Gujarat" },
+    { value: "Haryana", label: "Haryana" },
+    { value: "Himachal Pradesh", label: "Himachal Pradesh" },
+    { value: "Jharkhand", label: "Jharkhand" },
+    { value: "Karnataka", label: "Karnataka" },
+    { value: "Kerala", label: "Kerala" },
+    { value: "Madhya Pradesh", label: "Madhya Pradesh" },
+    { value: "Maharashtra", label: "Maharashtra" },
+    { value: "Manipur", label: "Manipur" },
+    { value: "Meghalaya", label: "Meghalaya" },
+    { value: "Mizoram", label: "Mizoram" },
+    { value: "Nagaland", label: "Nagaland" },
+    { value: "Odisha", label: "Odisha" },
+    { value: "Punjab", label: "Punjab" },
+    { value: "Rajasthan", label: "Rajasthan" },
+    { value: "Sikkim", label: "Sikkim" },
+    { value: "Tamil Nadu", label: "Tamil Nadu" },
+    { value: "Telangana", label: "Telangana" },
+    { value: "Tripura", label: "Tripura" },
+    { value: "Uttar Pradesh", label: "Uttar Pradesh" },
+    { value: "Uttarakhand", label: "Uttarakhand" },
+    { value: "West Bengal", label: "West Bengal" },
+    {
+      value: "Andaman and Nicobar Islands",
+      label: "Andaman and Nicobar Islands",
+    },
+    { value: "Chandigarh", label: "Chandigarh" },
+    {
+      value: "Dadra and Nagar Haveli and Daman and Diu",
+      label: "Dadra and Nagar Haveli and Daman and Diu",
+    },
+    { value: "Lakshadweep", label: "Lakshadweep" },
+    { value: "Delhi", label: "Delhi" },
+    { value: "Puducherry", label: "Puducherry" },
+  ];
+
   const onCreate = async (formData: FormData) => {
     const res = await Data_Submission(formData);
-    await new Promise((resolve) => setTimeout(resolve, 1000)); 
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     if ("error" in res) {
       toast.dismiss();
@@ -48,50 +92,51 @@ const Page = () => {
           }}
           className="grid w-full gap-6 mb-6 md:grid-cols-2"
         >
-          {/* Pen Name */}
-          <div className="w-full">
-            <label
-              htmlFor="village-name"
-              className="block mb-2 text-sm font-medium text-gray-900"
-            >
-              Village
-            </label>
-            <input
-              type="text"
-              id="village-name"
-              name="village-name"
-              min={2}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-              placeholder="Village"
-              required
-            />
-          </div>
-
           {/* Phone */}
-          <div className="w-full">
-            <label
-              htmlFor="phone"
-              className="block mb-2 text-sm font-medium text-gray-900 "
-            >
-              Phone number
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              maxLength={10}
-              minLength={10}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-              placeholder="0123456789"
-              pattern="[0-9]{10}"
-              required
-            />
-          </div>
+          <Input
+            label="Phone"
+            type="tel"
+            name="phone"
+            maxLength={10}
+            minLength={10}
+            placeholder="0123456789"
+            pattern="[0-9]{10}"
+            required
+          />
+
+          {/* State Name */}
+
+          <Input
+            label="State"
+            type="text"
+            required
+            name="state"
+            placeholder="ex. UP"
+          />
+
+          {/* City Name */}
+
+          <Input
+            label="City"
+            type="text"
+            required
+            name="city"
+            placeholder="ex. Lucknow"
+          />
+          {/* Pin Code */}
+
+          <Input
+            label="Pin Code"
+            type="text"
+            required
+            name="pincode"
+            placeholder="ex. 000000"
+          />
 
           <Button
             type="submit"
             disabled={isPending}
-            className="text-white h-fit self-end disabled:bg-gray-700 w-full sm:w-fit bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+            className=" disabled:bg-gray-700 sm:text-sm text-xs w-full sm:w-fit"
           >
             Submit
           </Button>

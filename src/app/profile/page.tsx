@@ -56,7 +56,7 @@ const Profile = () => {
           Would you like to contribute to this project?
         </h1>
         <h1 className="text-base">
-          Just update your Profile and that's it.
+          Just update your Profile and that&apos;s it.
         </h1>
         <div className="flex flex-col justify-start items-start w-full">
           <NavButton

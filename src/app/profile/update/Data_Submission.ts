@@ -6,57 +6,60 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 const formDataSchema = z.object({
-  first_name: z.string(),
-  last_name: z.string(),
-  email: z.string().email(),
+  state: z.string(),
+  city: z.string(),
+  pincode: z.number(),
   phone: z.string().regex(/^\d{10}$/), // Assuming a 10-digit phone number
 });
 
 export default async function submitData(formData: FormData) {
   const session = await getServerAuthSession();
-  const user_id = session?.user.id as string;
+  const user_id = session?.user.id;
 
   const formDataObject = {
-    first_name: formData.get("first_name"),
-    last_name: formData.get("last_name"),
-    email: formData.get("email"),
+    state: formData.get("state"),
+    city: formData.get("city"),
+    pincode: formData.get("pincode"),
     phone: formData.get("phone"),
   };
 
   try {
     const validatedData = formDataSchema.parse(formDataObject);
-
-    return await prisma.joiningRequest
-      .create({
-        data: {
-          first_name: validatedData.first_name,
-          last_name: validatedData.last_name,
-          email: validatedData.email,
-          phone: validatedData.phone,
-          id: user_id,
-        },
-        select: {
-          id: true,
-        },
-      })
-      .then(async (result) => {
-        await prisma.user.update({
-          where: {
-            id: user_id,
-          },
+    if (user_id) {
+      return await prisma.userProfile
+        .create({
           data: {
-            role: "EDITOR",
+            state: validatedData.state,
+            city: validatedData.city,
+            pincode: validatedData.pincode,
+            phone: validatedData.phone,
+            userId: user_id,
           },
-        });
-        revalidatePath("/");
+          select: {
+            id: true,
+          },
+        })
+        .then(async (result) => {
+          await prisma.user.update({
+            where: {
+              id: user_id,
+            },
+            data: {
+              role: "EDITOR",
+            },
+          });
+          revalidatePath("/");
 
-        return { message: result, result: true };
-      })
-      .catch(async (e) => {
-        return e.message
-          ? { code: e.message, result: false }
-          : { code: "unknown", result: false };
-      });
+          return { message: result, result: true };
+        })
+        .catch(async (e) => {
+          return e.message
+            ? { code: e.message, result: false }
+            : { code: "unknown", result: false };
+        });
+    } else {
+      return { error: "unknown", result: false };
+    }
   } catch (error: any) {
     if (error instanceof z.ZodError) {
       const firstValidationError = error.errors[0];
