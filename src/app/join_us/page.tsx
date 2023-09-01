@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "components/Buttons/Button";
-import USER_DATA from "Auth/userData";
+import USER_DATA from "Lib/Auth/userData";
 import { useSession } from "next-auth/react";
 import Data_Submission from "./Data_Submission";
 import { useState } from "react";
@@ -14,7 +14,7 @@ const Page = () => {
 
   const onCreate = async (formData: FormData) => {
     const res = await Data_Submission(formData);
-    await new Promise((resolve) => setTimeout(resolve, 1000)); // Introduce a delay of 2000 milliseconds (2 seconds)
+    await new Promise((resolve) => setTimeout(resolve, 1000)); 
 
     if ("error" in res) {
       toast.dismiss();
@@ -48,36 +48,36 @@ const Page = () => {
           }}
           className="grid w-full gap-6 mb-6 md:grid-cols-2"
         >
-          {/* First Name */}
+          {/* Real Name */}
           <div className="w-full">
             <label
-              htmlFor="first_name"
+              htmlFor="real_name"
               className="block w-full mb-2 text-sm font-medium text-gray-900 "
             >
-              First name
+              Name
             </label>
             <input
               type="text"
-              id="first_name"
-              min={2}
-              name="first_name"
+              id="name"
+              disabled={true}
+              name="name"
               className="bg-gray-50  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
               placeholder="John"
               required
             />
           </div>
-          {/* Last Name */}
+          {/* Pen Name */}
           <div className="w-full">
             <label
-              htmlFor="last_name"
+              htmlFor="user_name"
               className="block mb-2 text-sm font-medium text-gray-900"
             >
-              Last name
+              User Name
             </label>
             <input
               type="text"
-              id="last_name"
-              name="last_name"
+              id="user_name"
+              name="user_name"
               min={2}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
               placeholder="Doe"

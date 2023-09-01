@@ -1,7 +1,7 @@
 "use server";
 
-import { getServerAuthSession } from "Auth/auth";
-import { prisma } from "Database/db";
+import { getServerAuthSession } from "Lib/Auth/auth";
+import { prisma } from "Lib/Database/db";
 import { revalidatePath } from "next/cache";
 
 import { z } from "zod";

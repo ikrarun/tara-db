@@ -1,8 +1,8 @@
 import React from "react";
 import CardForArticle from "components/Cards/CardForArticle";
-import { get_all_post } from "Lib/apiPaths";
+import { get_all_post } from "Lib/Utils/apiPaths";
 
-const get_Post = async () => {
+async function get_Post() {
   const res = await fetch(get_all_post, {
     next: {
       revalidate: 60,
@@ -12,9 +12,9 @@ const get_Post = async () => {
     },
   }).then((res) => res.json());
   return res as ArrayArticles;
-};
+}
 
-const Posts = async () => {
+export default async function Posts() {
   const res = await get_Post();
   if ("code" in res) {
     return (
@@ -57,6 +57,4 @@ const Posts = async () => {
       </div>
     </div>
   );
-};
-
-export default Posts;
+}

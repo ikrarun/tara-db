@@ -1,4 +1,4 @@
-import { getServerAuthSession } from "Auth/auth";
+import { getServerAuthSession } from "Lib/Auth/auth";
 import SuggestionForm from "./SuggestionForm";
 import { RoleBasedCard } from "components/Cards/RoleBasedCard";
 enum Role {
@@ -35,7 +35,7 @@ const Suggested = async () => {
   }
 
   if (!session) {
-    return <RoleBasedCard role={Role.USER}/>;
+    return <RoleBasedCard role={Role.NOROLE}/>;
   }
 };
 

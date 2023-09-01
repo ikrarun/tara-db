@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import USER_DATA from "../../Auth/userData";
+import USER_DATA from "../../Lib/Auth/userData";
 import NavButton from "components/Buttons/NavButton";
 import { useSession } from "next-auth/react";
 

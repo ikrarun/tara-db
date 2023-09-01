@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { RiHome6Line } from "react-icons/ri";
 
-const PageName = () => {
+export default function Header (){
   const pathname = usePathname();
   const [realPath, setRealPath] = useState("");
   useEffect(() => {
@@ -58,4 +58,3 @@ const PageName = () => {
   );
 };
 
-export default PageName;

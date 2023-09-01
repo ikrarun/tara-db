@@ -5,7 +5,7 @@ import {
   type DefaultSession,
 } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { prisma } from "Database/db";
+import { prisma } from "Lib/Database/db";
 import { Role } from "@prisma/client";
 import { GetServerSidePropsContext } from "next";
 

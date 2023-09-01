@@ -18,23 +18,30 @@ import { RxTokens } from "react-icons/rx";
 import ProfileButton from "components/Buttons/ProfileButton";
 const font = Font({ subsets: ["latin"] });
 
-
-
-const Logo = ({mobile}:{mobile:boolean})=>{
-   return <div className={mobile?"inline-flex rounded-full py-3 gap-2 px-4 items-center justify-center":"inline-flex text-blue-700 rounded-full py-3 px-3 items-center justify-center"}>
-              <div className="relative w-10 rounded-full aspect-square">
-                <Image src={icon} alt="" fill={true} />
-              </div>
-              <h1 className="text-lg">TARA</h1>
-            </div>
+function Logo({ mobile }: { mobile: boolean }) {
+  return (
+    <div
+      className={
+        mobile
+          ? "inline-flex rounded-full py-3 gap-2 px-4 items-center justify-center"
+          : "inline-flex text-blue-700 rounded-full py-3 px-3 items-center justify-center"
+      }
+    >
+      <div className="relative w-10 rounded-full aspect-square">
+        <Image src={icon} alt="" fill={true} />
+      </div>
+      <h1 className="text-lg">TARA</h1>
+    </div>
+  );
 }
 
+const open =
+  "screen py-3 px-6 select-none w-fit transition-all duration-500 ease-in-out h-full flex flex-col items-end justify-start z-[8000] bg-black/95 fixed top-0 left-0";
 
-const open ="screen py-3 px-6 select-none w-fit transition-all duration-500 ease-in-out h-full flex flex-col items-end justify-start z-[8000] bg-black/95 fixed top-0 left-0"
+const close =
+  "screen py-3 px-6 select-none w-fit transition-all duration-500 ease-in-out h-full flex flex-col items-end justify-start z-[8000] bg-black/95 fixed top-0 -left-full";
 
-const close ="screen py-3 px-6 select-none w-fit transition-all duration-500 ease-in-out h-full flex flex-col items-end justify-start z-[8000] bg-black/95 fixed top-0 -left-full"
-
-export const Nav = () => {
+export default function Nav() {
   const path = usePathname();
 
   useEffect(() => {
@@ -53,13 +60,17 @@ export const Nav = () => {
         <div className="w-fit h-full flex flex-col items-start justify-between max-h-[700px]">
           {/* //? Top Section */}
           <div className="flex flex-col items-start justify-start">
-           <Logo mobile={false}/>
+            <Logo mobile={false} />
             <NavButton href={"/"}>{<RiHome6Line />}Home</NavButton>
             <NavButton href={"/books"}>
               {<RiBookOpenLine />}Book&apos;s
             </NavButton>
-            <NavButton href="/articles">{<RiNewspaperLine />}Articles</NavButton>
-            <NavButton href="/profile/suggest_book">{<BiSolidEdit />}Suggest Book</NavButton>
+            <NavButton href="/articles">
+              {<RiNewspaperLine />}Articles
+            </NavButton>
+            <NavButton href="/profile/suggest_book">
+              {<BiSolidEdit />}Suggest Book
+            </NavButton>
           </div>
 
           {/* //? Bottom Section */}
@@ -85,15 +96,9 @@ export const Nav = () => {
           {isVisible ? <RiCloseFill /> : <RxTokens />}
         </div>
 
-        <div
-          className={
-            isVisible
-              ? open
-              : close
-          }
-        >
+        <div className={isVisible ? open : close}>
           <div className="flex flex-col text-white gap-1 items-start justify-start">
-                       <Logo mobile={true}/>
+            <Logo mobile={true} />
 
             <NavButton variant="dark" href={"/"}>
               {<RiHome6Line />}Home
@@ -127,6 +132,4 @@ export const Nav = () => {
       </div>
     </>
   );
-};
-
-export default Nav;
+}

@@ -1,9 +1,9 @@
-import Link from "next/link";
 import React from "react";
-import NavButton from 'components/Buttons/NavButton'
+import NavButton from "components/Buttons/NavButton";
 import { TfiCreditCard } from "react-icons/tfi";
-const Right_Tab = () => {
-  {/* //? Desktop Only */}
+
+export default function Right_Tab() {
+  /* //? Desktop Only */
   return (
     <div className="bg-white border-l border-gray-700/20 text-black items-start justify-start flex-grow hidden sm:flex flex-col flex-shrink-0 w-1/5 p-4">
       <div className="w-fit h-full flex flex-col items-start justify-between max-h-[700px]">
@@ -23,6 +23,4 @@ const Right_Tab = () => {
       </div>
     </div>
   );
-};
-
-export default Right_Tab;
+}

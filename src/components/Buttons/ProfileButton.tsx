@@ -5,7 +5,7 @@ import React from "react";
 import Image from "next/image";
 import profile from "components/profile.svg";
 
-const ProfileButton = ({mobile}:{mobile?: boolean}) => {
+export default function ProfileButton({ mobile }: { mobile?: boolean }) {
   const { data } = useSession();
 
   return (
@@ -27,6 +27,5 @@ const ProfileButton = ({mobile}:{mobile?: boolean}) => {
       </div>
     </Link>
   );
-};
+}
 
-export default ProfileButton;
