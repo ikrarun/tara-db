@@ -5,7 +5,7 @@ import { AuthEnums } from "enum";
 import React from "react";
 
 export default function USER_DATA() {
-  const { data: session } = useSession();
+  const { data: session,status } = useSession();
 
   return (
     <div className="flex flex-col w-full sm:w-fit py-3 px-7 justify-center bg-gray-400/30 rounded-md h-fit items-start">

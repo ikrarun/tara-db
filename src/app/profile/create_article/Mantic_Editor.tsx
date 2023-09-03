@@ -33,7 +33,6 @@ const Mantic_Editor = () => {
 
   const onSubmitData = async (data: FormData) => {
     const res = await Data_Submission(data);
-    await new Promise((resolve) => setTimeout(resolve, 1000)); // Introduce a delay of 2000 milliseconds (2 seconds)
     if ("error" in res) {
       toast.dismiss();
       toast.error(res.error);
@@ -158,7 +157,7 @@ const Mantic_Editor = () => {
         <RichTextEditor.Content />
       </RichTextEditor>
 
-      <Button disabled={isPending} type="submit">
+      <Button className='w-fit self-center text-xs sm:text-sm' disabled={isPending} type="submit">
         Submit
       </Button>
     </form>

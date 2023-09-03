@@ -15,13 +15,12 @@ const formDataSchema = z.object({
 
 export default async function Data_Submission(formData: FormData) {
   const session = await getServerAuthSession();
-  const user_id = session?.user.id as string;
   const formDataObject = {
     title: formData.get("title")?.toString().trim(),
     desc: formData.get("desc")?.toString().trim(),
     book_link: formData.get("book_link")?.toString().trim(),
     cover_link: formData.get("cover_link")?.toString().trim(),
-    user_id: user_id,
+    user_id: session?.user.id,
   };
 
   try {

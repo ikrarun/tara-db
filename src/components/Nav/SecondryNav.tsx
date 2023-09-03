@@ -5,7 +5,7 @@ import { TfiCreditCard } from "react-icons/tfi";
 export default function Right_Tab() {
   /* //? Desktop Only */
   return (
-    <div className="bg-white border-l border-gray-700/20 text-black items-start justify-start flex-grow hidden sm:flex flex-col flex-shrink-0 w-1/5 p-4">
+    <div className="bg-white sticky  top-0 max-h-screen border-l border-gray-700/20 text-black items-start justify-start flex-grow hidden sm:flex flex-col flex-shrink-0 w-1/5 p-4">
       <div className="w-fit h-full flex flex-col items-start justify-between max-h-[700px]">
         {/* //? Top Section */}
         <div className="flex flex-col items-start justify-start">

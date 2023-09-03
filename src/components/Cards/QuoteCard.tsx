@@ -1,4 +1,3 @@
-"use client";
 interface QuoteComponents {
   quote?: string;
   author?: string;

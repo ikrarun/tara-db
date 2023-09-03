@@ -1,21 +1,31 @@
+.editor {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
 .editor h1 {
+  white-space: pre-wrap;
   @apply text-3xl font-semibold;
 }
 
 .editor h2 {
+  white-space: pre-wrap;
   @apply text-2xl font-semibold;
 }
 .editor h3 {
+  white-space: pre-wrap;
   @apply text-xl font-semibold;
 }
 
 .editor blockquote {
+  white-space: pre-wrap;
   @apply border-l-4 border-gray-500 pl-4 italic my-4;
 }
 .editor p code {
+  white-space: pre-wrap;
   @apply px-2 py-1 text-sm font-mono;
 }
 .editor a {
-  @apply text-blue-600 underline-offset-2 underline ;
+  white-space: pre-wrap;
+  @apply text-blue-600 underline-offset-2 underline;
 }
-

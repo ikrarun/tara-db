@@ -12,6 +12,11 @@ body{
   min-height: 100vh;
 }
 
+.maxscreen{
+ max-height: 95dvh;
+  max-height: 95vh;
+}
+
 ul {
   @apply list-disc pl-6;
 }

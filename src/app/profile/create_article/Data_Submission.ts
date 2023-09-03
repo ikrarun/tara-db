@@ -20,8 +20,7 @@ export default async function post_data(formData: FormData) {
   const formDataObject = {
     title: formData.get("title")?.toString().trim(),
     desc: formData.get("desc")?.toString().trim(),
-    book_link: formData.get("book_link")?.toString().trim(),
-    cover_link: formData.get("cover_link")?.toString().trim(),
+    post: formData.get("post")?.toString().trim(),
     user_id: session?.user.id,
   };
   try {

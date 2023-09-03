@@ -21,7 +21,7 @@ export default function Header (){
       setRealPath("Profile");
       return;
     }
-    if (pathname === "/profile/post") {
+    if (pathname === "/profile/create_article") {
       setRealPath("Create Article");
       return;
     }

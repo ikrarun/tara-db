@@ -192,7 +192,7 @@ const SuggestionForm = () => {
         )}
         <div className="flex flex-col w-full">
           <Button
-            className="w-fit mx-auto disabled:bg-gray-700"
+            className="w-fit mx-auto text-xs sm:text-sm disabled:bg-gray-700"
             disabled={isPending}
             type="submit"
           >

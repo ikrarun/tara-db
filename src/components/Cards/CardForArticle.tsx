@@ -18,7 +18,7 @@ const CardForArticle = ({ title, short_desc, date, link }: PostData) => {
   const formattedDate = inputDate.format("DD-MM-YYYY");
 
   return (
-    <Link className="flex w-full" href={`/article/${link}`}>
+    <Link className="flex w-full" href={`/articles/${link}`}>
       <div className="flex border bg-blue-700 gap-3 sm:gap-0 text-white backdrop-blur-sm border-gray-700/70 rounded-md sm:flex-row flex-col w-full p-4">
         <div className="flex flex-col grow gap-2">
           <h1 className="text-lg select-none">{title}</h1>

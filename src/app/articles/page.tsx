@@ -1,22 +1,13 @@
-import React from "react";
 import CardForArticle from "components/Cards/CardForArticle";
-import { get_all_post } from "Lib/Utils/apiPaths";
-
-async function get_Post() {
-  const res = await fetch(get_all_post, {
-    next: {
-      revalidate: 60,
-    },
-    headers: {
-      type: "card",
-    },
-  }).then((res) => res.json());
-  return res as ArrayArticles;
-}
+import { serverClient } from "TRPC/serverClient";
 
 export default async function Posts() {
-  const res = await get_Post();
-  if ("code" in res) {
+  const data = await serverClient.get_posts({ type: "card" });
+  if (
+    data === null ||
+    (Array.isArray(data) && data.length === 0) ||
+    typeof data === "undefined"
+  ) {
     return (
       <div className="flex flex-col items-start justify-center w-full gap-2 mx-auto">
         <div className="flex flex-col items-center justify-center w-full p-4 my-4">
@@ -29,32 +20,32 @@ export default async function Posts() {
       </div>
     );
   }
+  if (Array.isArray(data) && data.length > 0) {
+    return (
+      <div className="flex flex-col  items-center justify-center w-full gap-2 mx-auto">
+        <div className="flex flex-col w-full">
+          <h1 className=" mb-2 text-xl text-gray-800 w-fit text-start">
+            We have been continuously working for providing information&apos;s
+          </h1>
 
-  return (
-    <div className="flex flex-col  items-center justify-center w-full gap-2 mx-auto">
-      <div className="flex flex-col w-full">
-        <h1 className=" mb-2 text-xl text-gray-800 w-fit text-start">
-          We have been continuously working for providing information&apos;s
-        </h1>
-
-        <div
-          style={{ scrollbarWidth: "none" }}
-          className="w-full flex flex-col gap-2 "
-        >
-          {res.map((data, index) => {
-            return (
-              <div key={index} className="w-full aspect-auto">
+          <div
+            style={{ scrollbarWidth: "none" }}
+            className="w-full flex flex-col gap-2 "
+          >
+            {data.map((data, index) => {
+              return (
                 <CardForArticle
+                  key={index}
                   title={data.title}
                   short_desc={data.short_desc}
                   date={data.date}
                   link={data.id}
                 />
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
