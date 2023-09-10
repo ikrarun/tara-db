@@ -1,11 +1,10 @@
 import Link from "next/link";
-import React from "react";
 import Image from "next/image";
 import profile from "components/profile.svg";
-import { getServerAuthSession } from "Lib/Auth/auth";
+import { useSession } from "next-auth/react";
 
-export default async function ProfileButton({ mobile }: { mobile?: boolean }) {
-  const session  = await getServerAuthSession();
+export default function ProfileButton({ mobile }: { mobile?: boolean }) {
+  const {data:session}  = useSession()
   if (session ===null) {
     return (
       <Link
