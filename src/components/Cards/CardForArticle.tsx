@@ -27,7 +27,7 @@ const CardForArticle = ({ title, short_desc, date, link }: PostData) => {
         <div className="flex flex-row  flex-shrink-0 sm:flex-col max-w-fit justify-start sm:justify-center ml-2 sm:items-end items-center gap-2 text-white">
           <AiOutlineRead size={25} />
           <h1 className="text-xs shrink-0 flex  w-fit text-white select-none">
-            {formattedDate}
+            {date.toDateString()}
           </h1>
         </div>
       </div>
