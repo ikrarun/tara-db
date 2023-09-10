@@ -29,7 +29,7 @@ const MobileNav = () => {
 
   const [isVisible, setIsVisible] = useState(false);
   return (
-    <div className="bottom-4 right-4 sm:right-0 flex flex-col  w-full fixed justify-start items-center">
+    <div className="bottom-4 right-4 z-[5000] sm:right-0 flex flex-col  w-full fixed justify-start items-center">
       <nav className="flex w-full z-[5000] max-w-[900px] items-center justify-end">
         <div
           onClick={() => {
