@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import Image from "next/image";
-import { Button } from "components/Buttons/Button";
 import Data_Submission from "./Data_Submission";
 interface FileInputState {
   selectedFile: File | null;
@@ -177,7 +176,8 @@ const SuggestionForm = () => {
                 fill={true}
               />
             </div>
-            <Button
+            <button
+              className="inline-flex bg-blue-700 text-white hover:bg-blue-800 rounded-full py-2 px-4 items-center justify-center gap-2 text-xl"
               onClick={(e) => {
                 e.preventDefault();
                 setCover("");
@@ -185,19 +185,19 @@ const SuggestionForm = () => {
               }}
             >
               Clear
-            </Button>
+            </button>
           </div>
         ) : (
           <></>
         )}
         <div className="flex flex-col w-full">
-          <Button
-            className="w-fit mx-auto disabled:bg-gray-700"
+          <button
+            className="inline-flex bg-blue-700 text-white w-fit mx-auto text-xs sm:text-sm disabled:bg-gray-700 hover:bg-blue-800 rounded-full py-2 px-4 items-center justify-center gap-2 "
             disabled={isPending}
             type="submit"
           >
             Submit
-          </Button>
+          </button>
         </div>
       </form>
     </div>

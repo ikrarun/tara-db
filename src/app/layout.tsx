@@ -2,10 +2,8 @@ import "Lib/styles/globals.css";
 import type { Metadata } from "next";
 import { Nunito_Sans as Font } from "next/font/google";
 import AuthProvider from "Lib/Auth/AuthProvider";
-import Nav from "components/Nav/PrimaryNav";
-import PageName from "components/Nav/Header";
-import Right_Tab from "components/Nav/SecondryNav";
-import RootToast from "components/Cards/RootToast";
+import Nav from "components/Nav/Nav";
+import Header from "components/Nav/Header";
 import React from "react";
 
 const font = Font({ subsets: ["latin"] });
@@ -22,20 +20,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={font.style} className="select-none flex h-screen">
+      <body
+        style={font.style}
+        className="inline-flex  select-none min-h-screen w-full"
+      >
         <AuthProvider>
-          <RootToast />
-          <React.Fragment>
-            {/* Left Side Navigation */}
+          <Header />
+          <div className="flex relative flex-col w-full mx-auto pt-16 p-3 max-w-[900px]">
             <Nav />
-            {/* Centered Content Area */}
-            <div className="mx-auto max-w-[900px] flex-col flex w-full">
-              <PageName />
-              <div className="p-4">{children}</div>
-            </div>
-            {/* Right Side Content */}
-            <Right_Tab />
-          </React.Fragment>
+            {children}
+          </div>
         </AuthProvider>
       </body>
     </html>

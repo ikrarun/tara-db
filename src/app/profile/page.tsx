@@ -5,11 +5,11 @@ import NavButton from "components/Buttons/NavButton";
 import { useSession } from "next-auth/react";
 
 const Profile = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const role = session?.user.role;
 
-  if (!session) {
+  if (status==='unauthenticated') {
     return (
       <div className="flex flex-col w-full">
         <div className="flex flex-col gap-4">
@@ -30,6 +30,25 @@ const Profile = () => {
       </div>
     );
   }
+
+else if(status==='loading') {
+return (
+      <div className="flex flex-col w-full">
+        <div className="flex flex-col gap-4">
+          {/* s1 */}
+          <div className="flex flex-col gap-3">
+            <h1 className="text-2xl">
+              Thanks for showing intreset in our Project.
+            </h1>
+            <h1 className="text-base animate-pulse duration-200 text-gray-900/90">
+              Please wait.....
+            </h1>
+          </div>
+        </div>
+        <div className="my-4 border-b border-gray-900" />
+      </div>
+    );
+}
 
   return role === "EDITOR" || role === "ADMIN" ? (
     <div className="flex flex-col w-full">

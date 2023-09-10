@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { RiHome6Line } from "react-icons/ri";
 
-export default function Header (){
+export default function Header() {
   const pathname = usePathname();
   const [realPath, setRealPath] = useState("");
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function Header (){
       setRealPath("Profile");
       return;
     }
-    if (pathname === "/profile/post") {
+    if (pathname === "/profile/create_article") {
       setRealPath("Create Article");
       return;
     }
@@ -30,31 +30,23 @@ export default function Header (){
       return;
     }
 
-    if (pathname === "/profile/suggest_book") {
-      setRealPath("Suggest Book");
+    if (pathname === "/profile/recommend") {
+      setRealPath("Recommend");
     } else {
-      setRealPath("Home");
+      setRealPath("TARA DB");
     }
     return;
   }, [pathname]);
   return (
-    <div className="inline-flex sm:hidden text-white bg-blue-700 sticky p-3 justify-start items-center">
-      <div className="flex w-full flex-row items-center justify-between">
-        <h1 className="capitalize px-2 font-semibold text-xl">
+    <div className="inline-flex top-0 left-0 right-0   text-white z-[2000] bg-blue-700 w-full fixed p-3 justify-start items-center">
+      <div className="flex w-full flex-row items-center mx-auto max-w-[900px] justify-between">
+        <h1 className="capitalize w-full px-2 font-semibold text-xl">
           {realPath ?? "Home"}
         </h1>
-        <Link
-          href="/"
-          className={
-            realPath === "Home"
-              ? "hidden"
-              : "capitalize px-2 font-semibold text-xl"
-          }
-        >
+        <Link href="/" className={"capitalize px-2 font-semibold text-xl"}>
           <RiHome6Line />
         </Link>
       </div>
     </div>
   );
-};
-
+}

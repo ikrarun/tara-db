@@ -1,9 +1,9 @@
 "use client";
-import Editor from "./Mantic_Editor";
 import { useSession } from "next-auth/react";
 import { RoleBasedCard } from "components/Cards/RoleBasedCard";
 import { Role } from "enum";
 import { Suspense } from "react";
+import SuggestionForm from "./SuggestionForm";
 
 const Post = () => {
   const { data: session, status } = useSession();
@@ -12,7 +12,7 @@ const Post = () => {
   if (status === "authenticated") {
     if (role === "ADMIN" || role === "EDITOR") {
       return (
-        <div className=" flex flex-col mt-10 w-full h-[90vh] items-center gap-4 justify-start">
+        <div className=" flex flex-col w-full mt-10 h-[90vh] items-center gap-4 justify-start">
           <div className="flex flex-col h-[4vh] items-start justify-center w-full gap-3">
             <h1 className="text-xl font-semibold select-none">
               Create a post.
@@ -20,7 +20,7 @@ const Post = () => {
           </div>
           <div className="w-full h-[60vh] my_style">
             <Suspense fallback={<div className="animate-pulse duration-100">Loading Editor....</div> }>
-              <Editor />
+              <SuggestionForm />
             </Suspense>
           </div>
         </div>
