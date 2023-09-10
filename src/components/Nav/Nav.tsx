@@ -35,9 +35,11 @@ const MobileNav = () => {
           onClick={() => {
             setIsVisible(!isVisible);
           }}
-          className="flex text-xl select-none cursor-pointer rounded-full bg-blue-700 p-2  z-[9000] text-white"
+          className="flex text-xl select-none cursor-pointer rounded-full bg-black/40  p-1  z-[9000] text-white"
         >
+          <div className="p-1 rounded-full  bg-blue-700">
           {isVisible ? <RiCloseFill /> : <RxTokens />}
+          </div>
         </div>
 
         <div className={isVisible ? open : close}>
