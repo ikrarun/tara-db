@@ -2,28 +2,11 @@ import { Button } from "components/Buttons/Button";
 import WYSIWYG from "components/Editor/WYSIWYG";
 import { serverClient } from "TRPC/serverClient";
 
-export default async function Page ({ params }: pageParams) {
-  const bid = params.pid;
-  const data = await serverClient.get_posts({ type: "full", post_id: bid });
-  if (data === null || Array.isArray(data) || typeof data === "undefined") {
-    return (
-      <div className="flex flex-col w-full justify-center bg-gray-400/30 rounded-md h-80 items-center">
-        <div className="flex flex-col items-start justify-center gap-3 p-3 ">
-          <h1 className="text-2xl font-semibold">
-            Thanks for showing your interest.
-          </h1>
-          <h1 className="text-sm">Requested Content is Not Available</h1>
-          <Button className="text-sm sm:text-base" href={"/"}>
-            Home
-          </Button>
-        </div>
-      </div>
-    );
-  } else if (
-    typeof data === "object" &&
-    data !== null &&
-    !Array.isArray(data)
-  ) {
+export default async function Page({ params }: pageParams) {
+  const id = params.pid;
+  const data = await serverClient.get_Detail_Post(id);
+
+  if (typeof data !== "undefined" && data !== null) {
     return (
       <div className="flex  w-full flex-col">
         <h1 className="self-start text-3xl font-bold">{data.title}</h1>
@@ -38,5 +21,18 @@ export default async function Page ({ params }: pageParams) {
         </div>
       </div>
     );
-  }
+  } else
+    return (
+      <div className="flex flex-col w-full justify-center bg-gray-400/30 rounded-md h-80 items-center">
+        <div className="flex flex-col items-start justify-center gap-3 p-3 ">
+          <h1 className="text-2xl font-semibold">
+            Thanks for showing your interest.
+          </h1>
+          <h1 className="text-sm">Requested Content is Not Available</h1>
+          <Button className="text-sm sm:text-base" href={"/"}>
+            Home
+          </Button>
+        </div>
+      </div>
+    );
 }

@@ -2,7 +2,7 @@ import CardForArticle from "components/Cards/CardForArticle";
 import { serverClient } from "TRPC/serverClient";
 
 export default async function Posts() {
-  const data = await serverClient.get_posts({ type: "card" });
+  const data = await serverClient.get_posts();
   if (
     data === null ||
     (Array.isArray(data) && data.length === 0) ||

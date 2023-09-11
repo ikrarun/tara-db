@@ -1,26 +1,37 @@
-"use client";
+'use client'
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import Image from "next/image";
-import Data_Submission from "./Data_Submission";
+import DataSubmission from "./DataSubmission";
+
 interface FileInputState {
   selectedFile: File | null;
 }
 
-const SuggestionForm = () => {
+const SuggestionForm: React.FC = () => {
   const router = useRouter();
+
   const [isPending, setIsPending] = useState(false);
+  
+  // Data To Be Posted
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [book, setBook] = useState("");
   const [cover, setCover] = useState("");
-  const [desc_length, setDes_len] = useState(1000);
-  const [title_len, setTitle_len] = useState(1000);
+  // Lengths of Input Data
+  const [descLength, setDescLength] = useState(200);
+  const [titleLength, setTitleLength] = useState(80);
 
+  // Selected Image
   const [selectedImage, setSelectedImage] = useState<FileInputState>({
     selectedFile: null,
   });
+
+  useEffect(() => {
+    setDescLength(desc.length);
+    setTitleLength(title.length);
+  }, [title, desc]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
@@ -48,37 +59,37 @@ const SuggestionForm = () => {
     reader.readAsDataURL(selectedFile);
   };
 
-  useEffect(() => {
-    setDes_len(desc.length);
-    setTitle_len(title.length);
-  }, [title, desc]);
+  const handleSubmit = async () => {
+    toast.dismiss();
+    toast.loading("Kindly wait");
+    const res = await DataSubmission({
+      title:title,
+      desc:desc,
+      cover_link:cover,
+      book_link:book,
+    });
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    if ("error" in res) {
+      toast.dismiss();
+      toast.error(res.error);
+    } else if ("code" in res) {
+      toast.dismiss();
+      toast.error("Some error occurred while submission");
+    } else if ("message" in res) {
+      toast.dismiss();
+      toast.success("Your submission was successful");
+      router.replace("/");
+    }
+    setIsPending(false);
+  };
 
   return (
     <div className="flex flex-col items-start justify-center w-full gap-4 select-none">
       <div>
         <Toaster position="bottom-left" reverseOrder={true} />
       </div>
-      <form
-        className="flex flex-col w-full gap-2"
-        action={async (data) => {
-          toast.dismiss();
-          toast.loading("Kindly wait");
-          const res = await Data_Submission(data);
-          await new Promise((resolve) => setTimeout(resolve, 1000)); // Introduce a delay of 2000 milliseconds (2 seconds)
-          if ("error" in res) {
-            toast.dismiss();
-            toast.error(res.error);
-          } else if ("code" in res) {
-            toast.dismiss();
-            toast.error("Some error Occurred while Submission");
-          } else if ("message" in res) {
-            toast.dismiss();
-            toast.success("Your Submission Successful");
-            router.replace("/");
-          }
-          setIsPending(false);
-        }}
-      >
+      <form className="flex flex-col w-full gap-2" onSubmit={handleSubmit}>
         {/* Title */}
         <div className="p-1 flex flex-row items-center gap-1 border-b w-full border-gray-700 border-dashed">
           <input
@@ -86,62 +97,56 @@ const SuggestionForm = () => {
             placeholder="Title"
             className="outline-none w-full ring-0"
             name="title"
-            autoComplete={"false"}
-            maxLength={100}
+            autoComplete="false"
+            maxLength={titleLength}
             value={title}
             minLength={4}
             onChange={(e) => {
-              e.preventDefault;
               setTitle(e.target.value);
-              setTitle_len(e.target.value.length);
+              setTitleLength(e.target.value.length);
             }}
             id="title"
           />
-          <h1 className="text-xs text-gray-500">{title_len}/80</h1>
+          <h1 className="text-xs text-gray-500">{titleLength}/80</h1>
         </div>
-        {/* Desc */}
 
+        {/* Desc */}
         <div className="p-1 flex flex-row items-center gap-1 border-b w-full border-gray-700 border-dashed">
           <textarea
             placeholder="Short Description"
             className="outline-none w-full ring-0"
-            autoComplete={"false"}
-            maxLength={200}
+            autoComplete="false"
+            maxLength={descLength}
             style={{ resize: "none" }}
             name="desc"
             value={desc}
             rows={2}
             onChange={(e) => {
-              e.preventDefault;
               const cleanText = e.target.value.replace(/\n/g, "");
-
               setDesc(cleanText);
             }}
           />
-          <h1 className="text-xs text-gray-500">{desc_length}/200</h1>
+          <h1 className="text-xs text-gray-500">{descLength}/200</h1>
         </div>
 
-        {/* link */}
+        {/* Book Link */}
         <div className="p-1 my-1 flex flex-row items-center gap-1 border-b w-full border-gray-700 border-dashed">
           <input
             type="text"
             placeholder="Link of Book"
             className="outline-none w-full ring-0"
             name="book_link"
-            autoComplete={"false"}
+            autoComplete="false"
             maxLength={300}
             value={book}
             minLength={4}
-            onChange={(e) => {
-              e.preventDefault;
-              setBook(e.target.value);
-            }}
+            onChange={(e) => setBook(e.target.value)}
             id="book_link"
           />
         </div>
 
-        {/* image url */}
-
+        
+        {/* Book Image Selector */}
         <div className="p-1 flex flex-row items-center gap-1 border-b w-full border-gray-700 border-dashed">
           <label htmlFor="coverInput" className="text-gray-500 w-full">
             {selectedImage.selectedFile
@@ -158,14 +163,14 @@ const SuggestionForm = () => {
           </label>
           <input
             type="text"
-            onChange={(e) => {
-              e.preventDefault();
-            }}
+            onChange={(e) => e.preventDefault()}
             name="cover_link"
             value={cover}
             className="hidden"
           />
         </div>
+
+        {/* Book Image Displayer */}
         {cover ? (
           <div className="sm:w-1/4 my-2 max-h-36 ">
             <div className=" h-32 w-auto relative rounded-md overflow-clip">
@@ -190,9 +195,10 @@ const SuggestionForm = () => {
         ) : (
           <></>
         )}
+
         <div className="flex flex-col w-full">
           <button
-            className="inline-flex bg-blue-700 text-white w-fit mx-auto text-xs sm:text-sm disabled:bg-gray-700 hover:bg-blue-800 rounded-full py-2 px-4 items-center justify-center gap-2 "
+            className="inline-flex bg-blue-700 text-white w-fit mx-auto text-xs sm:text-sm disabled:bg-gray-700 hover:bg-blue-800 rounded-full py-2 px-4 items-center justify-center gap-2"
             disabled={isPending}
             type="submit"
           >

@@ -6,18 +6,21 @@ import Highlight from "@tiptap/extension-highlight";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
-import Data_Submission from "./Data_Submission";
 import { Toaster, toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Button } from "components/Buttons/Button";
+import { Session } from "next-auth";
+import submitData from "./DataSubmission";
 
 const content = `<p style={text-align:center}>Edit to Start</p>`;
-const Mantic_Editor = () => {
+
+function ManticEditor({ session }: { session: Session }) {
   const [title, setTitle] = useState("");
   const [isPending, setIsPending] = useState(false);
-  const [desc, setDesc] = useState("");
-  const [title_len, setTitle_len] = useState<number>();
-  const [desc_len, setDesc_len] = useState<number>();
+  const [shortDesc, setShortDesc] = useState("");
+  const [titleLen, setTitleLen] = useState<number>();
+  const [descLen, setDescLen] = useState<number>();
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -31,40 +34,45 @@ const Mantic_Editor = () => {
 
   const router = useRouter();
 
-  const onSubmitData = async (data: FormData) => {
-    const res = await Data_Submission(data);
+  async function submit() {
+    const wysiwyg = editor?.getHTML().toString();
+    if (!wysiwyg || !title || !shortDesc) {
+      toast.dismiss();
+      toast.error("Fill All Details");
+      return;
+    }
+    toast.dismiss();
+    toast.loading("Kindly wait");
+
+    const res = await submitData({
+      title,
+      short_desc: shortDesc,
+      wysiwyg,
+      creator: session.user.id,
+    });
+
     if ("error" in res) {
       toast.dismiss();
       toast.error(res.error);
     } else if ("code" in res) {
       toast.dismiss();
-      toast.error("Some Error Occurred while Submission");
+      toast.error("Failed to Post");
     } else if ("message" in res) {
       toast.dismiss();
       toast.success("Your Submission Successful");
       router.replace("/");
     }
     setIsPending(false);
-  };
+  }
 
   return (
     <form
       className="flex flex-col w-full gap-1"
-      action={() => {
+      onSubmit={(e) => {
+        e.preventDefault();
         toast.loading("Kindly wait");
-        const post = editor?.getHTML().toString();
-        const data = new FormData();
-        if (!post || !title || !desc) {
-          toast.dismiss();
-          toast.error("Fill All Details");
-          return;
-        }
-        toast.dismiss();
-        toast.loading("Kindly wait");
-        data.append("title", title);
-        data.append("desc", desc);
-        data.append("post", post);
-        onSubmitData(data);
+        setIsPending(true);
+        submit();
       }}
     >
       <div>
@@ -80,13 +88,13 @@ const Mantic_Editor = () => {
           maxLength={80}
           value={title}
           onChange={(e) => {
-            e.preventDefault;
+            e.preventDefault();
             setTitle(e.target.value);
-            setTitle_len(e.target.value.length);
+            setTitleLen(e.target.value.length);
           }}
           id="title"
         />
-        <h1 className="text-xs text-gray-500">{title_len}/80</h1>
+        <h1 className="text-xs text-gray-500">{titleLen}/80</h1>
       </div>
       <div className="p-1 flex flex-row items-center gap-1 border-b w-full border-gray-700 border-dashed">
         <input
@@ -96,15 +104,15 @@ const Mantic_Editor = () => {
           name="desc"
           autoComplete={"false"}
           maxLength={120}
-          value={desc}
+          value={shortDesc}
           onChange={(e) => {
-            e.preventDefault;
-            setDesc(e.target.value);
-            setDesc_len(e.target.value.length);
+            e.preventDefault();
+            setShortDesc(e.target.value);
+            setDescLen(e.target.value.length);
           }}
           id="desc"
         />
-        <h1 className="text-xs text-gray-500">{desc_len}/120</h1>
+        <h1 className="text-xs text-gray-500">{descLen}/120</h1>
       </div>
       <RichTextEditor
         className="w-full h-[60vh] overflow-auto "
@@ -157,11 +165,15 @@ const Mantic_Editor = () => {
         <RichTextEditor.Content />
       </RichTextEditor>
 
-      <Button className='w-fit self-center text-xs sm:text-sm' disabled={isPending} type="submit">
+      <Button
+        className="w-fit self-center text-xs sm:text-sm"
+        disabled={isPending}
+        type="submit"
+      >
         Submit
       </Button>
     </form>
   );
-};
+}
 
-export default Mantic_Editor;
+export default ManticEditor;

@@ -4,7 +4,7 @@ import CardForPost from "components/Cards/CardForArticle";
 import { Button } from "components/Buttons/Button";
 
 const featured_article = async() => {
-  const data = await serverClient.get_posts({ type: "card", take: 5 });
+  const data = await serverClient.get_posts(4);
 
   if (
     data === null ||
@@ -36,7 +36,7 @@ const featured_article = async() => {
             link={res.id}
           />
         ))}
-        {data.length >= 3 && (
+        {data.length > 3 && (
           <div className="flex flex-row items-center justify-end">
             <Button href={"/articles"}>Read More..</Button>
           </div>

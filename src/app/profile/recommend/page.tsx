@@ -1,9 +1,18 @@
 "use client";
 import { useSession } from "next-auth/react";
-import { RoleBasedCard } from "components/Cards/RoleBasedCard";
 import { Role } from "enum";
 import { Suspense } from "react";
-import SuggestionForm from "./SuggestionForm";
+import dynamic from "next/dynamic";
+
+
+
+const RoleBasedCard = dynamic(() =>
+  import("components/Cards/RoleBasedCard").then((res) => res.RoleBasedCard)
+);
+const SuggestionForm = dynamic(() => import("./SuggestionForm"), {
+  ssr: false,
+});
+
 
 const Post = () => {
   const { data: session, status } = useSession();
