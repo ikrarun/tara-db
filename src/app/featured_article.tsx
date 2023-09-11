@@ -25,9 +25,10 @@ const featured_article = async() => {
   }
 
   if (Array.isArray(data) && data.length > 0) {
+    const filterData = data.slice(0, 3);
     return (
       <div className="flex flex-col w-full items-start justify-start gap-2">
-        {data.map((res, index) => (
+        {filterData.map((res, index) => (
           <CardForPost
             key={index}
             title={res.title}
@@ -38,7 +39,7 @@ const featured_article = async() => {
         ))}
         {data.length > 3 && (
           <div className="flex flex-row items-center justify-end">
-            <Button href={"/articles"}>Read More..</Button>
+            <Button className='cursor-pointer' href={"/articles"}>Read More..</Button>
           </div>
         )}
       </div>

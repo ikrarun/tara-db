@@ -10,16 +10,16 @@ import { Toaster, toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Button } from "components/Buttons/Button";
 import { Session } from "next-auth";
-import submitData from "./DataSubmission";
-
-const content = `<p style={text-align:center}>Edit to Start</p>`;
+import { trpc } from "TRPC/client";
+import { TRPCClientError } from "@trpc/client";
 
 function ManticEditor({ session }: { session: Session }) {
+  const pushData = trpc.create_Article.useMutation();
   const [title, setTitle] = useState("");
   const [isPending, setIsPending] = useState(false);
   const [shortDesc, setShortDesc] = useState("");
-  const [titleLen, setTitleLen] = useState<number>();
-  const [descLen, setDescLen] = useState<number>();
+  const [titleLen, setTitleLen] = useState<number>(0);
+  const [descLen, setDescLen] = useState<number>(0);
 
   const editor = useEditor({
     extensions: [
@@ -29,7 +29,6 @@ function ManticEditor({ session }: { session: Session }) {
       Highlight,
       TextAlign.configure({ types: ["heading", "paragraph"] }),
     ],
-    content,
   });
 
   const router = useRouter();
@@ -44,25 +43,39 @@ function ManticEditor({ session }: { session: Session }) {
     toast.dismiss();
     toast.loading("Kindly wait");
 
-    const res = await submitData({
-      title,
-      short_desc: shortDesc,
-      wysiwyg,
-      creator: session.user.id,
-    });
+    try {
+      const res = await pushData.mutateAsync({
+        title: title,
+        short_desc: shortDesc,
+        wysiwyg: wysiwyg,
+        creator: session.user.id,
+      });
 
-    if ("error" in res) {
-      toast.dismiss();
-      toast.error(res.error);
-    } else if ("code" in res) {
-      toast.dismiss();
-      toast.error("Failed to Post");
-    } else if ("message" in res) {
-      toast.dismiss();
-      toast.success("Your Submission Successful");
-      router.replace("/");
+      if ("error" in res) {
+        toast.dismiss();
+        toast.error(res.error);
+      } else if ("code" in res) {
+        toast.dismiss();
+        toast.error("Failed to Post");
+      } else if ("message" in res) {
+        toast.dismiss();
+        toast.success("Your Submission Successful");
+        router.replace("/");
+      }
+      setIsPending(false);
+    } catch (error) {
+      // zodError will be inferred
+      if (error instanceof TRPCClientError) {
+        toast.dismiss();
+        toast.error("Fill Fields Correctly");
+        setIsPending(false);
+        return null;
+      }
+       toast.dismiss();
+       toast.error("Un-Expected Error");
+       setIsPending(false);
+       return null;
     }
-    setIsPending(false);
   }
 
   return (

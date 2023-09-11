@@ -2,36 +2,70 @@
 import { Button } from "components/Buttons/Button";
 import USER_DATA from "Lib/Auth/userData";
 import { useSession } from "next-auth/react";
-import Data_Submission from "./Data_Submission";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Input } from "components/Input/input";
+import { trpc } from "TRPC/client";
+import { TRPCClientError } from "@trpc/client";
 
 const Page = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [isPending, setIsPending] = useState(false);
+  const [phone, setPhone] = useState<string>();
+  const [pincode, setPincode] = useState<string>();
+  const [state, setState] = useState<string>();
+  const [city, setCity] = useState<string>();
 
-  const onCreate = async (formData: FormData) => {
-    const res = await Data_Submission(formData);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+  const update = async () => {
+    toast.dismiss();
+    toast.loading("Kindly wait");
+    setIsPending(true);
 
-    if ("error" in res) {
+    try {
+      if (!state || !city || !pincode || !phone) {
+        toast.dismiss();
+        toast.error("Please Fill Details");
+        setIsPending(false);
+
+        return null;
+      }
+      const res = await trpc.updateProfile.useMutation().mutateAsync({
+        state: state,
+        city: city,
+        pincode: pincode,
+        phone: phone,
+      });
+
+      if ("error" in res) {
+        toast.dismiss();
+        toast.error(res.error);
+      } else if ("code" in res) {
+        toast.dismiss();
+        toast.error(
+          "Either you have already filled this form or number is already in use"
+        );
+      } else if ("message" in res) {
+        toast.dismiss();
+        toast.success("Your Submission Successful");
+        router.back();
+      }
+
+      setIsPending(false);
+    } catch (error) {
+      // zodError will be inferred
+      if (error instanceof TRPCClientError) {
+        toast.dismiss();
+        toast.error("Fill Fields Correctly");
+        setIsPending(false);
+        return null;
+      }
       toast.dismiss();
-      toast.error(res.error);
-    } else if ("code" in res) {
-      toast.dismiss();
-      toast.error(
-        "Either you have already filled this form or number is already in use"
-      );
-    } else if ("message" in res) {
-      toast.dismiss();
-      toast.success("Your Submission Successful");
-      router.back();
+      toast.error("Un-Expected Error");
+      setIsPending(false);
+      return null;
     }
-
-    setIsPending(false);
   };
 
   if (status === "authenticated" && session?.user.role === "USER") {
@@ -40,15 +74,7 @@ const Page = () => {
         <div className="z-[90000]">
           <Toaster position="bottom-left" />
         </div>
-        <form
-          action={(data) => {
-            toast.dismiss();
-            toast.loading("Kindly wait");
-            setIsPending(true);
-            onCreate(data);
-          }}
-          className="grid w-full gap-6 mb-6 md:grid-cols-2"
-        >
+        <form action={update} className="grid w-full gap-6 mb-6 md:grid-cols-2">
           {/* Phone */}
           <Input
             label="Phone"
@@ -56,6 +82,10 @@ const Page = () => {
             name="phone"
             maxLength={10}
             minLength={10}
+            value={phone}
+            onChange={(e) => {
+              setPhone(e.target.value);
+            }}
             placeholder="0123456789"
             pattern="[0-9]{10}"
             required
@@ -69,6 +99,10 @@ const Page = () => {
             required
             name="state"
             placeholder="ex. UP"
+            value={state}
+            onChange={(e) => {
+              setState(e.target.value);
+            }}
           />
 
           {/* City Name */}
@@ -79,6 +113,10 @@ const Page = () => {
             required
             name="city"
             placeholder="ex. Lucknow"
+            value={city}
+            onChange={(e) => {
+              setCity(e.target.value);
+            }}
           />
           {/* Pin Code */}
 
@@ -88,6 +126,10 @@ const Page = () => {
             required
             name="pincode"
             placeholder="ex. 000000"
+            value={pincode}
+            onChange={(e) => {
+              setPincode(e.target.value);
+            }}
           />
 
           <Button

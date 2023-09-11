@@ -1,19 +1,22 @@
-'use client'
+"use client";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import Image from "next/image";
-import DataSubmission from "./DataSubmission";
+import { trpc } from "TRPC/client";
+import { TRPCClientError } from "@trpc/client";
 
 interface FileInputState {
   selectedFile: File | null;
 }
 
 const SuggestionForm: React.FC = () => {
+  const pushData = trpc.suggestBooks.useMutation();
+
   const router = useRouter();
 
   const [isPending, setIsPending] = useState(false);
-  
+
   // Data To Be Posted
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -60,28 +63,46 @@ const SuggestionForm: React.FC = () => {
   };
 
   const handleSubmit = async () => {
+    setIsPending(true);
+
     toast.dismiss();
     toast.loading("Kindly wait");
-    const res = await DataSubmission({
-      title:title,
-      desc:desc,
-      cover_link:cover,
-      book_link:book,
-    });
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const res = await pushData.mutateAsync({
+        title: title,
+        desc: desc,
+        cover_link: cover,
+        book_link: book,
+      });
 
-    if ("error" in res) {
+      if ("error" in res) {
+        toast.dismiss();
+        toast.error(res.error);
+        setIsPending(false);
+      } else if ("code" in res) {
+        toast.dismiss();
+        toast.error("Failed to Post");
+        setIsPending(false);
+      } else if ("message" in res) {
+        toast.dismiss();
+        toast.success("Your Submission Successful");
+        router.replace("/");
+        setIsPending(false);
+      }
+      setIsPending(false);
+    } catch (error) {
+      // zodError will be inferred
+      if (error instanceof TRPCClientError) {
+        toast.dismiss();
+        toast.error("Fill Fields Correctly");
+        setIsPending(false);
+        return null;
+      }
       toast.dismiss();
-      toast.error(res.error);
-    } else if ("code" in res) {
-      toast.dismiss();
-      toast.error("Some error occurred while submission");
-    } else if ("message" in res) {
-      toast.dismiss();
-      toast.success("Your submission was successful");
-      router.replace("/");
+      toast.error("Un-Expected Error");
+      setIsPending(false);
+      return null;
     }
-    setIsPending(false);
   };
 
   return (
@@ -89,7 +110,15 @@ const SuggestionForm: React.FC = () => {
       <div>
         <Toaster position="bottom-left" reverseOrder={true} />
       </div>
-      <form className="flex flex-col w-full gap-2" onSubmit={handleSubmit}>
+      <form
+        className="flex flex-col w-full gap-2"
+        onSubmit={(e) => {
+          e.preventDefault();
+          toast.loading("Kindly wait");
+          setIsPending(true);
+          handleSubmit();
+        }}
+      >
         {/* Title */}
         <div className="p-1 flex flex-row items-center gap-1 border-b w-full border-gray-700 border-dashed">
           <input
@@ -145,7 +174,6 @@ const SuggestionForm: React.FC = () => {
           />
         </div>
 
-        
         {/* Book Image Selector */}
         <div className="p-1 flex flex-row items-center gap-1 border-b w-full border-gray-700 border-dashed">
           <label htmlFor="coverInput" className="text-gray-500 w-full">

@@ -5,6 +5,7 @@ import getArticles from "./getArticles";
 import getDetailedArticle from "./getDetailedArticle";
 import createArticles from "./createArticles";
 import suggestBook from "./suggestBook";
+import updateProfile from "./updateProfile";
 
 export const appRouter = router({
   get_books: getBooks(),
@@ -12,7 +13,8 @@ export const appRouter = router({
   get_Detail_Post:getDetailedArticle(),
   get_posts: getArticles(),
   create_Article: createArticles(),
-  suggestBooks:suggestBook()
+  suggestBooks: suggestBook(),
+  updateProfile:updateProfile()
 });
 export type AppRouter = typeof appRouter;
 

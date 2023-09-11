@@ -7,10 +7,10 @@ export default function createArticles() {
   return protectedProcedure
     .input(
       z.object({
-        short_desc: z.string(),
-        wysiwyg: z.string(),
-        title: z.string(),
-        creator: z.string(),
+        short_desc: z.string().min(1),
+        wysiwyg: z.string().min(1),
+        title: z.string().min(1),
+        creator: z.string().min(1),
       })
     )
     .mutation(async ({ input }) => {
@@ -43,7 +43,7 @@ export default function createArticles() {
             ? { error: firstValidationError.message, result: false }
             : { error: "unknown", result: false };
         }
-
+        
         return { error: "unknown", result: false };
       }
     });

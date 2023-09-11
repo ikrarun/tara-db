@@ -4,14 +4,14 @@ import { protectedProcedure } from "TRPC/trpc";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
-export default function createArticles() {
+export default function suggestBook() {
   return protectedProcedure
     .input(
       z.object({
-        desc: z.string(),
-        cover_link: z.string(),
-        title: z.string(),
-        book_link: z.string(),
+        desc: z.string().min(1),
+        cover_link: z.string().min(1),
+        title: z.string().min(1),
+        book_link: z.string().min(1),
       })
     )
     .mutation(async ({ input }) => {
