@@ -18,10 +18,10 @@ const SuggestionForm: React.FC = () => {
   const [isPending, setIsPending] = useState(false);
 
   // Data To Be Posted
-  const [title, setTitle] = useState("");
-  const [desc, setDesc] = useState("");
-  const [book, setBook] = useState("");
-  const [cover, setCover] = useState("");
+  const [intitle, setTitle] = useState<string>("");
+  const [indesc, setDesc] = useState<string>("");
+  const [book, setBook] = useState<string>("");
+  const [cover, setCover] = useState<string>("");
   // Lengths of Input Data
   const [descLength, setDescLength] = useState(200);
   const [titleLength, setTitleLength] = useState(80);
@@ -32,9 +32,9 @@ const SuggestionForm: React.FC = () => {
   });
 
   useEffect(() => {
-    setDescLength(desc.length);
-    setTitleLength(title.length);
-  }, [title, desc]);
+    setDescLength(indesc.length);
+    setTitleLength(intitle.length);
+  }, [intitle, indesc]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
@@ -69,8 +69,8 @@ const SuggestionForm: React.FC = () => {
     toast.loading("Kindly wait");
     try {
       const res = await pushData.mutateAsync({
-        title: title,
-        desc: desc,
+        title: intitle,
+        desc: indesc,
         cover_link: cover,
         book_link: book,
       });
@@ -127,13 +127,12 @@ const SuggestionForm: React.FC = () => {
             className="outline-none w-full ring-0"
             name="title"
             autoComplete="false"
-            maxLength={titleLength}
-            value={title}
+            maxLength={80}
+            value={intitle}
             minLength={4}
-            onChange={(e) => {
-              setTitle(e.target.value);
-              setTitleLength(e.target.value.length);
-            }}
+            onChange={(e) => 
+              setTitle(e.target.value)
+            }
             id="title"
           />
           <h1 className="text-xs text-gray-500">{titleLength}/80</h1>
@@ -145,10 +144,10 @@ const SuggestionForm: React.FC = () => {
             placeholder="Short Description"
             className="outline-none w-full ring-0"
             autoComplete="false"
-            maxLength={descLength}
+            maxLength={200}
             style={{ resize: "none" }}
             name="desc"
-            value={desc}
+            value={indesc}
             rows={2}
             onChange={(e) => {
               const cleanText = e.target.value.replace(/\n/g, "");
