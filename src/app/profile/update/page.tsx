@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { Input } from "components/Input/input";
 import { trpc } from "TRPC/client";
 import { TRPCClientError } from "@trpc/client";
+import { revalidatePath } from "next/cache";
 
 const Page = () => {
   const { data: session, status } = useSession();
@@ -48,10 +49,10 @@ const Page = () => {
         );
       } else if ("message" in res) {
         toast.dismiss();
+        revalidatePath("/");
         toast.success("Your Submission Successful");
         router.back();
       }
-
       setIsPending(false);
     } catch (error) {
       // zodError will be inferred

@@ -5,6 +5,7 @@ import { Toaster, toast } from "react-hot-toast";
 import Image from "next/image";
 import { trpc } from "TRPC/client";
 import { TRPCClientError } from "@trpc/client";
+import { revalidatePath } from "next/cache";
 
 interface FileInputState {
   selectedFile: File | null;
@@ -85,6 +86,7 @@ const SuggestionForm: React.FC = () => {
         setIsPending(false);
       } else if ("message" in res) {
         toast.dismiss();
+        revalidatePath("/");
         toast.success("Your Submission Successful");
         router.replace("/");
         setIsPending(false);
@@ -130,9 +132,7 @@ const SuggestionForm: React.FC = () => {
             maxLength={80}
             value={intitle}
             minLength={4}
-            onChange={(e) => 
-              setTitle(e.target.value)
-            }
+            onChange={(e) => setTitle(e.target.value)}
             id="title"
           />
           <h1 className="text-xs text-gray-500">{titleLength}/80</h1>

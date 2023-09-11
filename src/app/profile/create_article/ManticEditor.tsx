@@ -12,6 +12,7 @@ import { Button } from "components/Buttons/Button";
 import { Session } from "next-auth";
 import { trpc } from "TRPC/client";
 import { TRPCClientError } from "@trpc/client";
+import { revalidatePath } from "next/cache";
 
 function ManticEditor({ session }: { session: Session }) {
   const pushData = trpc.create_Article.useMutation();
@@ -59,9 +60,11 @@ function ManticEditor({ session }: { session: Session }) {
         toast.error("Failed to Post");
       } else if ("message" in res) {
         toast.dismiss();
+        revalidatePath("/");
         toast.success("Your Submission Successful");
         router.replace("/");
       }
+
       setIsPending(false);
     } catch (error) {
       // zodError will be inferred
@@ -71,10 +74,10 @@ function ManticEditor({ session }: { session: Session }) {
         setIsPending(false);
         return null;
       }
-       toast.dismiss();
-       toast.error("Un-Expected Error");
-       setIsPending(false);
-       return null;
+      toast.dismiss();
+      toast.error("Un-Expected Error");
+      setIsPending(false);
+      return null;
     }
   }
 
