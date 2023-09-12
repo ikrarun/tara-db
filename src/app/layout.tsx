@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Nunito_Sans as Font } from "next/font/google";
 import AuthProvider from "Lib/Auth/AuthProvider";
 import Nav from "components/Nav/Nav";
-import Header from "components/Nav/Header";
 import React from "react";
 import { Provider } from "TRPC/Provider";
 
@@ -29,7 +28,6 @@ export default function RootLayout({
       >
         <Provider>
         <AuthProvider>
-          <Header />
           <div className="flex relative flex-col w-full mx-auto pt-16 p-3 max-w-[900px]">
             <Nav />
             {children}
