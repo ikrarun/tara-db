@@ -1,7 +1,6 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { Role } from "enum";
-import { Suspense } from "react";
 import dynamic from "next/dynamic";
 
 
@@ -28,9 +27,7 @@ const Post = () => {
             </h1>
           </div>
           <div className="w-full h-[60vh] my_style">
-            <Suspense fallback={<div className="animate-pulse duration-100">Loading Editor....</div> }>
               <SuggestionForm />
-            </Suspense>
           </div>
         </div>
       );

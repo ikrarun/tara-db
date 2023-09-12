@@ -173,7 +173,7 @@ dependencies:
 
 devDependencies:
   daisyui:
-    specifier: ^3.6.3
+    specifier: ^3.7.3
     version: 3.7.3
   prisma:
     specifier: ^5.2.0

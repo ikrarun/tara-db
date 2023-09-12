@@ -22,7 +22,7 @@ export default function RootLayout({
   console.log = () => {};
 
   return (
-    <html lang="en">
+    <html lang="en" >
       <body
         style={font.style}
         className="inline-flex  select-none min-h-screen w-full"

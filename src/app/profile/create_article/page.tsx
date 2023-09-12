@@ -1,7 +1,6 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { Role } from "enum";
-import { Suspense } from "react";
 import dynamic from "next/dynamic";
 
 const RoleBasedCard = dynamic(() =>
@@ -19,15 +18,8 @@ const Post = () => {
       return (
         <div className=" flex flex-col mt-10 w-full items-center gap-4 justify-start">
           <div className="w-full h-[60vh] my_style">
-            <Suspense
-              fallback={
-                <div className="animate-pulse duration-100">
-                  Loading Editor....
-                </div>
-              }
-            >
+          
               <Editor session={session} />
-            </Suspense>
           </div>
         </div>
       );

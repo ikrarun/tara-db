@@ -45,7 +45,7 @@ const Page = () => {
       } else if ("code" in res) {
         toast.dismiss();
         toast.error(
-          "Either you have already filled this form or number is already in use"
+          "Form Cann't be submitted"
         );
       } else if ("message" in res) {
         toast.dismiss();
