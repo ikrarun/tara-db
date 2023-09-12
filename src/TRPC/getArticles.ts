@@ -8,6 +8,9 @@ export default function getArticles() {
     .query(async (opts) => {
         return await prisma.articles
           .findMany({
+            orderBy: {
+              date:'desc'
+            },
             take: opts.input,
             select: {
               title: true,

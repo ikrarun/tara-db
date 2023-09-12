@@ -4,19 +4,19 @@ import BookCard from "components/Cards/BookCard";
 
 
 const book_of_day = async() => {
-    const data = await serverClient.get_books();
-
-    return data === null ? (
+    const data = await serverClient.get_books(1);
+  const book = data ? data[0]:null
+    return (book === null|| typeof(book) === 'undefined') ? (
     <BookCard
       title={"Can't Recommend Any Book Right Now"}
       desc={"Try again after a while"}
     />
   ) : (
     <BookCard
-      imageUrl={data.imageUrl}
-      link={data.link}
-      title={data.title}
-      desc={data.desc}
+      imageUrl={book.imageUrl}
+      link={book.link}
+      title={book.title}
+      desc={book.desc}
     />
   );
 }
