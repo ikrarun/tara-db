@@ -39,7 +39,7 @@ const featured_article = async() => {
         ))}
         {data.length > 3 && (
           <div className="flex w-full flex-row items-center justify-end">
-            <Button className='cursor-pointer bg-transparent text-black text-sm' href={"/articles"}>Read More..</Button>
+            <Button className='cursor-pointer bg-transparent hover:bg-transparent text-black text-sm' href={"/articles"}>Read More..</Button>
           </div>
         )}
       </div>
