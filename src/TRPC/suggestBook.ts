@@ -1,7 +1,6 @@
 import { getServerAuthSession } from "Lib/Auth/auth";
 import { prisma } from "Lib/Database/db";
 import { protectedProcedure } from "TRPC/trpc";
-import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 export default function suggestBook() {
@@ -33,7 +32,6 @@ export default function suggestBook() {
             },
           })
           .then((result) => {
-            revalidatePath("/");
             return { message: result, result: true };
           })
           .catch(async (e) => {

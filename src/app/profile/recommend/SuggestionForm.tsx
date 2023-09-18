@@ -5,7 +5,6 @@ import { Toaster, toast } from "react-hot-toast";
 import Image from "next/image";
 import { trpc } from "TRPC/client";
 import { TRPCClientError } from "@trpc/client";
-import { revalidatePath } from "next/cache";
 
 interface FileInputState {
   selectedFile: File | null;
@@ -86,7 +85,6 @@ const SuggestionForm: React.FC = () => {
         setIsPending(false);
       } else if ("message" in res) {
         toast.dismiss();
-        revalidatePath("/");
         toast.success("Your Submission Successful");
         router.replace("/");
         setIsPending(false);
@@ -102,6 +100,7 @@ const SuggestionForm: React.FC = () => {
       }
       toast.dismiss();
       toast.error("Un-Expected Error");
+      console.log(error)
       setIsPending(false);
       return null;
     }

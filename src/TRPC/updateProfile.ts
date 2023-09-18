@@ -1,7 +1,6 @@
 import { getServerAuthSession } from "Lib/Auth/auth";
 import { prisma } from "Lib/Database/db";
 import { protectedProcedure } from "TRPC/trpc";
-import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 export default function updateProfile() {
@@ -40,7 +39,6 @@ export default function updateProfile() {
                   role: "EDITOR",
                 },
               });
-              revalidatePath("/");
 
               return { message: result, result: true };
             })
