@@ -3,17 +3,20 @@ import { VariantProps, cva } from "class-variance-authority";
 import { cn } from "Lib/Utils/twClasses";
 import Link from "next/link";
 
-const buttonVariants = cva("", {
-  variants: {
-    variant: {
-      default:
-        "inline-flex bg-blue-700 text-white hover:bg-blue-800 rounded-full py-2 px-4 items-center justify-center gap-2 text-xl",
+const buttonVariants = cva(
+  "inline-flex py-2 px-4 items-center justify-center gap-2",
+  {
+    variants: {
+      variant: {
+        default: "bg-blue-700 text-white hover:bg-blue-800",
+        glass:"bg-white/90 text-black hover:bg-white"
+      },
     },
-  },
-  defaultVariants: {
-    variant: "default",
-  },
-});
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+);
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,

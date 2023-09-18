@@ -24,8 +24,8 @@ export default async function Posts() {
     return (
       <div className="flex flex-col  items-center justify-center w-full gap-2 mx-auto">
         <div className="flex flex-col w-full">
-          <h1 className=" mb-2 text-xl text-gray-800 w-fit text-start">
-            We have been continuously working for providing information&apos;s
+          <h1 className="text-sm mb-2 text-gray-500">
+            Articles&apos;s are written by the contributors.
           </h1>
 
           <div

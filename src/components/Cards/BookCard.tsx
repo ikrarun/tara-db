@@ -1,6 +1,7 @@
 import Link from "next/link";
 interface BookComponents {
   imageUrl?: string;
+  single:boolean
   link?: string;
   title: string;
   desc: string;
@@ -8,6 +9,7 @@ interface BookComponents {
 }
 
 const BookCard = ({
+  single,
   imageUrl,
   link,
   title,
@@ -40,7 +42,7 @@ const BookCard = ({
       target="_blank"
       className="p-4 w-full z-20 flex bg-gradient-to-t from-black/90 to-black/60 h-full gap-3 items-start justify-end flex-col text-white rounded-lg"
     >
-      <h1 className="text-sm font-semibold">Book of the Day</h1>
+      <h1 className={single?"text-sm font-semibold":'hidden'}>Book of the Day</h1>
       <h1 className="text-2xl font-bold">{title}</h1>
       <h1 className="text-base font-semibold">{desc}</h1>
     </Link>

@@ -65,7 +65,7 @@ const MobileNav = () => {
   const [isVisible, setIsVisible] = useState(false);
   return (
     <div className="inline-flex top-0 left-0 right-0  text-white z-[2000] bg-blue-700 w-full fixed p-3 justify-start items-center">
-      <nav className="flex flex-row item-center justify-between text-base w-full gap-2 inline-flex items-center  mx-auto max-w-[880px]">
+      <nav className=" item-center justify-between text-base w-full gap-2 inline-flex items-center  mx-auto max-w-[880px]">
         {/* Header Title */}
         <div className="  text-base w-full gap-2 inline-flex items-center">
         <Link href="/" className={" text-xl capitalize inline-flex items-center  font-normal "}>
